@@ -16,11 +16,11 @@ Route::get('/', function()
 	return View::make('home');
 });
 
-/*Route::get('/', array(
-	'as'	=> 'home',
-	'uses'	=> 'HomeController@showCategorieen'
-));
-
+Route::get('home', function()
+{
+	return View::make('home');
+});
+/*
 Route::get('topics/{id}', array(
 	'as'	=> 'topics',
 	'uses'	=> 'TopicController@showTopics'
