@@ -26,6 +26,13 @@ Route::get('forum', array(
 	'uses'	=> 'HomeController@showCategorieen'
 ));
 
+=======
+Route::get('home', function()
+{
+	return View::make('home');
+});
+/*
+>>>>>>> 84957f0678b07bf1800299b8ad874d09872bef5e
 Route::get('topics/{id}', array(
 	'as'	=> 'topics',
 	'uses'	=> 'TopicController@showTopics'

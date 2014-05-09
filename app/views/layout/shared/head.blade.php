@@ -1,5 +1,6 @@
 <head>
 	<title>Je Forum</title>
-	{{HTML::style('assets/css/style.css')}}
-	{{HTML::style('assets/css/bootstrap.css')}}
+	{{HTML::style('assets/style.css')}}
+	{{HTML::style('assets/bootstrap.css')}}
+	{{HTML::script('assets/bootstrap.js')}}
 </head>
