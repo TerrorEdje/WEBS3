@@ -16,6 +16,11 @@ Route::get('/', function()
 	return View::make('home');
 });
 
+Route::get('forum', array(
+	'as'	=> 'forum',
+	'uses'	=> 'CategorieController@showCategories'
+));
+
 /*Route::get('/', array(
 	'as'	=> 'home',
 	'uses'	=> 'HomeController@showCategorieen'
