@@ -11,12 +11,12 @@
 |
 */
 
-/*Route::get('/', function()
+Route::get('/', function()
 {
-	return View::make('hello');
-});*/
+	return View::make('home');
+});
 
-Route::get('/', array(
+/*Route::get('/', array(
 	'as'	=> 'home',
 	'uses'	=> 'HomeController@showCategorieen'
 ));
@@ -74,5 +74,5 @@ Route::post('registreren', array(
 	'as'	=> 'registreren2',
 	'uses'	=> 'GebruikerController@registreren'
 ));
-
+*/
 ?>
