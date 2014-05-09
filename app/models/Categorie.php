@@ -4,7 +4,7 @@
 
 		public $timestamps = false;
 	
-		protected $table = 'categorie';
+		protected $table = 'categories';
 		
 	}
 

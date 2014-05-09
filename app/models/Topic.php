@@ -4,7 +4,7 @@
 
 		public $timestamps = false;
 	
-		protected $table = 'topic';
+		protected $table = 'topics';
 		
 	}
 
