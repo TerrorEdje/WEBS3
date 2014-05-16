@@ -6,6 +6,15 @@
 	
 		protected $table = 'subcategories';
 		
+		public function getAmountOfTopics()
+		{
+			$amountOfTopics = Topic::where('subcategories_name', '=', $this->name)->count();
+			if (isset($amountOfTopics))
+			{
+				return $amountOfTopics;
+			}
+		}
+		
 	}
 
 ?>

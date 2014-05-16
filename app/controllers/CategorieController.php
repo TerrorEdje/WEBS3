@@ -4,19 +4,7 @@ class CategorieController extends BaseController {
 
 	public function showCategories()
 	{
-		$categories = $this->getCategories();	
-		
-		$infoSubcategories = array(); # Bevat dadelijk alle subcategorieen (met extra info) die horen bij de hoofdcategorie
-		foreach ($categories as $infoCategory) {
-			foreach ($infoCategory['subcategories'] as $subcategory) {
-				$infoSubcategory = array(); # Bevat dadelijk alle info van een subcategorie
-				$infoSubcategory['name'] = $subcategory->name;
-				$infoSubcategory['numberOfTopics'] = Topic::where('subcategories_name', '=', $subcategory->name)->count();
-				array_push($infoSubcategories, $infoSubcategory);
-			}
-			$infoCategory['subcategories'] = $infoSubcategories;
-		}
-		
+		$categories = $this->getCategories();
 		return View::make('forum')->with('categories', $categories);
 	}
 	
