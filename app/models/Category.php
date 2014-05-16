@@ -1,6 +1,6 @@
 <?php
 
-	class Categorie extends Eloquent {
+	class Category extends Eloquent {
 
 		public $timestamps = false;
 	

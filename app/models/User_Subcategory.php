@@ -1,6 +1,6 @@
 <?php
 
-	class User_Subcategorie extends Eloquent {
+	class User_Subcategory extends Eloquent {
 
 		public $timestamps = false;
 	
