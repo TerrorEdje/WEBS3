@@ -5,7 +5,7 @@
 	{{ $infoCategory['category']->name }}<br/>
 
 	@foreach ($infoCategory['subcategories'] as $infoSubcategory)
-		{{ $infoSubcategory['name'] }} Aantal topics: {{ $infoSubcategory->getAmountOfTopics(); }}<br/>
+		{{ $infoSubcategory['name'] }} Aantal topics: {{ $infoSubcategory->getAmountOfTopics() }} Aantal reacties: {{ $infoSubcategory->getAmountOfReplies() }}<br/>
 	@endforeach
 	<br/>
 @endforeach

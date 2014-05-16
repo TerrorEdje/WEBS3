@@ -1,6 +1,6 @@
 <?php
 
-class CategorieController extends BaseController {
+class CategoryController extends BaseController {
 
 	public function showCategories()
 	{

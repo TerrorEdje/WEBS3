@@ -18,7 +18,7 @@ Route::get('/', function()
 
 Route::get('forum', array(
 	'as'	=> 'forum',
-	'uses'	=> 'CategorieController@showCategories'
+	'uses'	=> 'CategoryController@showCategories'
 ));
 
 /*Route::get('/', array(

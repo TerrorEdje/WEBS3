@@ -15,6 +15,20 @@
 			}
 		}
 		
+		public function getAmountOfReplies() 
+		{
+			$amountOfReplies = 0;
+			$topics = Topic::where('subcategories_name', '=', $this->name)->get();
+			foreach ($topics as $topic) 
+			{
+				$amountOfReplies = $amountOfReplies + Reply::where('topics_id', '=', $topic->id)->count();
+			}
+			if (isset($amountOfReplies))
+			{
+				return $amountOfReplies;
+			}
+		}
+		
 	}
 
 ?>
