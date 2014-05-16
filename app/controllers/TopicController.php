@@ -1,8 +1,13 @@
 <?php
 
 class TopicController extends BaseController {
+
+	public function showTopics($name)
+	{
+		return View::make('topics');
+	}
 	
-	public function showTopics($id)
+	/*public function showTopics($id)
 	{
 		$categorie = Categorie::find($id);
 		if ($categorie->parent == 0) {		
@@ -62,7 +67,7 @@ class TopicController extends BaseController {
 		$topic = Topic::find($id);
 		$reacties = Reactie::where('topic_id', '=', $id)->get();
 		return View::make('topic')->with('topic', $topic)->with('reacties', $reacties);
-	}
+	}*/
 
 }
 
