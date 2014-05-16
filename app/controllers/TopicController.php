@@ -4,7 +4,18 @@ class TopicController extends BaseController {
 
 	public function showTopics($name)
 	{
-		return View::make('topics');
+		$openTopics = array();
+		$closedTopics = array();
+		$dbTopics = Topic::where('subcategories_name','=', $name)->get();
+		foreach ($dbTopics as $topic) {
+			if($topic->open == true) {
+				array_push($openTopics, $topic);
+			}
+			else {
+				array_push($closedTopics, $topic);
+			}
+		}
+		return View::make('topics')->with('openTopics', $openTopics)->with('closedTopics', $closedTopics);
 	}
 	
 	/*public function showTopics($id)
