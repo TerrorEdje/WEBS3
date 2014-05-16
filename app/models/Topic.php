@@ -17,14 +17,11 @@
 		public function getLastReply() 
 		{
 			$lastReply = 0;
-			$topics = Topic::where('subcategories_name', '=', $this->name)->get();
-			foreach ($topics as $topic) {
-				$replies = Reply::where('topics_id', '=', $topic->id)->get();
-				foreach ($replies as $reply) {
-					$curReply = $reply->date;
-					if ($curReply > $lastReply) {
-						$lastReply = $curReply;
-					}
+			$replies = Reply::where('topics_id', '=', $topic->id)->get();
+			foreach ($replies as $reply) {
+				$curReply = $reply->date;
+				if ($curReply > $lastReply) {
+					$lastReply = $curReply;
 				}
 			}
 			if (isset($lastReply) & $lastReply != 0) {

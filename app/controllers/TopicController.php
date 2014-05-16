@@ -6,8 +6,8 @@ class TopicController extends BaseController {
 	{
 		$openTopics = array();
 		$closedTopics = array();
-		$dbTopics = Topic::where('subcategories_name','=', $name)->get();
-		foreach ($dbTopics as $topic) {
+		$topics = getTopicsWithInfo($name);
+		foreach ($topics as $topic) {
 			if($topic->open == true) {
 				array_push($openTopics, $topic);
 			}
@@ -16,6 +16,22 @@ class TopicController extends BaseController {
 			}
 		}
 		return View::make('topics')->with('openTopics', $openTopics)->with('closedTopics', $closedTopics);
+	}
+	
+	public function getTopicsWithInfo($name)
+	{
+		$allTopics = array();
+		
+		$dbTopics = Topic::where('subcategories_name','=', $name)->get();
+		foreach ($dbTopics as $topic) {
+			$infoTopic = array();
+			$infoTopic['topic'] = $topic;
+			$infoTopic['amountOfReplies'] = $topic->getAmountOfReplies();
+			$infoTopic['lastReply'] $topic->getLastReply();
+			array_push($allTopics, $infoTopic);
+		}
+		
+		return $allToopics;
 	}
 	
 	/*public function showTopics($id)
