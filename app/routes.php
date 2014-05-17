@@ -31,6 +31,11 @@ Route::get('topic/{id}', array(
 	'uses'	=> 'TopicController@showTopic'
 ));
 
+Route::post('topic/{id}', array(
+	'as'	=> 'topic2',
+	'uses'	=> 'ReplyController@addReply'
+));
+
 /*Route::get('/', array(
 	'as'	=> 'home',
 	'uses'	=> 'HomeController@showCategorieen'
