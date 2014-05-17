@@ -4,18 +4,18 @@ class TopicController extends BaseController {
 
 	public function showTopics($name)
 	{
-		$openTopics = array();
-		$closedTopics = array();
-		$topics = getTopicsWithInfo($name);
-		foreach ($topics as $topic) {
-			if($topic->open == true) {
-				array_push($openTopics, $topic);
+		$infoOpenTopics = array();
+		$infoClosedTopics = array();
+		$topics = $this->getTopicsWithInfo($name);
+		foreach ($topics as $infoTopic) {
+			if($infoTopic['topic']->open == true) {
+				array_push($infoOpenTopics, $infoTopic);
 			}
 			else {
-				array_push($closedTopics, $topic);
+				array_push($infoClosedTopics, $infoTopic);
 			}
 		}
-		return View::make('topics')->with('openTopics', $openTopics)->with('closedTopics', $closedTopics);
+		return View::make('topics')->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics);
 	}
 	
 	public function getTopicsWithInfo($name)
@@ -27,11 +27,11 @@ class TopicController extends BaseController {
 			$infoTopic = array();
 			$infoTopic['topic'] = $topic;
 			$infoTopic['amountOfReplies'] = $topic->getAmountOfReplies();
-			$infoTopic['lastReply'] $topic->getLastReply();
+			$infoTopic['lastReply'] = $topic->getLastReply();
 			array_push($allTopics, $infoTopic);
 		}
 		
-		return $allToopics;
+		return $allTopics;
 	}
 	
 	/*public function showTopics($id)

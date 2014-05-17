@@ -8,7 +8,7 @@
 		
 		public function getAmountOfReplies() 
 		{
-			$amountOfReplies = Reply::where('topics_id', '=', $topic->id)->count();
+			$amountOfReplies = Reply::where('topics_id', '=', $this->id)->count();
 			if (isset($amountOfReplies)) {
 				return $amountOfReplies;
 			}
@@ -17,7 +17,7 @@
 		public function getLastReply() 
 		{
 			$lastReply = 0;
-			$replies = Reply::where('topics_id', '=', $topic->id)->get();
+			$replies = Reply::where('topics_id', '=', $this->id)->get();
 			foreach ($replies as $reply) {
 				$curReply = $reply->date;
 				if ($curReply > $lastReply) {
