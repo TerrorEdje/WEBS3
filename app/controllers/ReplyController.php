@@ -6,6 +6,31 @@ class ReplyController extends BaseController {
 	{		
 		echo "REACTIE IS TOEGEVOEGD !!!";
 		
+		$allInfoTopic = $this->getTopicInfo($id);
+		
+		$infoTopic = $allInfoTopic['infoTopic'];
+		$infoReplies = $allInfoTopic['infoReplies'];
+		
+		/*$infoTopic = array();
+		$infoTopic['topic'] = Topic::find($id);
+		$infoTopic['by'] = User::find($infoTopic['topic']->by);
+		
+		$infoReplies = array();
+		$dbReplies = Reply::where('topics_id', '=', $id)->get();
+		foreach ($dbReplies as $reply) {
+			$infoReply = array();
+			$infoReply['reply'] = $reply;
+			$infoReply['by'] = User::find($reply->by);
+			array_push($infoReplies, $infoReply);
+		}*/
+		
+		return View::make('topic')->with('topic', $infoTopic)->with('replies', $infoReplies);
+	}
+
+	public function getTopicInfo($id)
+	{
+		$allInfoTopic = array();
+		
 		$infoTopic = array();
 		$infoTopic['topic'] = Topic::find($id);
 		$infoTopic['by'] = User::find($infoTopic['topic']->by);
@@ -19,9 +44,11 @@ class ReplyController extends BaseController {
 			array_push($infoReplies, $infoReply);
 		}
 		
-		return View::make('topic')->with('topic', $infoTopic)->with('replies', $infoReplies);
+		$allInfoTopic['infoTopic'] = $infoTopic;
+		$allInfoTopic['infoReplies'] = $infoReplies;
+		
+		return $allInfoTopic;
 	}
-
 	
 	/*public function addReactie($id)
 	{	
