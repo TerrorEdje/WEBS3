@@ -6,7 +6,7 @@ class TopicController extends BaseController {
 	{
 		$infoOpenTopics = array();
 		$infoClosedTopics = array();
-		$topics = $this->getTopicsWithInfo($name);
+		$topics = $this->getTopicsWithInfo($name); # Deze lijst met alle topics wordt dadelijk gesplist in 2 lijsten (Open topics en gesloten topics)
 		foreach ($topics as $infoTopic) {
 			if($infoTopic['topic']->open == true) {
 				array_push($infoOpenTopics, $infoTopic);
@@ -20,11 +20,11 @@ class TopicController extends BaseController {
 	
 	public function getTopicsWithInfo($name)
 	{
-		$allTopics = array();
+		$allTopics = array(); # Bevat dadelijk van alle topics alle info
 		
 		$dbTopics = Topic::where('subcategories_name','=', $name)->get();
 		foreach ($dbTopics as $topic) {
-			$infoTopic = array();
+			$infoTopic = array(); # Bevat dadelijk alle info van een topic
 			$infoTopic['topic'] = $topic;
 			$infoTopic['amountOfReplies'] = $topic->getAmountOfReplies();
 			$infoTopic['lastReply'] = $topic->getLastReply();
@@ -32,6 +32,24 @@ class TopicController extends BaseController {
 		}
 		
 		return $allTopics;
+	}
+	
+	public function showTopic($id)
+	{	
+		$infoTopic = array();
+		$infoTopic['topic'] = Topic::find($id);
+		$infoTopic['by'] = User::find($infoTopic['topic']->by);
+		
+		$infoReplies = array();
+		$dbReplies = Reply::where('topics_id', '=', $id)->get();
+		foreach ($dbReplies as $reply) {
+			$infoReply = array();
+			$infoReply['reply'] = $reply;
+			$infoReply['by'] = User::find($reply->by);
+			array_push($infoReplies, $infoReply);
+		}
+		
+		return View::make('topic')->with('topic', $infoTopic)->with('replies', $infoReplies);
 	}
 	
 	/*public function showTopics($id)

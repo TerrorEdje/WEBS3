@@ -21,9 +21,14 @@ Route::get('forum', array(
 	'uses'	=> 'CategoryController@showCategories'
 ));
 
-Route::get('topic/{name}', array(
+Route::get('topics/{name}', array(
 	'as'	=> 'topics',
 	'uses'	=> 'TopicController@showTopics'
+));
+
+Route::get('topic/{id}', array(
+	'as'	=> 'topic',
+	'uses'	=> 'TopicController@showTopic'
 ));
 
 /*Route::get('/', array(
