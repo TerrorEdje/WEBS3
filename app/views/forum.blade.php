@@ -6,12 +6,12 @@
 
 	@foreach ($infoCategory['subcategories'] as $infoSubcategory)
 		{{ link_to_route('topics', $infoSubcategory['name'] , array('name' => $infoSubcategory['name'] )) }}
-		Aantal topics: {{ $infoSubcategory->getAmountOfTopics() }} 
-		Aantal reacties: {{ $infoSubcategory->getAmountOfReplies() }}
-		@if ($infoSubcategory->getLastReply() == 0) 
+		Aantal topics: {{ $infoSubcategory['amountOfTopics'] }} 
+		Aantal reacties: {{ $infoSubcategory['amountOfReplies'] }}
+		@if ($infoSubcategory['lastReply'] == 0) 
 			Laatste reactie: -<br/>
 		@else
-			Laatste reactie: {{ $infoSubcategory->getlastReply() }}<br/>
+			Laatste reactie: {{ $infoSubcategory['lastReply'] }}<br/>
 		@endif
 	@endforeach
 	<br/>
