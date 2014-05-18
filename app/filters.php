@@ -13,7 +13,7 @@
 
 App::before(function($request)
 {
-	//
+	if (Auth::check()) return Redirect::to('/');
 });
 
 
