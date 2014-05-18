@@ -36,6 +36,11 @@ Route::post('topic/{id}', array(
 	'uses'	=> 'ReplyController@addReply'
 ));
 
+Route::get('emailtest',array(
+	'as' => 'emailtest',
+	'uses' => 'HomeController@email'
+));
+
 /*Route::get('/', array(
 	'as'	=> 'home',
 	'uses'	=> 'HomeController@showCategorieen'

@@ -2,24 +2,6 @@
 
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
-
-	/*public function showWelcome()
-	{
-		return View::make('hello');
-	}*/
-	
 	public function showCategorieen()
 	{
 		$categorieen = array();	
@@ -57,6 +39,15 @@ class HomeController extends BaseController {
 			array_push($categorieen, $infoCategorie); # Voegt alle info (hoofdcategorie met de bijbehorende subcategorieen) toe aan de array
 		}
 		return View::make('home')->with('categorieen', $categorieen);
+	}
+	
+	public function email()
+	{
+		Mail::send('emails.test',array('name'=>'Edwin'),function($message) {
+			$message -> to('edwinhattink@me.com','Edwin') -> subject('Test email');
+		});
+		
+		return View::make('home');
 	}
 
 }
