@@ -8,6 +8,8 @@ USE `mydb` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`rights`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`rights` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`rights` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NULL,
@@ -19,18 +21,22 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`users` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `joindate` DATETIME NOT NULL,
+  `password` VARCHAR(60) NOT NULL,
+  `password_temp` VARCHAR(60) NULL,
+  `email` VARCHAR(50) NOT NULL,
   `lasttimeonline` DATETIME NOT NULL,
   `timesonline` INT NOT NULL,
   `signature` TEXT NULL,
   `image` VARCHAR(100) NULL,
   `description` VARCHAR(100) NULL,
   `rights_name` VARCHAR(45) NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
@@ -46,6 +52,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`categories`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`categories` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`categories` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
@@ -57,6 +65,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`subcategories`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`subcategories` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`subcategories` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
@@ -74,6 +84,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`topics`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`topics` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`topics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
@@ -101,6 +113,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`replies`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`replies` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`replies` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` TEXT NOT NULL,
@@ -127,6 +141,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`polloptions`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`polloptions` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`polloptions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `topics_id` INT NOT NULL,
@@ -146,6 +162,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`pollvotes`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`pollvotes` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`pollvotes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
@@ -171,6 +189,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`users_subcategories`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`users_subcategories` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`users_subcategories` (
   `users_id` INT NOT NULL,
   `subcategories_name` VARCHAR(45) NOT NULL,
@@ -200,6 +220,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`users_read_replies`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `mydb`.`users_read_replies` ;
+
 CREATE TABLE IF NOT EXISTS `mydb`.`users_read_replies` (
   `users_id` INT NOT NULL,
   `replies_id` INT NOT NULL,
