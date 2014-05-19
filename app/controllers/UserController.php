@@ -51,10 +51,8 @@ class UserController extends BaseController {
 				});
 				
 				return Redirect::route('home')->with('global','Your account has been created! We have sent you an email to activate your account.');
-			}
-			
-		}
-		
+			}	
+		}		
 	}
 	
 	public function getActivate($code)
@@ -104,8 +102,8 @@ class UserController extends BaseController {
 			
 			if ($auth)
 			{
-				return View::make('home');
-				//return Redirect::intended('/');
+				//return View::make('home');
+				return Redirect::intended('/');
 			}
 			else
 			{
