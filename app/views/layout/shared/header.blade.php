@@ -6,6 +6,7 @@
 		@if(Auth::check())
 		
 		@else
+			<li><a href="{{ URL::route('user-sign-in') }}">Login</a></li>
 			<li><a href="{{ URL::route('user-create') }}">Register</a></li>
 		@endif
 	</ul>

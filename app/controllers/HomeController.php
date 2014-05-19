@@ -41,12 +41,8 @@ class HomeController extends BaseController {
 		return View::make('home')->with('categorieen', $categorieen);
 	}
 	
-	public function email()
+	public function home()
 	{
-		Mail::send('emails.test',array('name'=>'Edwin'),function($message) {
-			$message -> to('edwinhattink@me.com','Edwin') -> subject('Test email');
-		});
-		
 		return View::make('home');
 	}
 
