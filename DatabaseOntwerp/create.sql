@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   `active` INT NULL,
+  `code` VARCHAR(60) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
