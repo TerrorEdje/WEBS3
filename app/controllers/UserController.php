@@ -103,7 +103,7 @@ class UserController extends BaseController {
 			if ($auth)
 			{
 				//return View::make('home');
-				return Redirect::intended('/');
+				return 'U LOGT NU IN';
 			}
 			else
 			{
