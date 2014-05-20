@@ -68,12 +68,12 @@ class UserController extends BaseController {
 			
 			if($user->save())
 			{
-				return Redirect::route('home')->with('global','Activated! You can now sign in!');
+				//return Redirect::route('home')->with('global','Activated! You can now sign in!');
 			}
 			
 		}
 		
-		return Redirect::route('home')->with('global','We could not activate your account. Try again later.');
+		//return Redirect::route('home')->with('global','We could not activate your account. Try again later.');
 	}
 	
 	public function getSignIn()
@@ -102,8 +102,7 @@ class UserController extends BaseController {
 			
 			if ($auth)
 			{
-				//return View::make('home');
-				return 'U LOGT NU IN';
+				return Redirect::intended('/');
 			}
 			else
 			{

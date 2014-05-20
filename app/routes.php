@@ -4,6 +4,11 @@ Route::get('/', array(
 	'uses' => 'HomeController@home'
 ));
 
+Route::get('home', array(
+	'as' => 'home',
+	'uses' => 'HomeController@home'
+));
+
 Route::get('forum', array(
 	'as'	=> 'forum',
 	'uses'	=> 'CategoryController@showCategories'
@@ -36,29 +41,29 @@ Route::group(array('before' => 'guest'), function()
 	Route::group(array('before' => 'csrf'), function() 
 	{
 	
-		Route::post('/user/create',array(
+		Route::post('user/create',array(
 			'as' => 'user-create-post',
 			'uses' => 'UserController@postCreate'
 		));
 		
-		Route::post('/user/sign-in',array(
+		Route::post('user/sign-in',array(
 			'as' => 'user-sign-in-post',
 			'uses' => 'UserController@postSignIn'
 		));
 	
 	});
 	
-	Route::get('/user/create',array(
+	Route::get('user/create',array(
 		'as' => 'user-create',
 		'uses' => 'UserController@getCreate'
 	));
 	
-	Route::get('/user/sign-in',array(
+	Route::get('user/sign-in',array(
 		'as' => 'user-sign-in',
 		'uses' => 'UserController@getSignIn'
 	));
 	
-	Route::get('/user/activate/{code}', array(
+	Route::get('user/activate/{code}', array(
 		'as' => 'user-activate',
 		'uses' => 'UserController@getActivate'
 	));
