@@ -4,10 +4,11 @@
 		<li><a href="#">Forum</a></li>
 		
 		@if(Auth::check())
-			<li>Hoi hoi</li>
+			<li><a href="{{ URL::route('account-sign-out') }}">Sign out</a></li>
+			<li><a href="{{ URL::route('account-change-password') }}">Change password</a></li>
 		@else
-			<li><a href="{{ URL::route('user-sign-in') }}">Login</a></li>
-			<li><a href="{{ URL::route('user-create') }}">Register</a></li>
+			<li><a href="{{ URL::route('account-sign-in') }}">Login</a></li>
+			<li><a href="{{ URL::route('account-create') }}">Register</a></li>
 		@endif
 	</ul>
 </div>

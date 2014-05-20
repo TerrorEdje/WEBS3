@@ -30,6 +30,32 @@ Route::post('topic/{id}', array(
 ));
 
 /*
+| Ingelogde groep.
+*/
+Route::group(array('before' => 'auth'), function() 
+{
+
+	Route::group(array('before' => 'csrf'), function() 
+	{
+		Route::post('account/change-password', array(
+			'as' => 'account-change-password-post',
+			'uses' => 'AccountController@postChangePassword'
+		));
+	});
+	
+	Route::get('account/sign-out', array(
+		'as' => 'account-sign-out',
+		'uses' => 'AccountController@getSignOut'
+	));
+	
+	Route::get('account/change-password', array(
+		'as' => 'account-change-password',
+		'uses' => 'AccountController@getChangePassword'
+	));
+	
+});
+
+/*
 | Niet ingelogde groep.
 */
 Route::group(array('before' => 'guest'), function()
@@ -41,31 +67,31 @@ Route::group(array('before' => 'guest'), function()
 	Route::group(array('before' => 'csrf'), function() 
 	{
 	
-		Route::post('user/create',array(
-			'as' => 'user-create-post',
-			'uses' => 'UserController@postCreate'
+		Route::post('account/create',array(
+			'as' => 'account-create-post',
+			'uses' => 'AccountController@postCreate'
 		));
 		
-		Route::post('user/sign-in',array(
-			'as' => 'user-sign-in-post',
-			'uses' => 'UserController@postSignIn'
+		Route::post('account/sign-in',array(
+			'as' => 'account-sign-in-post',
+			'uses' => 'AccountController@postSignIn'
 		));
 	
 	});
 	
-	Route::get('user/create',array(
-		'as' => 'user-create',
-		'uses' => 'UserController@getCreate'
+	Route::get('account/create',array(
+		'as' => 'account-create',
+		'uses' => 'AccountController@getCreate'
 	));
 	
-	Route::get('user/sign-in',array(
-		'as' => 'user-sign-in',
-		'uses' => 'UserController@getSignIn'
+	Route::get('account/sign-in',array(
+		'as' => 'account-sign-in',
+		'uses' => 'AccountController@getSignIn'
 	));
 	
-	Route::get('user/activate/{code}', array(
-		'as' => 'user-activate',
-		'uses' => 'UserController@getActivate'
+	Route::get('account/activate/{code}', array(
+		'as' => 'account-activate',
+		'uses' => 'AccountController@getActivate'
 	));
 	
 });

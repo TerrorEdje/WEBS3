@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<form action="{{ URL::route('user-sign-in-post') }}" method="post">
+	<form action="{{ URL::route('account-sign-in-post') }}" method="post">
 		
 		<div class="field">
 			Email: {{Form::text('email')}}
@@ -16,7 +16,10 @@
 				{{ $errors->first('password') }}
 			@endif
 		</div>
-		
+		<div class="field">
+			{{ Form::label('remember','Remember me') }}
+			{{ Form::checkbox('remember')  }}
+		</div>
 		<input type="submit" value="Sign in">
 		{{ Form::token() }}
 	</form>

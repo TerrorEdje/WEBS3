@@ -13,7 +13,7 @@
 
 App::before(function($request)
 {
-	if (Auth::check()) return Redirect::to('/');
+	//if (Auth::check()) return Redirect::to('/');
 });
 
 
@@ -57,7 +57,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+	//if (Auth::check()) return Redirect::to('/');
 });
 
 /*

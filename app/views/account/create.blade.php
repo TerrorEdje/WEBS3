@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<form action="{{ URL::route('user-create-post') }}" method="post">
+	<form action="{{ URL::route('account-create-post') }}" method="post">
 		
 		<div class="field">
 			Email: {{Form::text('email')}}
