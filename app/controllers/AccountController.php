@@ -104,6 +104,15 @@ class AccountController extends BaseController {
 			
 			if(Auth::attempt($user,$remember))
 			{
+				$useronline = User::where('email','=',Input::get('email'));
+				if($useronline->count())
+				{
+					$useronline = $useronline->first();
+					$useronline->timesonline = $useronline->timesonline + 1;
+					$useronline->lasttimeonline = new DateTime('NOW');
+					$useronline->save();
+				}
+				
 				return Redirect::intended('/');
 			}
 			else
