@@ -3,7 +3,7 @@
 @include('layout/shared/head')
 <body>
 <div class="container">
-@include('layout/shared/header')
+@include('layout/shared/navigation')
 
 @if(Session::has('global'))
 	<p>{{ Session::get('global')}}</p>

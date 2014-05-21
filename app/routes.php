@@ -4,6 +4,8 @@ Route::get('/', array(
 	'uses' => 'HomeController@home'
 ));
 
+
+
 Route::get('home', array(
 	'as' => 'home',
 	'uses' => 'HomeController@home'
@@ -53,6 +55,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'AccountController@getChangePassword'
 	));
 	
+	Route::get('profile/{username}',array(
+		'as' => 'profile-user',
+		'uses' => 'ProfileController@user'
+	));
+	
 });
 
 /*
@@ -76,6 +83,11 @@ Route::group(array('before' => 'guest'), function()
 			'as' => 'account-sign-in-post',
 			'uses' => 'AccountController@postSignIn'
 		));
+		
+		Route::post('account/forgot-password',array(
+		'as' => 'account-forgot-password-post',
+		'uses' => 'AccountController@postForgotPassword'
+	));
 	
 	});
 	
@@ -92,6 +104,16 @@ Route::group(array('before' => 'guest'), function()
 	Route::get('account/activate/{code}', array(
 		'as' => 'account-activate',
 		'uses' => 'AccountController@getActivate'
+	));
+	
+	Route::get('account/forgot-password',array(
+		'as' => 'account-forgot-password',
+		'uses' => 'AccountController@getForgotPassword'
+	));
+	
+	Route::get('account/recovery/{code}', array(
+		'as' => 'account-recover',
+		'uses' => 'AccountController@getRecover'
 	));
 	
 });
