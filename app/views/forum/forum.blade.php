@@ -6,7 +6,7 @@
 	
 	@foreach ($categories as $infoCategory)
 	
-		<div class="titleCategory">
+		<div class="titleMainCategory">
 			{{ $infoCategory['category']->name }}
 		</div>
 	
@@ -14,7 +14,7 @@
 		
 			@foreach ($infoCategory['subcategories'] as $infoSubcategory)
 				<div class="col-md-3 categoryBlock">
-					<div>
+					<div class="titleSubCategory">
 						{{ link_to_route('forum-category', $infoSubcategory['name'] , array('name' => $infoSubcategory['name'] )) }}
 					</div>
 					<div>
