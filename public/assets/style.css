@@ -17,3 +17,22 @@ ul.sub_navigation li
 {
 	display:block;
 }
+
+.titleCategory {
+	background-color: #428bca;
+	width: 943px;
+	padding: 10px;
+}
+
+.categoryBlock {
+	background-color: #ebebeb;
+	display: block;
+	height: 200px;
+	margin: 16px;
+	padding: 10px;	
+}
+
+.right
+{
+	float:right;
+}

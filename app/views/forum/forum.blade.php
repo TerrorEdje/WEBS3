@@ -2,36 +2,39 @@
 
 @section('content')
 
-	<h1>Categories</h1>	
-
+	<br>
+	
 	@foreach ($categories as $infoCategory)
+	
+		<div class="titleCategory">
+			{{ $infoCategory['category']->name }}
+		</div>
+	
+		<div class="row">
 		
-		<div>
-		
-			<div>
-				{{ $infoCategory['category']->name }}<br/>
-			</div>
+			@foreach ($infoCategory['subcategories'] as $infoSubcategory)
+				<div class="col-md-3 categoryBlock">
+					<div>
+						{{ link_to_route('forum-category', $infoSubcategory['name'] , array('name' => $infoSubcategory['name'] )) }}
+					</div>
+					<div>
+						<p>
+							{{ $infoSubcategory['description'] }}<br>
+						</p>
+						<p>
+							Topics: {{ $infoSubcategory['amountOfTopics'] }}
+							<span class="right">Replies: {{ $infoSubcategory['amountOfReplies'] }}</span>
+						</p>
+						<p>
+							@if ($infoSubcategory['lastReply'] != 0) 
+								Last Reply:<br>
+								{{ $infoSubcategory['lastReply'] }}
+							@endif
+						</p>
+					</div>
+				</div>
+			@endforeach
 			
-			<div>
-				<span>Topics</span>
-				<span>Replies</span>
-				<span>Last reply</span>
-			</div>
-
-			<div>
-				@foreach ($infoCategory['subcategories'] as $infoSubcategory)
-					<span> {{ link_to_route('forum-category', $infoSubcategory['name'] , array('name' => $infoSubcategory['name'] )) }} </span>
-					<span> {{ $infoSubcategory['amountOfTopics'] }} </span>
-					<span> {{ $infoSubcategory['amountOfReplies'] }} </span>
-					@if ($infoSubcategory['lastReply'] == 0) 
-						<span> - </span>
-					@else
-						<span> {{ $infoSubcategory['lastReply'] }} </span>
-					@endif
-					<br/>
-				@endforeach
-			</div>
-		
 		</div>
 		
 		<br/>

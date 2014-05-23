@@ -11,6 +11,7 @@ class CategoryController extends BaseController {
 			foreach ($infoCategory['subcategories'] as $subcategory) {
 				$infoSubcategory = array();  # Bevat dadelijk alle subcategorieen met alle info
 				$infoSubcategory['name'] = $subcategory->name;
+				$infoSubcategory['description'] = $subcategory->description;
 				$infoSubcategory['amountOfTopics'] = $subcategory->getAmountOfTopics();
 				$infoSubcategory['amountOfReplies'] = $subcategory->getAmountOfReplies();
 				$infoSubcategory['lastReply'] = $subcategory->getLastReply();
