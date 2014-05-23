@@ -17,7 +17,7 @@ Route::group(array('before' => 'auth'), function()
 	{
 		Route::post('forum/topic/{id}', array(
 			'as'	=> 'forum-topic-post',
-			'uses'	=> 'TopicController@addReply'
+			'uses'	=> 'TopicController@postReply'
 		));
 
 		Route::post('account/change-password', array(

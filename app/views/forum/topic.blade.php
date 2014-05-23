@@ -1,28 +1,34 @@
+@extends('layout/main')
 
-<h1>Topic pagina</h1>
+@section('content')
 
-<h3>Titel topic: {{ $topic['topic']->title }}</h3>	
+	<h1>Topic pagina</h1>
 
-By: {{ $topic['by']->username }}<br/>
-Date: {{ $topic['topic']->by }}
+	<h3>Titel topic: {{ $topic['topic']->title }}</h3>	
 
-<h3>Berichten</h3>	
+	By: {{ $topic['by']->username }}<br/>
+	Date: {{ $topic['topic']->by }}
 
-@foreach ($replies as $infoReply)
-	<p>
-		{{ $infoReply['by']->username }}<br/>
-		{{ $infoReply['reply']->date }}<br/>
-		{{ $infoReply['reply']->content }}
-	</p>
-@endforeach
+	<h3>Berichten</h3>	
 
-<div>
-{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
-	Reply:</br>
-	{{ Form::textarea('content') }}</br>
-	Usernaam: {{ Form::text('username') }}</br>
-	{{ Form::submit('Reply') }}
-	{{ Form::close() }}
-		
-</div>
+	@foreach ($replies as $infoReply)
+		<p>
+			{{ $infoReply['by']->username }}<br>
+			{{ $infoReply['reply']->date }}<br>
+			{{ $infoReply['reply']->content }}
+		</p>
+	@endforeach
 
+	<div>
+	{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
+		Reply:</br>
+		{{ Form::textarea('content') }}<br>
+		@if($errors->has('content'))
+				{{ $errors->first('content') }}<br>
+			@endif
+		{{ Form::submit('Reply') }}
+		{{ Form::close() }}
+			
+	</div>
+
+@stop
