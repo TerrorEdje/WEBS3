@@ -2,10 +2,10 @@
 
 class CategoryController extends BaseController {
 
-	public function showCategories()
+	public function getCategories()
 	{
 		$allCategories = array(); # Bevat dadelijk alle hoofdcategorieen met daaraan gekoppeld de bijbehorende subcategorieen met alle info
-		$categories = $this->getCategories();
+		$categories = $this->getMainCategories();
 		foreach ($categories as $infoCategory) {
 			$infoSubcategories = array(); # Bevat dadelijk alle subcategorieen met alle info van een hoofdcategorie
 			foreach ($infoCategory['subcategories'] as $subcategory) {
@@ -19,10 +19,10 @@ class CategoryController extends BaseController {
 			$infoCategory['subcategories'] = $infoSubcategories;
 			array_push($allCategories, $infoCategory);
 		}		
-		return View::make('forum')->with('categories', $allCategories);
+		return View::make('forum/forum')->with('categories', $allCategories);
 	}
 	
-	public function getCategories() {
+	public function getMainCategories() {
 	
 		$allCategories = array(); # Bevat dadelijk alle hoofdcategorieen met daaraan gekoppeld de bijbehorende subcategorieen
 	
@@ -40,41 +40,38 @@ class CategoryController extends BaseController {
 		
 		return $allCategories;
 	}
-	
-	/*public function showCategorieen()
+
+	public function getCategory($name)
 	{
-		$categorieen = $this->getCategorieen();	
-		return View::make('beheerCategorieen')->with('categorieen', $categorieen);
+		$infoOpenTopics = array();
+		$infoClosedTopics = array();
+		$topics = $this->getTopicsWithInfo($name); # Deze lijst met alle topics wordt dadelijk gesplist in 2 lijsten (Open topics en gesloten topics)
+		foreach ($topics as $infoTopic) {
+			if($infoTopic['topic']->open == true) {
+				array_push($infoOpenTopics, $infoTopic);
+			}
+			else {
+				array_push($infoClosedTopics, $infoTopic);
+			}
+		}
+		return View::make('forum/category')->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics);
 	}
 	
-	public function categorieWijzigen($id)
-	{	
-		return View::make('test');
-	}
-	
-	public function categorieVerwijderen($id)
-	{	
-		return View::make('test');
-	}
-	
-	public function getCategorieen() {
-	
-		$categorieen = array();	
-		$hoofdcategorieen = Categorie::where('parent','=',0)->get();
+	public function getTopicsWithInfo($name)
+	{
+		$allTopics = array(); # Bevat dadelijk van alle topics alle info
 		
-		foreach ($hoofdcategorieen as $hoofdcategorie) {
-			
-			$subcategorieen = Categorie::where('parent','=',$hoofdcategorie->id)->get();
-			
-			$infoCategorie = array();
-			$infoCategorie['hoofdcategorie'] = $hoofdcategorie;
-			$infoCategorie['subcategorieen'] = $subcategorieen;
-			
-			array_push($categorieen, $infoCategorie);
+		$dbTopics = Topic::where('subcategories_name','=', $name)->get();
+		foreach ($dbTopics as $topic) {
+			$infoTopic = array(); # Bevat dadelijk alle info van een topic
+			$infoTopic['topic'] = $topic;
+			$infoTopic['amountOfReplies'] = $topic->getAmountOfReplies();
+			$infoTopic['lastReply'] = $topic->getLastReply();
+			array_push($allTopics, $infoTopic);
 		}
 		
-		return $categorieen;
-	}*/
+		return $allTopics;
+	}
 
 }
 

@@ -17,7 +17,7 @@ Date: {{ $topic['topic']->by }}
 @endforeach
 
 <div>
-{{ Form::open(array('route' => array('topic2', $topic['topic']->id))) }}
+{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
 	Reply:</br>
 	{{ Form::textarea('content') }}</br>
 	Usernaam: {{ Form::text('username') }}</br>

@@ -4,46 +4,42 @@ Route::get('/', array(
 	'uses' => 'HomeController@home'
 ));
 
-
-
-Route::get('home', array(
-	'as' => 'home',
-	'uses' => 'HomeController@home'
-));
-
-Route::get('forum', array(
-	'as'	=> 'forum',
-	'uses'	=> 'CategoryController@showCategories'
-));
-
-Route::get('topics/{name}', array(
-	'as'	=> 'topics',
-	'uses'	=> 'TopicController@showTopics'
-));
-
-Route::get('topic/{id}', array(
-	'as'	=> 'topic',
-	'uses'	=> 'TopicController@showTopic'
-));
-
-Route::post('topic/{id}', array(
-	'as'	=> 'topic2',
-	'uses'	=> 'ReplyController@addReply'
-));
-
 /*
 | Ingelogde groep.
 */
 Route::group(array('before' => 'auth'), function() 
 {
 
+	/*
+	| CSRF protection group
+	*/
 	Route::group(array('before' => 'csrf'), function() 
 	{
+		Route::post('forum/topic/{id}', array(
+			'as'	=> 'forum-topic-post',
+			'uses'	=> 'TopicController@addReply'
+		));
+
 		Route::post('account/change-password', array(
 			'as' => 'account-change-password-post',
 			'uses' => 'AccountController@postChangePassword'
 		));
 	});
+
+	Route::get('forum/topic/{id}', array(
+		'as'	=> 'forum-topic',
+		'uses'	=> 'TopicController@getTopic'
+	));
+
+	Route::get('forum/category/{name}', array(
+		'as'	=> 'forum-category',
+		'uses'	=> 'CategoryController@getCategory'
+	));
+
+	Route::get('forum', array(
+		'as'	=> 'forum',
+		'uses'	=> 'CategoryController@getCategories'
+	));
 	
 	Route::get('account/sign-out', array(
 		'as' => 'account-sign-out',
