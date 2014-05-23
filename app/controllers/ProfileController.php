@@ -30,6 +30,18 @@ class ProfileController extends BaseController {
 
 	public function postChangeProfile()
 	{
+		$validator = Validator::make(Input::all(),
+			array(
+				'image' => 'image',
+			)
+		);
+		
+		if($validator->fails())
+		{
+			return Redirect::route('account-create')->withErrors($validator)->withInput();
+		}
+		else
+		{
 		$image = Input::file('image');
 		$destinationPath= 'uploads';
 		$filename = str_random(12);
