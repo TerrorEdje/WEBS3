@@ -27,6 +27,26 @@ class ProfileController extends BaseController {
 
 		return Redirect::route('home')->with('global','Could not change your profile.');
 	}
+
+	public function postChangeProfile()
+	{
+		$image = Input::file('image');
+		$destinationPath= 'uploads';
+		$filename = str_random(12);
+		$extension = $image->getClientOriginalExtension();
+		$upload_success = Input::file('image')->move($destinationPath,$filename. "." . $extension);
+
+
+		if($upload_success)
+		{
+			return Redirect::route('home')->with('global','Profile updated!');
+		}
+		else
+		{
+			return Redirect::route('home')->with('global','Failed uploading the file.');
+		}
+		return Redirect::route('home')->with('global','Failed updating your profile');
+	}
 }
 
 ?>

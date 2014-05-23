@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('content')
-		<form action="{{ URL::route('profile-change-post') }}" method="post">
+		<form action="{{ URL::route('profile-change-post') }}" method="post" enctype="multipart/form-data">
 		
 		<div class="field">
 			Image: {{Form::file('image')}}
@@ -10,13 +10,13 @@
 			@endif
 		</div>
 		<div class="field">
-			Signature: {{Form::text('username')}}
+			Signature: {{Form::textarea('username')}}
 			@if($errors->has('username'))
 				{{ $errors->first('username') }}
 			@endif
 		</div>
 		
-		<input type="submit" value="Create Account">
+		<input type="submit" value="Update profile">
 		{{ Form::token(); }}
 	</form>
 @stop
