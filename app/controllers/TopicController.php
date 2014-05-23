@@ -9,7 +9,7 @@ class TopicController extends BaseController {
 		$infoTopic['by'] = User::find($infoTopic['topic']->by);
 		
 		$infoReplies = array();
-		$dbReplies = Reply::where('topics_id', '=', $id)->get();
+		$dbReplies = Reply::where('topics_id', '=', $id)->orderBy('date', 'asc')->get();
 		foreach ($dbReplies as $reply) {
 			$infoReply = array();
 			$infoReply['reply'] = $reply;

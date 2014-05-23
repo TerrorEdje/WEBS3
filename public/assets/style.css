@@ -19,7 +19,18 @@ ul.sub_navigation li
 	display: block;
 }
 
-.titleMainCategory
+.right
+{
+	float: right;
+}
+
+.messageBlock
+{
+	background-color: #ebebeb;
+	padding: 10px;
+}
+
+.titleCategory
 {
 	padding: 10px;
 	padding-left: 17px;
@@ -32,7 +43,7 @@ ul.sub_navigation li
 	background-color: #ebebeb;
 	display: block;
 	height: 200px;
-	margin: 16px;
+	margin: 10px;
 	padding: 10px;
 	border-radius: 4px;
 }
@@ -46,14 +57,18 @@ ul.sub_navigation li
 .titleSubCategoryLink
 {
     display: block;
+	text-decoration:none!important;
 }
 
 .infoSubCategory 
 {
-	padding-top: 5px;	
+	padding-top: 10px;	
 }
 
-.right
+.titleTopic
 {
-	float: right;
+	padding: 10px;
+	padding-left: 17px;
+	border-radius:4px;
+	z-index:-1;
 }

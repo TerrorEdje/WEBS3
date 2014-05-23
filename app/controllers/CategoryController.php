@@ -44,6 +44,7 @@ class CategoryController extends BaseController {
 
 	public function getCategory($name)
 	{
+		$subcategory = Subcategory::where('name', '=', $name)->first();		
 		$infoOpenTopics = array();
 		$infoClosedTopics = array();
 		$topics = $this->getTopicsWithInfo($name); # Deze lijst met alle topics wordt dadelijk gesplist in 2 lijsten (Open topics en gesloten topics)
@@ -55,7 +56,7 @@ class CategoryController extends BaseController {
 				array_push($infoClosedTopics, $infoTopic);
 			}
 		}
-		return View::make('forum/category')->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics);
+		return View::make('forum/category')->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics);
 	}
 	
 	public function getTopicsWithInfo($name)

@@ -2,17 +2,23 @@
 
 @section('content')
 
-	<h1>Topics</h1>
+	<br>
+
+	<div class="col-md-12 titleCategory bg-primary">
+		{{ $subcategory['name'] }}
+	</div>
 	
 	@if ($openTopics == null)
-		There are no open topics at the moment.
+		<div class="col-md-12 messageBlock">
+			There are no topics at the moment.
+		</div>
 	@else
 		<table class="table table-striped">
 			<tr>
-				<th class="col-sm-7"></th>
-				<th class="col-sm-1">By</th>
-				<th class="col-sm-1">Replies</th>
-				<th class="col-sm-3">Last reply</th>
+				<th class="col-sm-6"></th>
+				<th class="col-sm-2">By</th>
+				<th class="col-sm-2">Replies</th>
+				<th class="col-sm-2">Last reply</th>
 			</tr>
 			@foreach ($openTopics as $infoTopic)
 				<tr>
