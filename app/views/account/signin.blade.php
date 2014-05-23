@@ -23,5 +23,6 @@
 		<input type="submit" value="Sign in">
 		{{ Form::token() }}
 	</form>
+	<a href="{{ URL::route('account-forgot-password') }}">Forgot password</a>
 
 @stop

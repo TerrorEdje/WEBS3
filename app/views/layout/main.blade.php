@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-@include('layout/shared/head')
-<body>
-<div class="container">
-@include('layout/shared/navigation')
+	@include('layout/head')
+	<body>
+		<div class="container">
+			@include('layout/navigation')
 
-@if(Session::has('global'))
-	<p>{{ Session::get('global')}}</p>
-@endif
+			@if(Session::has('global'))
+				<p>{{ Session::get('global')}}</p>
+			@endif
 
-@yield('content')
-	
-@include('layout/shared/footer')
-</div>
-</body>
+			@yield('content')
+				
+			@include('layout/footer')
+		</div>
+	</body>
 </html>
