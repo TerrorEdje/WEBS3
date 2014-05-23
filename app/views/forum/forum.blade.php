@@ -6,7 +6,7 @@
 	
 	@foreach ($categories as $infoCategory)
 	
-		<div class="titleMainCategory">
+		<div class="col-md-12 titleMainCategory bg-primary">
 			{{ $infoCategory['category']->name }}
 		</div>
 	
@@ -14,10 +14,12 @@
 		
 			@foreach ($infoCategory['subcategories'] as $infoSubcategory)
 				<div class="col-md-3 categoryBlock">
-					<div class="titleSubCategory">
-						{{ link_to_route('forum-category', $infoSubcategory['name'] , array('name' => $infoSubcategory['name'] )) }}
-					</div>
-					<div>
+					
+						<div class="titleSubCategory">
+							<a class="titleSubCategoryLink" href="{{ URL::route('forum-category',$infoSubcategory['name']) }}">{{  $infoSubcategory['name'] }}</a>
+						</div>
+					
+					<div class="infoSubCategory">
 						<p>
 							{{ $infoSubcategory['description'] }}<br>
 						</p>
@@ -27,8 +29,7 @@
 						</p>
 						<p>
 							@if ($infoSubcategory['lastReply'] != 0) 
-								Last Reply:<br>
-								{{ $infoSubcategory['lastReply'] }}
+								Last Reply: {{ $infoSubcategory['lastReply'] }}
 							@endif
 						</p>
 					</div>

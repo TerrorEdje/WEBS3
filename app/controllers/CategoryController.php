@@ -66,6 +66,8 @@ class CategoryController extends BaseController {
 		foreach ($dbTopics as $topic) {
 			$infoTopic = array(); # Bevat dadelijk alle info van een topic
 			$infoTopic['topic'] = $topic;
+			$user = User::find($topic->by);
+			$infoTopic['by'] = $user->username;
 			$infoTopic['amountOfReplies'] = $topic->getAmountOfReplies();
 			$infoTopic['lastReply'] = $topic->getLastReply();
 			array_push($allTopics, $infoTopic);

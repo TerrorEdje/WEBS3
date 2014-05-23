@@ -1,46 +1,59 @@
 ul.sub_navigation
 {
-	position:absolute;
-	display:none;
-	list-style-type:none;
-	padding:0;
-	margin:0;
-	min-width:150px;
+	position: absolute;
+	display: none;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	min-width: 150px;
+	background-color: white;
 }
 
 ul.sub_navigation li
 {
-	clear:both;
+	clear: both;
 }
 
 .dropdownlink
-{
-	display:block;
+{ 
+	display: block;
 }
 
-.titleMainCategory {
-	background-color: #428bca;
-	width: 943px;
+.titleMainCategory
+{
 	padding: 10px;
 	padding-left: 17px;
 	border-radius:4px;
+	z-index:-1;
 }
 
-.categoryBlock {
+.categoryBlock
+{
 	background-color: #ebebeb;
 	display: block;
 	height: 200px;
 	margin: 16px;
 	padding: 10px;
-	border-radius:4px;
+	border-radius: 4px;
 }
 
-.titleSubCategory {
+.titleSubCategory 
+{
 	border-bottom: 1px black solid;
-	padding-bottom: 5px;	
+	padding-bottom: 5px;
+}
+
+.titleSubCategoryLink
+{
+    display: block;
+}
+
+.infoSubCategory 
+{
+	padding-top: 5px;	
 }
 
 .right
 {
-	float:right;
+	float: right;
 }
