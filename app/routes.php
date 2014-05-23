@@ -24,6 +24,11 @@ Route::group(array('before' => 'auth'), function()
 			'as' => 'account-change-password-post',
 			'uses' => 'AccountController@postChangePassword'
 		));
+
+		Route::post('profile/change',array(
+			'as' => 'profile-change-post',
+			'uses' => 'ProfileController@postChangeProfile'
+		));
 	});
 
 	Route::get('forum/topic/{id}', array(
@@ -51,9 +56,14 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'AccountController@getChangePassword'
 	));
 	
-	Route::get('profile/{username}',array(
+	Route::get('profile/get/{username}',array(
 		'as' => 'profile-user',
 		'uses' => 'ProfileController@user'
+	));
+
+	Route::get('profile/change',array(
+		'as' => 'profile-change',
+		'uses' => 'ProfileController@getChangeProfile'
 	));
 	
 });
