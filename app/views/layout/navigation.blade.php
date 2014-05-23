@@ -6,6 +6,7 @@
 			<li class="dropdown"><a href="{{ URL::route('profile-user',Auth::user()->username) }}">Account</a>
 				<ul class="sub_navigation">
 					<li><a class="dropdownlink" href="{{ URL::route('account-change-password') }}">Change password</a></li>
+					<li><a class="dropdownlink" href="{{ URL::route('profile-change') }}">Change profile</a></li>
 				</ul>
 			</li>
 			<li><a href="{{ URL::route('account-change-password') }}">Change password</a></li>
