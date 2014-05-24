@@ -2,14 +2,12 @@
 
 @section('content')
 
-	<h1>Topic pagina</h1>
-
-	<h3>Titel topic: {{ $topic['topic']->title }}</h3>	
+	<h3>{{ $topic['topic']->title }}</h3>	
 
 	By: {{ $topic['by']->username }}<br/>
-	Date: {{ $topic['topic']->by }}
+	Date: {{ $topic['topic']->date }}
 
-	<h3>Berichten</h3>	
+	<h3>Messages</h3>	
 
 	@foreach ($replies as $infoReply)
 		<p>

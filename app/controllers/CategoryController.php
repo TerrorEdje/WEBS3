@@ -55,7 +55,7 @@ class CategoryController extends BaseController {
 				array_push($infoClosedTopics, $infoTopic);
 			}
 		}
-		return View::make('forum/category')->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics);
+		return View::make('forum/category')->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name',$name);
 	}
 	
 	public function getTopicsWithInfo($name)

@@ -2,10 +2,10 @@
 
 @section('content')
 
-	<h1>Topics</h1>
+	<h1>{{ $name }}<small><a href="{{ URL::route('forum-topic-create',$name) }}">new topic</a></small></h1>
 	
 	@if ($openTopics == null)
-		There are no open topics at the moment.
+		There are no topics at the moment.
 	@else
 		<table class="table table-striped">
 			<tr>
