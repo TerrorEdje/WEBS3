@@ -2,17 +2,23 @@
 
 @section('content')
 
-	<h1>{{ $name }}<small><a href="{{ URL::route('forum-topic-create',$name) }}">new topic</a></small></h1>
-	
-	@if ($openTopics == null)
-		There are no topics at the moment.
+	<br>
+
+	<div class="col-md-12 titleCategory bg-primary">
+		{{ $subcategory['name'] }}
+	</div>
+	<a href="{{ URL::route('forum-topic-create',$subcategory['name']) }}">new topic</a>
+	@if ($openTopics == null && $closedTopics == null)
+		<div class="col-md-12 messageBlock">
+			There are no topics at the moment.
+		</div>
 	@else
 		<table class="table table-striped">
 			<tr>
-				<th class="col-sm-7"></th>
-				<th class="col-sm-1">By</th>
-				<th class="col-sm-1">Replies</th>
-				<th class="col-sm-3">Last reply</th>
+				<th class="col-sm-6"></th>
+				<th class="col-sm-2">By</th>
+				<th class="col-sm-2">Replies</th>
+				<th class="col-sm-2">Last reply</th>
 			</tr>
 			@foreach ($openTopics as $infoTopic)
 				<tr>

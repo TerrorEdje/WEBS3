@@ -1,8 +1,11 @@
 @extends('layout/main')
 
 @section('content')
+	<br>
 
-	<h3>{{ $topic['topic']->title }}</h3>	
+	<div class="col-md-12 titleTopic bg-primary">
+		{{ $topic['topic']->title }}
+	</div>
 
 	By: {{ $topic['by']->username }}<br/>
 	Date: {{ $topic['topic']->date }}
