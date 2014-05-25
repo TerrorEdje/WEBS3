@@ -30,22 +30,28 @@
 	</div>
 
 	<div>
-		@foreach ($replies as $infoReply)
-			<table class="col-sm-12 replyTable">
-				<tr>
-					<td class="col-sm-2 replyTabelUsernameTD">{{ $infoReply['by']->username }}</td>
-					<td class="col-sm-10 replyTabelDateTD">{{ $infoReply['reply']->date }}</td>
-				</tr>
-				<tr>
-					<td class="col-sm-2 replyTableTD">FOTO</td>
-					<td class="col-sm-10 replyTableTD">{{ $infoReply['reply']->content }}</td>
-				</tr>
-				<tr>
-					<td class="col-sm-2 replyTableTD"></td>
-					<td class="col-sm-10 replyTableTD">{{ $infoReply['by']->signature }}</td>
-				</tr>
-			</table>
-		@endforeach
+		@if ($replies == null)
+			<div class="col-md-12 messageBlock">
+				There are no replies at the moment.
+			</div>
+		@else
+			@foreach ($replies as $infoReply)
+				<table class="col-sm-12 replyTable">
+					<tr>
+						<td class="col-sm-2 replyTabelUsernameTD">{{ $infoReply['by']->username }}</td>
+						<td class="col-sm-10 replyTabelDateTD">{{ $infoReply['reply']->date }}</td>
+					</tr>
+					<tr>
+						<td class="col-sm-2 replyTableTD">FOTO</td>
+						<td class="col-sm-10 replyTableTD">{{ $infoReply['reply']->content }}</td>
+					</tr>
+					<tr>
+						<td class="col-sm-2 replyTableTD"></td>
+						<td class="col-sm-10 replyTableTD">{{ $infoReply['by']->signature }}</td>
+					</tr>
+				</table>
+			@endforeach
+		@endif
 	</div>
 
 	<div class="col-md-12 titleBlock bg-primary">

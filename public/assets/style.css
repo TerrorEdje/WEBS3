@@ -37,6 +37,8 @@ ul.sub_navigation li
 .messageBlock
 {
 	background-color: #ebebeb;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	padding: 10px;
 	border-radius: 4px;
 }
