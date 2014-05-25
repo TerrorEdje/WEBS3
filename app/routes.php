@@ -29,11 +29,22 @@ Route::group(array('before' => 'auth'), function()
 			'as' => 'profile-change-post',
 			'uses' => 'ProfileController@postChangeProfile'
 		));
+
+		Route::post('forum/topic-create', array(
+		'as'	=> 'forum-topic-create-post',
+		'uses'	=> 'TopicController@postTopicCreate'
+	));
+
 	});
 
 	Route::get('forum/topic/{id}', array(
 		'as'	=> 'forum-topic',
 		'uses'	=> 'TopicController@getTopic'
+	));
+
+	Route::get('forum/topic-create/{name}', array(
+		'as'	=> 'forum-topic-create',
+		'uses'	=> 'TopicController@getTopicCreate'
 	));
 
 	Route::get('forum/category/{name}', array(
