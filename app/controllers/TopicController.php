@@ -8,16 +8,28 @@ class TopicController extends BaseController {
 		$infoTopic['topic'] = Topic::find($id);
 		$infoTopic['by'] = User::find($infoTopic['topic']->by);
 		
+		$firstReply = null;
+		
 		$infoReplies = array();
 		$dbReplies = Reply::where('topics_id', '=', $id)->orderBy('date', 'asc')->get();
 		foreach ($dbReplies as $reply) {
-			$infoReply = array();
-			$infoReply['reply'] = $reply;
-			$infoReply['by'] = User::find($reply->by);
-			array_push($infoReplies, $infoReply);
+			if ($firstReply == null) {
+				$reply->date = date("d-m-Y H:i", strtotime($reply->date));
+				$infoReply = array();
+				$infoReply['reply'] = $reply;
+				$infoReply['by'] = User::find($reply->by);
+				$firstReply = $infoReply;
+			}
+			else {
+				$reply->date = date("d-m-Y H:i", strtotime($reply->date));
+				$infoReply = array();
+				$infoReply['reply'] = $reply;
+				$infoReply['by'] = User::find($reply->by);
+				array_push($infoReplies, $infoReply);
+			}
 		}
 		
-		return View::make('forum/topic')->with('topic', $infoTopic)->with('replies', $infoReplies);
+		return View::make('forum/topic')->with('topic', $infoTopic)->with('reply', $firstReply)->with('replies', $infoReplies);
 	}
 
 	public function postReply($id)

@@ -13,7 +13,7 @@
 			There are no topics at the moment.
 		</div>
 	@else
-		<table class="table table-striped">
+		<table class="table">
 			<tr>
 				<th class="col-sm-6"></th>
 				<th class="col-sm-2">By</th>

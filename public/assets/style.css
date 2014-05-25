@@ -72,3 +72,29 @@ ul.sub_navigation li
 	border-radius:4px;
 	z-index:-1;
 }
+
+.replyTable
+{
+	background-color: #ebebeb;
+	margin: 10px;
+	margin-left: 85px;
+	margin-bottom: 25px;
+}
+
+.replyTabelUsernameTD
+{
+	font-weight: bold;
+	padding: 10px;
+}
+
+.replyTabelDateTD
+{
+	text-align: right;
+	padding: 10px;
+}
+
+
+.replyTableTD
+{
+	padding: 10px;
+}

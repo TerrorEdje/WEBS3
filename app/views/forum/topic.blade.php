@@ -8,34 +8,58 @@
 		{{ $topic['topic']->title }}
 	</div>
 	
-	<table>
+	<div>
+		<table class="col-sm-10 replyTable">
+			<tr>
+				<td class="col-sm-3 replyTabelUsernameTD">{{ $reply['by']->username }}</td>
+				<td class="col-sm-7 replyTabelDateTD">{{ $reply['reply']->date }}</td>
+			</tr>
+			<tr>
+				<td class="col-sm-3 replyTableTD">FOTO</td>
+				<td class="col-sm-7 replyTableTD">{{ $reply['reply']->content }}</td>
+			</tr>
+			<tr>
+				<td class="col-sm-3 replyTableTD"></td>
+				<td class="col-sm-7 replyTableTD">{{ $reply['by']->signature }}</td>
+			</tr>
+		</table>
+	</div>
 	
-	</table>
-	<h3>Titel topic: {{ $topic['topic']->title }}</h3>	
-
-	By: {{ $topic['by']->username }}<br/>
-	Date: {{ $topic['topic']->date }}
-
-	<h3>Berichten</h3>	
-
-	@foreach ($replies as $infoReply)
-		<p>
-			{{ $infoReply['by']->username }}<br>
-			{{ $infoReply['reply']->date }}<br>
-			{{ $infoReply['reply']->content }}
-		</p>
-	@endforeach
+	<div class="col-md-12 titleTopic bg-primary">
+		Replies
+	</div>
 
 	<div>
+		@foreach ($replies as $infoReply)
+			<table class="col-sm-10 replyTable">
+				<tr>
+					<td class="col-sm-3 replyTabelUsernameTD">{{ $infoReply['by']->username }}</td>
+					<td class="col-sm-7 replyTabelDateTD">{{ $infoReply['reply']->date }}</td>
+				</tr>
+				<tr>
+					<td class="col-sm-3 replyTableTD">FOTO</td>
+					<td class="col-sm-7 replyTableTD">{{ $infoReply['reply']->content }}</td>
+				</tr>
+				<tr>
+					<td class="col-sm-3 replyTableTD"></td>
+					<td class="col-sm-7 replyTableTD">{{ $infoReply['by']->signature }}</td>
+				</tr>
+			</table>	
+		@endforeach
+	</div>
+
+	
 	{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
+		<div>
 		Reply:</br>
 		{{ Form::textarea('content') }}<br>
 		@if($errors->has('content'))
 				{{ $errors->first('content') }}<br>
 			@endif
+		</div>
 		{{ Form::submit('Reply') }}
 		{{ Form::close() }}
 			
-	</div>
+	
 
 @stop
