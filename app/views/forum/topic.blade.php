@@ -15,12 +15,12 @@
 				<td class="col-md-10 replyTabelDateTD">{{ $reply['reply']->date }}</td>
 			</tr>
 			<tr>
-				<td class="col-md-2 replyTableTD">FOTO</td>
-				<td class="col-md-10 replyTableTD">{{ $reply['reply']->content }}</td>
+				<td class="col-md-2 tableTD">FOTO</td>
+				<td class="col-md-10 tableTD">{{ $reply['reply']->content }}</td>
 			</tr>
 			<tr>
-				<td class="col-md-2 replyTableTD"></td>
-				<td class="col-md-10 replyTableTD">{{ $reply['by']->signature }}</td>
+				<td class="col-md-2 tableTD"></td>
+				<td class="col-md-10 tableTD">{{ $reply['by']->signature }}</td>
 			</tr>
 		</table>
 	</div>
@@ -42,12 +42,12 @@
 						<td class="col-sm-10 replyTabelDateTD">{{ $infoReply['reply']->date }}</td>
 					</tr>
 					<tr>
-						<td class="col-sm-2 replyTableTD">FOTO</td>
-						<td class="col-sm-10 replyTableTD">{{ $infoReply['reply']->content }}</td>
+						<td class="col-sm-2 tableTD">FOTO</td>
+						<td class="col-sm-10 tableTD">{{ $infoReply['reply']->content }}</td>
 					</tr>
 					<tr>
-						<td class="col-sm-2 replyTableTD"></td>
-						<td class="col-sm-10 replyTableTD">{{ $infoReply['by']->signature }}</td>
+						<td class="col-sm-2 tableTD"></td>
+						<td class="col-sm-10 tableTD">{{ $infoReply['by']->signature }}</td>
 					</tr>
 				</table>
 			@endforeach

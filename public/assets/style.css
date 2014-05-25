@@ -24,6 +24,11 @@ ul.sub_navigation li
 	float: right;
 }
 
+.tableTD
+{
+	padding: 10px;
+}
+
 .button
 {
 	border-radius:4px;
@@ -99,12 +104,6 @@ ul.sub_navigation li
 	padding: 10px;
 }
 
-
-.replyTableTD
-{
-	padding: 10px;
-}
-
 .replyForm 
 {
 	background-color: #ebebeb;
@@ -123,3 +122,23 @@ ul.sub_navigation li
 	min-height: 100px;
     max-height: 100px;
 }
+
+.topicsTabelNameTD
+{
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	padding: 10px;
+}
+
+.topicsTabelLastReplyTD
+{
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	padding: 10px;
+}
+
+.topicsTable tr:nth-child(even)
+{
+	background-color: #ebebeb;
+}
+
