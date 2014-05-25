@@ -8,17 +8,21 @@
 		{{ $subcategory['name'] }}
 	</div>
 	
-	<div>
-	{{ Form::open(array('route' => array('forum-topic-create', $name))) }}
-		{{ Form::submit('New Topic', array('class' => 'btn-primary button')) }}
-	{{ Form::close() }}
-	</div>
-	
 	@if ($openTopics == null && $closedTopics == null)
 		<div class="col-md-12 messageBlock">
 			There are no topics at the moment.
 		</div>
+		<div>
+			{{ Form::open(array('route' => array('forum-topic-create', $name))) }}
+				{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
+			{{ Form::close() }}
+		</div>
 	@else
+		<div>
+			{{ Form::open(array('route' => array('forum-topic-create', $name))) }}
+				{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
+			{{ Form::close() }}
+		</div>
 		<table class="col-sm-12 topicsTable">
 			<tr>
 				<th class="col-sm-6 topicsTabelNameTD"></th>

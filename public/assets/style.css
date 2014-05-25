@@ -84,6 +84,25 @@ ul.sub_navigation li
 	padding-top: 10px;	
 }
 
+.topicsTabelNameTD
+{
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	padding: 10px;
+}
+
+.topicsTabelLastReplyTD
+{
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	padding: 10px;
+}
+
+.topicsTable tr:nth-child(even)
+{
+	background-color: #ebebeb;
+}
+
 .replyTable
 {
 	background-color: #ebebeb;
@@ -124,22 +143,34 @@ ul.sub_navigation li
     max-height: 100px;
 }
 
-.topicsTabelNameTD
-{
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
-	padding: 10px;
-}
-
-.topicsTabelLastReplyTD
-{
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	padding: 10px;
-}
-
-.topicsTable tr:nth-child(even)
+.newTopicForm 
 {
 	background-color: #ebebeb;
+	margin: 10px;
+	margin-left: auto; 
+    margin-right: auto;
+	border-radius: 4px;	
+	padding: 10px;
 }
+
+.newTopicText 
+{
+	border-radius: 4px;
+	min-width: 100%; 
+    max-width: 100%; 
+	min-height: 30px;
+    max-height: 30px;
+	margin-bottom: 5px;
+}
+
+.newTopicTextarea
+{
+	border-radius: 4px;
+	min-width: 100%; 
+    max-width: 100%; 
+	min-height: 100px;
+    max-height: 100px;
+}
+
+
 

@@ -73,16 +73,16 @@ class TopicController extends BaseController {
 			)
 		);
 		
-		if($validator->fails())
-		{
-			return Redirect::route('forum-topic-create',Input::get('name'))->withErrors($validator)->withInput();
+		if($validator->fails()) {
+			$name = Input::get('name');
+			return Redirect::route('forum-topic-create', $name)->withErrors($validator)->withInput();
 		}
 		else {
 			$topic = new Topic;
 			$topic->title = Input::get('title');
 			$topic->date = date("Y-m-d H:i:s");
 			$topic->by = Auth::user()->id;
-			$topic->subcategories_name = Input::get('id');
+			$topic->subcategories_name = Input::get('name');
 			$topic->open = true;
 			$topic->save();
 			
@@ -94,7 +94,7 @@ class TopicController extends BaseController {
 			$reply->topics_id = $topic->id;
 			$reply->save();
 		
-			return Redirect::route('forum-category',Input::get('id'));
+			return Redirect::route('forum-category',Input::get('name'));
 		}
 	}
 
