@@ -7,8 +7,6 @@
 	<div class="col-md-12 titleBlock bg-primary">
 		{{ $subcategory['name'] }}
 	</div>
-					
-	<!-- <small><a href="{{ URL::route('forum-topic-create',$name) }}">New topic</a></small> -->
 	
 	<div>
 	{{ Form::open(array('route' => array('forum-topic-create', $name))) }}
