@@ -37,6 +37,9 @@ class TopicController extends BaseController {
 		$validator = Validator::make(Input::all(),
 			array(
 				'content' => 'required'
+			),
+			array(
+				'required' => 'You have not written a reply.'
 			)
 		);
 		
@@ -55,46 +58,6 @@ class TopicController extends BaseController {
 			$reply->save();
 			
 			return Redirect::route('forum-topic',$id);
-		}
-	}
-
-	public function getTopicCreate($name)
-	{
-		return View::make('forum/topic-create')->with('name',$name);
-	}
-
-	public function postTopicCreate()
-	{
-		$validator = Validator::make(Input::all(),
-			array(
-				'content' => 'required',
-				'title' => 'required'
-			)
-		);
-		
-		if($validator->fails())
-		{
-			return Redirect::route('forum-topic-create',Input::get('name'))->withErrors($validator)->withInput();
-		}
-		else
-		{
-			$topic = new Topic;
-			$topic->title= Input::get('title');
-			$topic->date = date("Y-m-d H:i:s");
-			$topic->by = Auth::user()->id;
-			$topic->subcategories_name = Input::get('id');
-			$topic->open = true;
-			$topic->save();
-			$reply = new Reply;
-			$reply->content = Input::get('content');
-			$reply->date = date("Y-m-d H:i:s");
-			$user = User::find(Auth::user()->id);
-			$reply->by = $user->id;
-			$reply->topics_id = $topic->id;
-			$reply->save();
-			
-			
-			return Redirect::route('forum-category',Input::get('id'));
 		}
 	}
 

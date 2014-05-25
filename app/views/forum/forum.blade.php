@@ -6,7 +6,7 @@
 	
 	@foreach ($categories as $infoCategory)
 	
-		<div class="col-md-12 titleCategory bg-primary">
+		<div class="col-md-12 titleBlock bg-primary">
 			{{ $infoCategory['category']->name }}
 		</div>
 	

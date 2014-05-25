@@ -24,13 +24,24 @@ ul.sub_navigation li
 	float: right;
 }
 
+.button
+{
+	border-radius:4px;
+	margin-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
 .messageBlock
 {
 	background-color: #ebebeb;
 	padding: 10px;
+	border-radius: 4px;
 }
 
-.titleCategory
+.titleBlock
 {
 	padding: 10px;
 	padding-left: 17px;
@@ -65,20 +76,13 @@ ul.sub_navigation li
 	padding-top: 10px;	
 }
 
-.titleTopic
-{
-	padding: 10px;
-	padding-left: 17px;
-	border-radius:4px;
-	z-index:-1;
-}
-
 .replyTable
 {
 	background-color: #ebebeb;
 	margin: 10px;
-	margin-left: 85px;
-	margin-bottom: 25px;
+	margin-left: auto; 
+    margin-right: auto;
+	border-radius: 4px;
 }
 
 .replyTabelUsernameTD
@@ -97,4 +101,23 @@ ul.sub_navigation li
 .replyTableTD
 {
 	padding: 10px;
+}
+
+.replyForm 
+{
+	background-color: #ebebeb;
+	margin: 10px;
+	margin-left: auto; 
+    margin-right: auto;
+	border-radius: 4px;	
+	padding: 10px;
+}
+
+.replyTextarea 
+{
+	border-radius: 4px;
+	min-width: 100%; 
+    max-width: 100%; 
+	min-height: 100px;
+    max-height: 100px;
 }

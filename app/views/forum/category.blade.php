@@ -4,10 +4,10 @@
 
 	<br>
 
-	<div class="col-md-12 titleCategory bg-primary">
+	<div class="col-md-12 titleBlock bg-primary">
 		{{ $subcategory['name'] }}
 	</div>
-	<a href="{{ URL::route('forum-topic-create',$subcategory['name']) }}">new topic</a>
+	
 	@if ($openTopics == null && $closedTopics == null)
 		<div class="col-md-12 messageBlock">
 			There are no topics at the moment.
