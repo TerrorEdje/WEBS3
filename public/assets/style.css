@@ -29,6 +29,35 @@ ul.sub_navigation li
 	padding: 10px;
 }
 
+.form 
+{
+	background-color: #ebebeb;
+	margin: 10px;
+	margin-left: auto; 
+    margin-right: auto;
+	border-radius: 4px;	
+	padding: 10px;
+}
+
+.text 
+{
+	border-radius: 4px;
+	min-width: 100%; 
+    max-width: 100%; 
+	min-height: 30px;
+    max-height: 30px;
+	margin-bottom: 5px;
+}
+
+.textarea
+{
+	border-radius: 4px;
+	min-width: 100%; 
+    max-width: 100%; 
+	min-height: 100px;
+    max-height: 100px;
+}
+
 .button
 {
 	border-radius:4px;
@@ -134,43 +163,7 @@ ul.sub_navigation li
 	padding: 10px;
 }
 
-.replyTextarea 
-{
-	border-radius: 4px;
-	min-width: 100%; 
-    max-width: 100%; 
-	min-height: 100px;
-    max-height: 100px;
-}
 
-.newTopicForm 
-{
-	background-color: #ebebeb;
-	margin: 10px;
-	margin-left: auto; 
-    margin-right: auto;
-	border-radius: 4px;	
-	padding: 10px;
-}
-
-.newTopicText 
-{
-	border-radius: 4px;
-	min-width: 100%; 
-    max-width: 100%; 
-	min-height: 30px;
-    max-height: 30px;
-	margin-bottom: 5px;
-}
-
-.newTopicTextarea
-{
-	border-radius: 4px;
-	min-width: 100%; 
-    max-width: 100%; 
-	min-height: 100px;
-    max-height: 100px;
-}
 
 
 

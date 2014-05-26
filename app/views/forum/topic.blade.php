@@ -58,9 +58,9 @@
 		Reply
 	</div>
 	
-	<div class="col-md-12 replyForm">
+	<div class="col-md-12 form">
 		{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
-			{{ Form::textarea('content', null, array('class' => 'replyTextarea')) }}<br>
+			{{ Form::textarea('content', null, array('class' => 'textarea')) }}<br>
 			@if($errors->has('content'))
 				{{ $errors->first('content', '<span class="text-danger">:message</span>') }}<br>
 			@endif	

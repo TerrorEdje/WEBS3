@@ -42,12 +42,12 @@ class ProfileController extends BaseController {
 		}
 		else
 		{
-		$image = Input::file('image');
-		$destinationPath= 'uploads';
-		$filename = str_random(12);
-		$extension = $image->getClientOriginalExtension();
-		$upload_success = Input::file('image')->move($destinationPath,$filename. "." . $extension);
-
+			$image = Input::file('image');
+			$destinationPath= 'uploads';
+			$filename = str_random(12);
+			$extension = $image->getClientOriginalExtension();
+			$upload_success = Input::file('image')->move($destinationPath,$filename. "." . $extension);
+		}
 
 		if($upload_success)
 		{
