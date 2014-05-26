@@ -42,8 +42,13 @@ Route::group(array('before' => 'auth'), function()
 		'uses'	=> 'TopicController@getTopic'
 	));
 
-	Route::post('forum/topic-create/{name}', array(
+	Route::get('forum/topic-create/{name}', array(
 		'as'	=> 'forum-topic-create',
+		'uses'	=> 'TopicController@getTopicCreate'
+	));
+	
+	Route::post('forum/topic-create/{name}', array(
+		'as'	=> 'forum-topic-create-get',
 		'uses'	=> 'TopicController@getTopicCreate'
 	));
 

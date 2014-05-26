@@ -13,13 +13,13 @@
 			There are no topics at the moment.
 		</div>
 		<div>
-			{{ Form::open(array('route' => array('forum-topic-create', $name))) }}
+			{{ Form::open(array('route' => array('forum-topic-create-get', $name))) }}
 				{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
 			{{ Form::close() }}
 		</div>
 	@else
 		<div>
-			{{ Form::open(array('route' => array('forum-topic-create', $name))) }}
+			{{ Form::open(array('route' => array('forum-topic-create-get', $name))) }}
 				{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
 			{{ Form::close() }}
 		</div>
