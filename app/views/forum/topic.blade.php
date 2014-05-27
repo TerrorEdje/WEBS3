@@ -26,13 +26,13 @@
 	</div>
 	
 	<div class="col-md-12 form">
-		{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
+		{{ Form::open(array('route' => array('forum-topic-vote-post', $topic['topic']->id))) }}
 			@foreach ($topic['polloptions'] as $polloption)	
 				{{ Form::radio('poll', $polloption['id']) }}
 				{{ $polloption['description'] }}
 				<br>
 			@endforeach
-			<!-- {{ Form::submit('Vote', array('class' => 'btn-primary button')) }} -->
+			{{ Form::submit('Vote', array('class' => 'btn-primary button')) }}
 		{{ Form::token() }}
 		{{ Form::close() }}
 	</div>

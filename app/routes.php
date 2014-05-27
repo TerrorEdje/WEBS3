@@ -31,9 +31,14 @@ Route::group(array('before' => 'auth'), function()
 		));
 
 		Route::post('forum/topic-create', array(
-		'as'	=> 'forum-topic-create-post',
-		'uses'	=> 'TopicController@postTopicCreate'
-	));
+			'as'	=> 'forum-topic-create-post',
+			'uses'	=> 'TopicController@postTopicCreate'
+		));
+		
+		Route::post('forum/topic/{id}', array(
+			'as'	=> 'forum-topic-vote-post',
+			'uses'	=> 'PollController@postVote'
+		));
 
 	});
 
