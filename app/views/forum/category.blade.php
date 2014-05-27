@@ -2,8 +2,6 @@
 
 @section('content')
 
-	<br>
-
 	<div class="col-md-12 titleBlock bg-primary">
 		{{ $subcategory['name'] }}
 	</div>

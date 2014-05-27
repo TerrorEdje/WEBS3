@@ -2,8 +2,6 @@
 
 @section('content')
 
-	<br>
-	
 	@foreach ($categories as $infoCategory)
 	
 		<div class="col-md-12 titleBlock bg-primary">

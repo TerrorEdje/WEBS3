@@ -2,8 +2,6 @@
 
 @section('content')
 
-	<br>
-
 	<div class="col-md-12 titleBlock bg-primary">
 		{{ $topic['topic']->title }}
 	</div>
@@ -25,17 +23,19 @@
 		</table>
 	</div>
 	
-	<div class="col-md-12 form">
-		{{ Form::open(array('route' => array('forum-topic-vote-post', $topic['topic']->id))) }}
-			@foreach ($topic['polloptions'] as $polloption)	
-				{{ Form::radio('poll', $polloption['id']) }}
-				{{ $polloption['description'] }}
-				<br>
-			@endforeach
-			{{ Form::submit('Vote', array('class' => 'btn-primary button')) }}
-		{{ Form::token() }}
-		{{ Form::close() }}
-	</div>
+	@if (count($topic['polloptions']) != 0)
+		<div class="col-md-12 form">
+			{{ Form::open(array('route' => array('forum-topic-vote-post', $topic['topic']->id))) }}
+				@foreach ($topic['polloptions'] as $polloption)	
+					{{ Form::radio('poll', $polloption['id']) }}
+					{{ $polloption['description'] }}
+					<br>
+				@endforeach
+				{{ Form::submit('Vote', array('class' => 'btn-primary button')) }}
+			{{ Form::token() }}
+			{{ Form::close() }}
+		</div>
+	@endif
 	
 	<div class="col-md-12 titleBlock bg-primary">
 		Replies
@@ -77,7 +77,9 @@
 				{{ $errors->first('content', '<span class="text-danger">:message</span>') }}<br>
 			@endif	
 			{{ Form::submit('Reply', array('class' => 'btn-primary button')) }}
-		{{ Form::close() }}		
+		{{ Form::close() }}
 	</div>
-
+	
+	&nbsp;<br>
+	
 @stop
