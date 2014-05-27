@@ -28,9 +28,11 @@
 			{{ Form::open(array('route' => array('forum-topic-vote-post', $topic['topic']->id))) }}
 				@foreach ($topic['polloptions'] as $polloption)	
 					{{ Form::radio('poll', $polloption['id']) }}
-					{{ $polloption['description'] }}
-					<br>
+					{{ $polloption['description'] }}<br>
 				@endforeach
+				@if($errors->has('poll'))
+					{{ $errors->first('poll', '<span class="text-danger">:message</span>') }}<br>
+				@endif	
 				{{ Form::submit('Vote', array('class' => 'btn-primary button')) }}
 			{{ Form::token() }}
 			{{ Form::close() }}
