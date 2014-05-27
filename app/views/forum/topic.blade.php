@@ -25,6 +25,18 @@
 		</table>
 	</div>
 	
+	<div class="col-md-12 form">
+		{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
+			@foreach ($topic['polloptions'] as $polloption)	
+				{{ Form::radio('poll', $polloption['id']) }}
+				{{ $polloption['description'] }}
+				<br>
+			@endforeach
+			<!-- {{ Form::submit('Vote', array('class' => 'btn-primary button')) }} -->
+		{{ Form::token() }}
+		{{ Form::close() }}
+	</div>
+	
 	<div class="col-md-12 titleBlock bg-primary">
 		Replies
 	</div>
@@ -64,7 +76,7 @@
 			@if($errors->has('content'))
 				{{ $errors->first('content', '<span class="text-danger">:message</span>') }}<br>
 			@endif	
-		{{ Form::submit('Reply', array('class' => 'btn-primary button')) }}
+			{{ Form::submit('Reply', array('class' => 'btn-primary button')) }}
 		{{ Form::close() }}		
 	</div>
 

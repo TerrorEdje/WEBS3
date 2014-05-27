@@ -29,6 +29,14 @@
 			}
 		}
 		
+		public function getPolloptions() 
+		{
+			$polloptions = Polloption::where('topics_id', '=', $this->id)->get();
+			if (isset($polloptions)) {
+				return $polloptions;
+			}
+		}
+		
 	}
 
 ?>

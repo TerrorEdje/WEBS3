@@ -9,7 +9,6 @@
 	</div>
 	
 	<div class="col-md-12 form">
-		<!-- <form action="{{ URL::route('account-change-password-post') }}" method="post"> -->
 		{{ Form::open(array('route' => array('account-change-password-post'))) }}
 		
 			Old password:<br>
@@ -35,7 +34,6 @@
 			@endif
 			
 			<br>
-			<!-- <input type="submit" value="Sign in"> -->
 			
 			{{ Form::submit('Change password', array('class' => 'btn-primary button')) }}
 			

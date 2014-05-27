@@ -4,9 +4,11 @@ class TopicController extends BaseController {
 	
 	public function getTopic($id)
 	{	
+		$topic = Topic::find($id);
 		$infoTopic = array();
-		$infoTopic['topic'] = Topic::find($id);
+		$infoTopic['topic'] = $topic;
 		$infoTopic['by'] = User::find($infoTopic['topic']->by);
+		$infoTopic['polloptions'] = $topic->getPolloptions();
 		
 		$firstReply = null;
 		
