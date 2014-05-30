@@ -8,8 +8,24 @@ class TopicController extends BaseController {
 		$infoTopic = array();
 		$infoTopic['topic'] = $topic;
 		$infoTopic['by'] = User::find($infoTopic['topic']->by);
-		$infoTopic['polloptions'] = $topic->getPolloptions();
 		
+		$polloptions = $topic->getPolloptions();
+		$infoTopic['polloptions'] = $polloptions;
+		$infoTopic['voted'] = false;
+		
+		$user = User::find(Auth::user()->id);
+		foreach ($polloptions as $polloption) {
+			if ($infoTopic['voted'] != true) {
+				$pollvotes = Pollvote::where('polloptions_id', '=', $polloption->id)->get();
+				foreach ($pollvotes as $pollvote) {
+					if ($pollvote->by == $user->id) {
+						$infoTopic['voted'] = true;
+						break;
+					}
+				}
+			}
+		}
+			
 		$firstReply = null;
 		
 		$infoReplies = array();

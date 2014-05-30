@@ -24,19 +24,25 @@
 	</div>
 	
 	@if (count($topic['polloptions']) != 0)
-		<div class="col-md-12 form">
-			{{ Form::open(array('route' => array('forum-topic-vote-post', $topic['topic']->id))) }}
-				@foreach ($topic['polloptions'] as $polloption)	
-					{{ Form::radio('poll', $polloption['id']) }}
-					{{ $polloption['description'] }}<br>
-				@endforeach
-				@if($errors->has('poll'))
-					{{ $errors->first('poll', '<span class="text-danger">:message</span>') }}<br>
-				@endif	
-				{{ Form::submit('Vote', array('class' => 'btn-primary button')) }}
-			{{ Form::token() }}
-			{{ Form::close() }}
-		</div>
+		@if ($topic['voted'] == false)
+			<div class="col-md-12 form">
+				{{ Form::open(array('route' => array('forum-topic-vote-post', $topic['topic']->id))) }}
+					@foreach ($topic['polloptions'] as $polloption)	
+						{{ Form::radio('poll', $polloption['id']) }}
+						{{ $polloption['description'] }}<br>
+					@endforeach
+					@if($errors->has('poll'))
+						{{ $errors->first('poll', '<span class="text-danger">:message</span>') }}<br>
+					@endif	
+					{{ Form::submit('Vote', array('class' => 'btn-primary button')) }}
+				{{ Form::token() }}
+				{{ Form::close() }}
+			</div>
+		@else
+			<div class="col-md-12 form">
+				<span>Al gestemd</span>
+			</div>
+		@endif
 	@endif
 	
 	<div class="col-md-12 titleBlock bg-primary">
