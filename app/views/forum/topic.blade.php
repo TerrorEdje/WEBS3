@@ -40,7 +40,10 @@
 			</div>
 		@else
 			<div class="col-md-12 form">
-				<span>Al gestemd</span>
+				<span>Resultaten:</span><br>
+				@foreach ($topic['votes'] as $polloption => $amountOfVotes)	
+					{{ $polloption, ': ' ,$amountOfVotes }} <br>
+				@endforeach
 			</div>
 		@endif
 	@endif

@@ -14,7 +14,11 @@ class TopicController extends BaseController {
 		$infoTopic['voted'] = false;
 		
 		$user = User::find(Auth::user()->id);
+		
+		$infoPollvotes = array();
 		foreach ($polloptions as $polloption) {
+			$amountOfPollvotes = Pollvote::where('polloptions_id', '=', $polloption->id)->count();
+			$infoPollvotes[$polloption->description] = $amountOfPollvotes;
 			if ($infoTopic['voted'] != true) {
 				$pollvotes = Pollvote::where('polloptions_id', '=', $polloption->id)->get();
 				foreach ($pollvotes as $pollvote) {
@@ -25,6 +29,8 @@ class TopicController extends BaseController {
 				}
 			}
 		}
+		
+		$infoTopic['votes'] = $infoPollvotes;
 			
 		$firstReply = null;
 		
