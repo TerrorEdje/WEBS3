@@ -24,8 +24,9 @@
 	</div>
 	
 	@if (count($topic['polloptions']) != 0)
-		@if ($topic['voted'] == false)
-			<div class="col-md-12 form">
+		<div class="col-md-12 form">
+			<h4>Poll</h4>
+			@if ($topic['voted'] == false)
 				{{ Form::open(array('route' => array('forum-topic-vote-post', $topic['topic']->id))) }}
 					@foreach ($topic['polloptions'] as $polloption)	
 						{{ Form::radio('poll', $polloption['id']) }}
@@ -37,15 +38,14 @@
 					{{ Form::submit('Vote', array('class' => 'btn-primary button')) }}
 				{{ Form::token() }}
 				{{ Form::close() }}
-			</div>
-		@else
-			<div class="col-md-12 form">
-				<span>Resultaten:</span><br>
+			@else
+				<span>Results:</span><br>
 				@foreach ($topic['votes'] as $polloption => $amountOfVotes)	
-					{{ $polloption, ': ' ,$amountOfVotes }} <br>
+					{{ $polloption, ': ' ,$amountOfVotes, ' votes' }} <br>
 				@endforeach
-			</div>
-		@endif
+			
+			@endif
+		</div>
 	@endif
 	
 	<div class="col-md-12 titleBlock bg-primary">
