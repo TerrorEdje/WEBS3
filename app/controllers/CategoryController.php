@@ -85,7 +85,53 @@ class CategoryController extends BaseController {
 
 	public function postSubcategory()
 	{
-		
+		$validator = Validator::make(Input::all(),
+			array(
+				'subcategoryname' => 'required',
+			)
+		);
+
+		if($validator->fails())
+		{
+			$categories = $this->getMainCategories();
+			return View::make('settings/categories')->with('categories',$categories)->withErrors($validator)->withInput();
+		}
+		else
+		{
+			$subcategory = new Subcategory;
+			$subcategory->name = Input::get('subcategoryname');
+			$subcategory->description = Input::get('subcategorydescription');
+			$subcategory->categories_name = Input::get('category');
+			$subcategory->save();
+
+			$categories = $this->getMainCategories();
+			return View::make('settings/categories')->with('categories',$categories);
+		}
+	}
+
+	public function postCategory()
+	{
+		$validator = Validator::make(Input::all(),
+			array(
+				'categoryname' => 'required',
+			)
+		);
+
+		if($validator->fails())
+		{
+			$categories = $this->getMainCategories();
+			return View::make('settings/categories')->with('categories',$categories)->withErrors($validator)->withInput();
+		}
+		else
+		{
+			$category = new Category;
+			$category->name = Input::get('categoryname');
+			$category->description = Input::get('categorydescription');
+			$category->save();
+
+			$categories = $this->getMainCategories();
+			return View::make('settings/categories')->with('categories',$categories);
+		}
 	}
 }
 
