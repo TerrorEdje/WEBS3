@@ -82,6 +82,11 @@ class CategoryController extends BaseController {
 		$categories = $this->getMainCategories();
 		return View::make('settings/categories')->with('categories',$categories);
 	}
+
+	public function postSubcategory()
+	{
+		
+	}
 }
 
 ?>

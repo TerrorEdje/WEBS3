@@ -43,7 +43,7 @@ Route::group(array('before' => 'auth'), function()
 		/*
 		| Admin deel
 		*/
-		Route::post('settings/categories/subcategory/{name}', array(
+		Route::post('settings/categories/subcategory', array(
 			'as'	=> 'manage-category-subcategory-post',
 			'uses'	=> 'CategoryController@postSubcategory'
 		));
