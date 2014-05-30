@@ -9,6 +9,11 @@
 					<li><a class="dropdownlink" href="{{ URL::route('profile-change') }}">Change profile</a></li>
 				</ul>
 			</li>
+			<li class="dropdown"><a href="#">Settings</a>
+				<ul class="sub_navigation nav nav-pills">
+					<li><a class="dropdownlink" href="{{ URL::route('categories-manage') }}">Manage categories</a></li>
+				</ul>
+			</li>
 			<li><a href="{{ URL::route('account-sign-out') }}">Sign out</a></li>
 		@else
 			<li><a href="{{ URL::route('account-sign-in') }}">Login</a></li>

@@ -3,9 +3,10 @@
 @section('content')
 
 	@foreach ($categories as $infoCategory)
-	
-		<div class="col-md-12 titleBlock bg-primary">
-			{{ $infoCategory['category']->name }}
+		<div class="row">
+			<div class="col-md-12 titleBlock bg-primary">
+				{{ $infoCategory['category']->name }}
+			</div>
 		</div>
 	
 		<div class="row">

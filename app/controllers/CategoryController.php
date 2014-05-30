@@ -77,6 +77,11 @@ class CategoryController extends BaseController {
 		return $allTopics;
 	}
 
+	public function getManageCategories()
+	{
+		$categories = $this->getMainCategories();
+		return View::make('settings/categories')->with('categories',$categories);
+	}
 }
 
 ?>
