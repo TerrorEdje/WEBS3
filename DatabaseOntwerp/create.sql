@@ -79,7 +79,7 @@ DROP TABLE IF EXISTS `jverhoev5_db`.`subcategories` ;
 CREATE  TABLE IF NOT EXISTS `jverhoev5_db`.`subcategories` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
-  `description` VARCHAR(200) NULL ,
+  `description` VARCHAR(120) NULL ,
   `hidden` INT NULL ,
   `created_at` DATETIME NULL ,
   `updated_at` DATETIME NULL ,
