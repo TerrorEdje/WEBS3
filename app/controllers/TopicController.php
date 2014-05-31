@@ -35,7 +35,7 @@ class TopicController extends BaseController {
 		$firstReply = null;
 		
 		$infoReplies = array();
-		$dbReplies = Reply::where('topics_id', '=', $id)->orderBy('date', 'asc')->get();
+		$dbReplies = Reply::where('topics_id', '=', $id)->orderBy('created_at', 'asc')->get();
 		foreach ($dbReplies as $reply) {
 			if ($firstReply == null) {
 				$infoReply = array();

@@ -10,7 +10,7 @@
 		<table class="col-md-12 replyTable">
 			<tr>
 				<td class="col-md-2 replyTabelUsernameTD">{{ $reply['by']->username }}</td>
-				<td class="col-md-10 replyTabelDateTD">{{ $reply['reply']->date }}</td>
+				<td class="col-md-10 replyTabelDateTD">{{ $reply['reply']->created_at }}</td>
 			</tr>
 			<tr>
 				<td class="col-md-2 tableTD">FOTO</td>
@@ -62,7 +62,7 @@
 				<table class="col-sm-12 replyTable">
 					<tr>
 						<td class="col-sm-2 replyTabelUsernameTD">{{ $infoReply['by']->username }}</td>
-						<td class="col-sm-10 replyTabelDateTD">{{ $infoReply['reply']->date }}</td>
+						<td class="col-sm-10 replyTabelDateTD">{{ $infoReply['reply']->created_at }}</td>
 					</tr>
 					<tr>
 						<td class="col-sm-2 tableTD">FOTO</td>
