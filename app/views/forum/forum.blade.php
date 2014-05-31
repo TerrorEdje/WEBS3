@@ -6,6 +6,7 @@
 		<div class="row">
 			<div class="col-md-12 titleBlock bg-primary">
 				{{ $infoCategory['category']->name }}
+				<br><small>{{ $infoCategory['category']->description }}</small>
 			</div>
 		</div>
 	

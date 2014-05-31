@@ -38,24 +38,28 @@ class ProfileController extends BaseController {
 		
 		if($validator->fails())
 		{
-			return Redirect::route('account-create')->withErrors($validator)->withInput();
+			return Redirect::route('profile-change')->withErrors($validator)->withInput();
 		}
 		else
 		{
-			$image = Input::file('image');
-			$destinationPath= 'uploads';
-			$filename = str_random(12);
-			$extension = $image->getClientOriginalExtension();
-			$upload_success = Input::file('image')->move($destinationPath,$filename. "." . $extension);
-		}
+			$user = User::where('username','=',Auth::user()->username);
 
-		if($upload_success)
-		{
-			return Redirect::route('home')->with('global','Profile updated!');
-		}
-		else
-		{
-			return Redirect::route('home')->with('global','Failed uploading the file.');
+			if ($user->count())
+			{
+				$user = $user->first();
+				$user->signature = Input::get('signature');
+				$image = Input::file('image');
+				if (isset($image))
+				{
+					$destinationPath= 'uploads';
+					$filename = str_random(12);
+					$extension = $image->getClientOriginalExtension();
+					$upload_success = Input::file('image')->move($destinationPath,$filename. "." . $extension);
+					$user->image = $filename . "." .$extension;
+				}
+				$user->save();
+				return Redirect::route('home')->with('global','Profile updated!');
+			}
 		}
 		return Redirect::route('home')->with('global','Failed updating your profile');
 	}

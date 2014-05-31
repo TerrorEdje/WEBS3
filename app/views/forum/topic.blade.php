@@ -13,7 +13,7 @@
 				<td class="col-md-10 replyTabelDateTD">{{ $reply['reply']->created_at }}</td>
 			</tr>
 			<tr>
-				<td class="col-md-2 tableTD">FOTO</td>
+				<td class="col-md-2 tableTD">{{ HTML::image('uploads/' . $reply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}</td>
 				<td class="col-md-10 tableTD">{{ $reply['reply']->content }}</td>
 			</tr>
 			<tr>
@@ -65,7 +65,7 @@
 						<td class="col-sm-10 replyTabelDateTD">{{ $infoReply['reply']->created_at }}</td>
 					</tr>
 					<tr>
-						<td class="col-sm-2 tableTD">FOTO</td>
+						<td class="col-sm-2 tableTD">{{ HTML::image('uploads/' . $infoReply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}</td>
 						<td class="col-sm-10 tableTD">{{ $infoReply['reply']->content }}</td>
 					</tr>
 					<tr>
