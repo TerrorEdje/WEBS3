@@ -17,7 +17,7 @@
 			$lastReply = 0;
 			$replies = Reply::where('topics_id', '=', $this->id)->get();
 			foreach ($replies as $reply) {
-				$curReply = $reply->created_at;
+				$curReply = $reply->created_at->format('Y-m-d H:i:s');;
 				if ($curReply > $lastReply) {
 					$lastReply = $curReply;
 				}
