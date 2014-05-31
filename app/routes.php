@@ -15,7 +15,7 @@ Route::group(array('before' => 'auth'), function()
 	*/
 	Route::group(array('before' => 'csrf'), function() 
 	{
-		Route::post('forum/topic/{id}', array(
+		Route::post('forum/reply/{id}', array(
 			'as'	=> 'forum-topic-post',
 			'uses'	=> 'TopicController@postReply'
 		));
@@ -35,7 +35,7 @@ Route::group(array('before' => 'auth'), function()
 			'uses'	=> 'TopicController@postTopicCreate'
 		));
 		
-		Route::post('forum/topic/{id}', array(
+		Route::post('forum/topic/vote/{id}', array(
 			'as'	=> 'forum-topic-vote-post',
 			'uses'	=> 'PollController@postVote'
 		));
@@ -69,7 +69,7 @@ Route::group(array('before' => 'auth'), function()
 		'uses'	=> 'TopicController@getTopicCreate'
 	));
 
-	Route::get('forum/category/{name}', array(
+	Route::get('forum/category/{id}', array(
 		'as'	=> 'forum-category',
 		'uses'	=> 'CategoryController@getCategory'
 	));

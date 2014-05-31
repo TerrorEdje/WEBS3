@@ -6,7 +6,7 @@
 		
 		public function getAmountOfTopics()
 		{
-			$amountOfTopics = Topic::where('subcategories_name', '=', $this->name)->count();
+			$amountOfTopics = Topic::where('subcategories_id', '=', $this->id)->count();
 			if (isset($amountOfTopics)) {
 				return $amountOfTopics;
 			}
@@ -15,7 +15,7 @@
 		public function getAmountOfReplies() 
 		{
 			$amountOfReplies = 0;
-			$topics = Topic::where('subcategories_name', '=', $this->name)->get();
+			$topics = Topic::where('subcategories_id', '=', $this->id)->get();
 			foreach ($topics as $topic) {
 				$amountOfReplies = $amountOfReplies + Reply::where('topics_id', '=', $topic->id)->count();
 			}
@@ -27,7 +27,7 @@
 		public function getLastReply() 
 		{
 			$lastReply = 0;
-			$topics = Topic::where('subcategories_name', '=', $this->name)->get();
+			$topics = Topic::where('subcategories_id', '=', $this->id)->get();
 			foreach ($topics as $topic) {
 				$replies = Reply::where('topics_id', '=', $topic->id)->get();
 				foreach ($replies as $reply) {

@@ -10,6 +10,7 @@ class CategoryController extends BaseController {
 			$infoSubcategories = array(); # Bevat dadelijk alle subcategorieen met alle info van een hoofdcategorie
 			foreach ($infoCategory['subcategories'] as $subcategory) {
 				$infoSubcategory = array();  # Bevat dadelijk alle subcategorieen met alle info
+				$infoSubcategory['id'] = $subcategory->id;
 				$infoSubcategory['name'] = $subcategory->name;
 				$infoSubcategory['description'] = $subcategory->description;
 				$infoSubcategory['amountOfTopics'] = $subcategory->getAmountOfTopics();
@@ -30,7 +31,7 @@ class CategoryController extends BaseController {
 		$dbCategories = Category::all();
 		foreach ($dbCategories as $category) {
 			
-			$dbSubcategories = Subcategory::where('categories_name','=',$category->name)->get();
+			$dbSubcategories = Subcategory::where('categories_id','=',$category->id)->get();
 			
 			$infoCategory = array(); # Bevat dadelijk alle info van een categorie
 			$infoCategory['category'] = $category;
@@ -42,12 +43,12 @@ class CategoryController extends BaseController {
 		return $allCategories;
 	}
 
-	public function getCategory($name)
+	public function getCategory($id)
 	{
-		$subcategory = Subcategory::where('name', '=', $name)->first();		
+		$subcategory = Subcategory::find($id);		
 		$infoOpenTopics = array();
 		$infoClosedTopics = array();
-		$topics = $this->getTopicsWithInfo($name); # Deze lijst met alle topics wordt dadelijk gesplist in 2 lijsten (Open topics en gesloten topics)
+		$topics = $this->getTopicsWithInfo($id); # Deze lijst met alle topics wordt dadelijk gesplist in 2 lijsten (Open topics en gesloten topics)
 		foreach ($topics as $infoTopic) {
 			if($infoTopic['topic']->open == true) {
 				array_push($infoOpenTopics, $infoTopic);
@@ -56,14 +57,14 @@ class CategoryController extends BaseController {
 				array_push($infoClosedTopics, $infoTopic);
 			}
 		}
-		return View::make('forum/category')->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name', $name);
+		return View::make('forum/category')->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name', $id);
 	}
 	
-	public function getTopicsWithInfo($name)
+	public function getTopicsWithInfo($id)
 	{
 		$allTopics = array(); # Bevat dadelijk van alle topics alle info
 		
-		$dbTopics = Topic::where('subcategories_name','=', $name)->get();
+		$dbTopics = Topic::where('subcategories_id','=', $id)->get();
 		foreach ($dbTopics as $topic) {
 			$infoTopic = array(); # Bevat dadelijk alle info van een topic
 			$infoTopic['topic'] = $topic;
@@ -101,7 +102,7 @@ class CategoryController extends BaseController {
 			$subcategory = new Subcategory;
 			$subcategory->name = Input::get('subcategoryname');
 			$subcategory->description = Input::get('subcategorydescription');
-			$subcategory->categories_name = Input::get('category');
+			$subcategory->categories_id = Input::get('category');
 			$subcategory->save();
 
 			$categories = $this->getMainCategories();

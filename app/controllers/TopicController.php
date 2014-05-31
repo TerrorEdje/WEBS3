@@ -38,14 +38,12 @@ class TopicController extends BaseController {
 		$dbReplies = Reply::where('topics_id', '=', $id)->orderBy('date', 'asc')->get();
 		foreach ($dbReplies as $reply) {
 			if ($firstReply == null) {
-				$reply->date = date("d-m-Y H:i", strtotime($reply->date));
 				$infoReply = array();
 				$infoReply['reply'] = $reply;
 				$infoReply['by'] = User::find($reply->by);
 				$firstReply = $infoReply;
 			}
 			else {
-				$reply->date = date("d-m-Y H:i", strtotime($reply->date));
 				$infoReply = array();
 				$infoReply['reply'] = $reply;
 				$infoReply['by'] = User::find($reply->by);
@@ -75,7 +73,6 @@ class TopicController extends BaseController {
 		{
 			$reply = new Reply;
 			$reply->content = Input::get('content');
-			$reply->date = date("Y-m-d H:i:s");
 			$user = User::find(Auth::user()->id);
 			$reply->by = $user->id;
 			$reply->topics_id = $id;
@@ -85,8 +82,9 @@ class TopicController extends BaseController {
 		}
 	}
 	
-	public function getTopicCreate($name) {
-		return View::make('forum/topic-create')->with('name',$name);
+	public function getTopicCreate($id) {
+		$subcategory = Subcategory::find($id);
+		return View::make('forum/topic-create')->with('subcategory',$subcategory);
 	}
 	
 	public function postTopicCreate() {
@@ -104,21 +102,19 @@ class TopicController extends BaseController {
 		else {
 			$topic = new Topic;
 			$topic->title = Input::get('title');
-			$topic->date = date("Y-m-d H:i:s");
 			$topic->by = Auth::user()->id;
-			$topic->subcategories_name = Input::get('name');
+			$topic->subcategories_id = Input::get('id');
 			$topic->open = true;
 			$topic->save();
 			
 			$reply = new Reply;
 			$reply->content = Input::get('content');
-			$reply->date = date("Y-m-d H:i:s");
 			$user = User::find(Auth::user()->id);
 			$reply->by = $user->id;
 			$reply->topics_id = $topic->id;
 			$reply->save();
 		
-			return Redirect::route('forum-category',Input::get('name'));
+			return Redirect::route('forum-category',Input::get('id'));
 		}
 	}
 

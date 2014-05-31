@@ -51,7 +51,7 @@
 						@endif
 					</div>
 					<input type="submit" value="Add subcategory">
-					{{ Form::hidden('category',$infoCategory['category']->name) }}
+					{{ Form::hidden('category',$infoCategory['category']->id) }}
 					{{ Form::token() }}
 				</form>
 			</div>

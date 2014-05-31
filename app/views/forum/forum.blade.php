@@ -15,7 +15,7 @@
 				<div class="col-md-3">
 					<span class="categoryBlock">
 						<div class="titleSubCategory">
-							<a class="titleSubCategoryLink" href="{{ URL::route('forum-category',$infoSubcategory['name']) }}">{{  $infoSubcategory['name'] }}</a>
+							<a class="titleSubCategoryLink" href="{{ URL::route('forum-category',$infoSubcategory['id']) }}">{{  $infoSubcategory['name'] }}</a>
 						</div>
 					
 						<div class="infoSubCategory">
