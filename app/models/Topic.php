@@ -1,8 +1,6 @@
 <?php
 
 	class Topic extends Eloquent {
-
-		public $timestamps = false;
 	
 		protected $table = 'topics';
 		
@@ -19,7 +17,7 @@
 			$lastReply = 0;
 			$replies = Reply::where('topics_id', '=', $this->id)->get();
 			foreach ($replies as $reply) {
-				$curReply = $reply->date;
+				$curReply = $reply->created_at;
 				if ($curReply > $lastReply) {
 					$lastReply = $curReply;
 				}

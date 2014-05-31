@@ -1,8 +1,6 @@
 <?php
 
 	class Subcategory extends Eloquent {
-
-		public $timestamps = false;
 	
 		protected $table = 'subcategories';
 		
@@ -33,7 +31,7 @@
 			foreach ($topics as $topic) {
 				$replies = Reply::where('topics_id', '=', $topic->id)->get();
 				foreach ($replies as $reply) {
-					$curReply = $reply->date;
+					$curReply = $reply->created_at;
 					if ($curReply > $lastReply) {
 						$lastReply = $curReply;
 					}

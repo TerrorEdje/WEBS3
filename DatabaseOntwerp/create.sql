@@ -8,21 +8,20 @@ USE `mydb` ;
 -- -----------------------------------------------------
 -- Table `mydb`.`rights`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`rights` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`rights` (
+  `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NULL,
-  PRIMARY KEY (`name`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`users`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`users` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
@@ -54,30 +53,35 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`categories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`categories` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`categories` (
+  `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
-  PRIMARY KEY (`name`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
+  `hidden` INT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`subcategories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`subcategories` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`subcategories` (
+  `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
-  `categories_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`name`),
-  INDEX `fk_subcategories_categories1_idx` (`categories_name` ASC),
+  `hidden` INT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+  `categories_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_subcategories_categories1_idx` (`categories_id` ASC),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_subcategories_categories1`
-    FOREIGN KEY (`categories_name`)
-    REFERENCES `mydb`.`categories` (`name`)
+    FOREIGN KEY (`categories_id`)
+    REFERENCES `mydb`.`categories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -86,27 +90,27 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`topics`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`topics` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`topics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
-  `date` DATETIME NOT NULL,
   `by` INT NOT NULL,
-  `subcategories_name` VARCHAR(45) NOT NULL,
   `open` TINYINT(1) NOT NULL,
+  `hidden` INT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+  `subcategories_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_topics_users1_idx` (`by` ASC),
-  INDEX `fk_topics_subcategories1_idx` (`subcategories_name` ASC),
+  INDEX `fk_topics_subcategories1_idx` (`subcategories_id` ASC),
   CONSTRAINT `fk_topics_users1`
     FOREIGN KEY (`by`)
     REFERENCES `mydb`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_topics_subcategories1`
-    FOREIGN KEY (`subcategories_name`)
-    REFERENCES `mydb`.`subcategories` (`name`)
+    FOREIGN KEY (`subcategories_id`)
+    REFERENCES `mydb`.`subcategories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -115,14 +119,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`replies`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`replies` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`replies` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` TEXT NOT NULL,
-  `date` DATETIME NOT NULL,
   `by` INT NOT NULL,
   `topics_id` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_replies_users_idx` (`by` ASC),
@@ -143,13 +146,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`polloptions`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`polloptions` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`polloptions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `topics_id` INT NOT NULL,
   `date` DATETIME NOT NULL,
   `description` VARCHAR(100) NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_polloptions_topics1_idx` (`topics_id` ASC),
@@ -164,13 +167,13 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`pollvotes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`pollvotes` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`pollvotes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `polloptions_id` INT NOT NULL,
   `by` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   INDEX `fk_pollvotes_polloptions1_idx` (`polloptions_id` ASC),
@@ -189,31 +192,32 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users_subcategories`
+-- Table `mydb`.`users_categories`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`users_subcategories` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`users_subcategories` (
+CREATE TABLE IF NOT EXISTS `mydb`.`users_categories` (
   `users_id` INT NOT NULL,
-  `subcategories_name` VARCHAR(45) NOT NULL,
   `rights_name` VARCHAR(45) NOT NULL,
+  `categories_id` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   INDEX `fk_users_subcategories_users1_idx` (`users_id` ASC),
-  PRIMARY KEY (`users_id`, `subcategories_name`),
-  INDEX `fk_users_subcategories_subcategories1_idx` (`subcategories_name` ASC),
+  PRIMARY KEY (`users_id`),
   INDEX `fk_users_subcategories_rights1_idx` (`rights_name` ASC),
+  UNIQUE INDEX `users_id_UNIQUE` (`users_id` ASC),
+  INDEX `fk_users_categories_categories1_idx` (`categories_id` ASC),
   CONSTRAINT `fk_users_subcategories_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `mydb`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_subcategories_subcategories1`
-    FOREIGN KEY (`subcategories_name`)
-    REFERENCES `mydb`.`subcategories` (`name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_subcategories_rights1`
     FOREIGN KEY (`rights_name`)
     REFERENCES `mydb`.`rights` (`name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_categories_categories1`
+    FOREIGN KEY (`categories_id`)
+    REFERENCES `mydb`.`categories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -222,11 +226,11 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`users_read_replies`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`users_read_replies` ;
-
 CREATE TABLE IF NOT EXISTS `mydb`.`users_read_replies` (
   `users_id` INT NOT NULL,
   `replies_id` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`users_id`, `replies_id`),
   INDEX `fk_users_has_replies_replies1_idx` (`replies_id` ASC),
   INDEX `fk_users_has_replies_users1_idx` (`users_id` ASC),
@@ -238,6 +242,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users_read_replies` (
   CONSTRAINT `fk_users_has_replies_replies1`
     FOREIGN KEY (`replies_id`)
     REFERENCES `mydb`.`replies` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`news`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`news` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `content` TEXT NULL,
+  `users_id` INT NOT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_news_users1_idx` (`users_id` ASC),
+  CONSTRAINT `fk_news_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `mydb`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
