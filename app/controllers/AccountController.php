@@ -40,7 +40,7 @@ class AccountController extends BaseController {
 			$user->active=0;
 			$user->lasttimeonline = date("Y-m-d H:i:s");
 			$user->timesonline = 0;
-			$user->rights_name = "user";
+			$user->rights_id = 2;
 			$user->save();
 			
 			if ($user) {
