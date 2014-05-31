@@ -2,27 +2,45 @@
 
 @section('content')
 
-	<form action="{{ URL::route('account-sign-in-post') }}" method="post">
+	<div class="col-md-12 titleBlock bg-primary">
+		Sign in
+	</div>
+
+	<div class="col-md-12 form">
+		{{ Form::open(array('route' => array('account-sign-in-post'))) }}
 		
-		<div class="field">
-			Email: {{Form::text('email')}}
+			Email:<br>
+			{{ Form::text('email', null, array('class' => 'text')) }}
 			@if($errors->has('email'))
-				{{ $errors->first('email') }}
+				{{ $errors->first('email') }}<br>
 			@endif
-		</div>
-		<div class="field">
-			Password: {{Form::password('password')}}
+			
+			<br>
+			
+			Password:<br>
+			{{ Form::password('password', array('class' => 'text')) }}
 			@if($errors->has('password'))
-				{{ $errors->first('password') }}
+				{{ $errors->first('password') }}<br>
 			@endif
-		</div>
-		<div class="field">
+	
+			<br>
+			
 			{{ Form::label('remember','Remember me') }}
 			{{ Form::checkbox('remember')  }}
-		</div>
-		<input type="submit" value="Sign in">
-		{{ Form::token() }}
-	</form>
-	<a href="{{ URL::route('account-forgot-password') }}">Forgot password</a>
-
+			
+			<br>
+		
+			{{ Form::submit('Sign in', array('class' => 'btn-primary button')) }}
+			
+		{{ Form::token() }}	
+		{{ Form::close() }}	
+		
+		<br>
+		
+		<a href="{{ URL::route('account-forgot-password') }}">Forgot password</a>
+		
+	</div>
+	
+	
+	
 @stop
