@@ -2,35 +2,49 @@
 
 @section('content')
 
-	<form action="{{ URL::route('account-create-post') }}" method="post">
-		
-		<div class="field">
-			Email: {{Form::text('email')}}
+	<div class="col-md-12 titleBlock bg-primary">
+		Register
+	</div>
+	
+	<div class="col-md-12 form">
+		{{ Form::open(array('route' => array('account-create-post'))) }}
+	
+			Email:<br>
+			{{ Form::text('email', null, array('class' => 'text')) }}
 			@if($errors->has('email'))
-				{{ $errors->first('email') }}
+				{{ $errors->first('email', '<span class="text-danger">:message</span>') }}<br>
 			@endif
-		</div>
-		<div class="field">
-			Username: {{Form::text('username')}}
-			@if($errors->has('username'))
-				{{ $errors->first('username') }}
-			@endif
-		</div>
-		<div class="field">
-			Password: {{Form::password('password')}}
-			@if($errors->has('password'))
-				{{ $errors->first('password') }}
-			@endif
-		</div>
-		<div class="field">
-			Password again: {{Form::password('password_again')}}
-			@if($errors->has('password_again'))
-				{{ $errors->first('password_again') }}
-			@endif
-		</div>
 		
-		<input type="submit" value="Create Account">
-		{{ Form::token(); }}
-	</form>
+			<br>
+		
+			Username:<br>
+			{{ Form::text('username', null, array('class' => 'text')) }}
+			@if($errors->has('username'))
+				{{ $errors->first('username', '<span class="text-danger">:message</span>') }}<br>
+			@endif
+		
+			<br>
+		
+			Password:<br>
+			{{ Form::password('password', array('class' => 'text')) }}
+			@if($errors->has('password'))
+				{{ $errors->first('password', '<span class="text-danger">:message</span>') }}<br>
+			@endif
+			
+			<br>
+			
+			Password again:<br> 
+			{{ Form::password('password_again', array('class' => 'text')) }}
+			@if($errors->has('password_again'))
+				{{ $errors->first('password_again', '<span class="text-danger">:message</span>') }}<br>
+			@endif
+		
+			<br>
+			
+			{{ Form::submit('Create Account', array('class' => 'btn-primary button')) }}
+			
+		{{ Form::token() }}	
+		{{ Form::close() }}	
+	</div>
 
 @stop

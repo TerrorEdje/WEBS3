@@ -12,7 +12,7 @@
 			Email:<br>
 			{{ Form::text('email', null, array('class' => 'text')) }}
 			@if($errors->has('email'))
-				{{ $errors->first('email') }}<br>
+				{{ $errors->first('email', '<span class="text-danger">:message</span>') }}<br>
 			@endif
 			
 			<br>
@@ -20,7 +20,7 @@
 			Password:<br>
 			{{ Form::password('password', array('class' => 'text')) }}
 			@if($errors->has('password'))
-				{{ $errors->first('password') }}<br>
+				{{ $errors->first('password', '<span class="text-danger">:message</span>') }}<br>
 			@endif
 	
 			<br>

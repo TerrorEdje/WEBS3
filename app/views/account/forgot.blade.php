@@ -12,7 +12,7 @@
 			Email:<br>
 			{{ Form::text('email', null, array('class' => 'text')) }}
 			@if($errors->has('email'))
-				{{ $errors->first('email') }}<br>
+				{{ $errors->first('email', '<span class="text-danger">:message</span>') }}<br>
 			@endif
 			
 			<br>
