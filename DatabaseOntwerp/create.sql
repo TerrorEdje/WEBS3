@@ -2,13 +2,13 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `jverhoev5_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `jverhoev5_db` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`rights`
+-- Table `jverhoev5_db`.`rights`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`rights` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`rights` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NULL,
@@ -20,40 +20,40 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users`
+-- Table `jverhoev5_db`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(60) NOT NULL,
   `password_temp` VARCHAR(60) NULL,
   `email` VARCHAR(50) NOT NULL,
-  `lasttimeonline` DATETIME NOT NULL,
-  `timesonline` INT NOT NULL,
+  `lasttimeonline` DATETIME NULL,
+  `timesonline` INT NULL,
   `signature` TEXT NULL,
   `image` VARCHAR(100) NULL,
   `description` VARCHAR(100) NULL,
-  `rights_name` VARCHAR(45) NOT NULL,
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   `active` INT NULL,
   `code` VARCHAR(60) NULL,
+  `rights_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
-  INDEX `fk_users_rights1_idx` (`rights_name` ASC),
+  INDEX `fk_users_rights1_idx` (`rights_id` ASC),
   CONSTRAINT `fk_users_rights1`
-    FOREIGN KEY (`rights_name`)
-    REFERENCES `mydb`.`rights` (`name`)
+    FOREIGN KEY (`rights_id`)
+    REFERENCES `jverhoev5_db`.`rights` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`categories`
+-- Table `jverhoev5_db`.`categories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`categories` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`categories` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
@@ -66,9 +66,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`subcategories`
+-- Table `jverhoev5_db`.`subcategories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`subcategories` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`subcategories` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
@@ -81,16 +81,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`subcategories` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   CONSTRAINT `fk_subcategories_categories1`
     FOREIGN KEY (`categories_id`)
-    REFERENCES `mydb`.`categories` (`id`)
+    REFERENCES `jverhoev5_db`.`categories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`topics`
+-- Table `jverhoev5_db`.`topics`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`topics` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`topics` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
   `by` INT NOT NULL,
@@ -105,21 +105,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`topics` (
   INDEX `fk_topics_subcategories1_idx` (`subcategories_id` ASC),
   CONSTRAINT `fk_topics_users1`
     FOREIGN KEY (`by`)
-    REFERENCES `mydb`.`users` (`id`)
+    REFERENCES `jverhoev5_db`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_topics_subcategories1`
     FOREIGN KEY (`subcategories_id`)
-    REFERENCES `mydb`.`subcategories` (`id`)
+    REFERENCES `jverhoev5_db`.`subcategories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`replies`
+-- Table `jverhoev5_db`.`replies`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`replies` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`replies` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `content` TEXT NOT NULL,
   `by` INT NOT NULL,
@@ -132,21 +132,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`replies` (
   INDEX `fk_replies_topics1_idx` (`topics_id` ASC),
   CONSTRAINT `fk_replies_users`
     FOREIGN KEY (`by`)
-    REFERENCES `mydb`.`users` (`id`)
+    REFERENCES `jverhoev5_db`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_replies_topics1`
     FOREIGN KEY (`topics_id`)
-    REFERENCES `mydb`.`topics` (`id`)
+    REFERENCES `jverhoev5_db`.`topics` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`polloptions`
+-- Table `jverhoev5_db`.`polloptions`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`polloptions` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`polloptions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `topics_id` INT NOT NULL,
   `date` DATETIME NOT NULL,
@@ -158,16 +158,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`polloptions` (
   INDEX `fk_polloptions_topics1_idx` (`topics_id` ASC),
   CONSTRAINT `fk_polloptions_topics1`
     FOREIGN KEY (`topics_id`)
-    REFERENCES `mydb`.`topics` (`id`)
+    REFERENCES `jverhoev5_db`.`topics` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pollvotes`
+-- Table `jverhoev5_db`.`pollvotes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`pollvotes` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`pollvotes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `polloptions_id` INT NOT NULL,
@@ -180,53 +180,52 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pollvotes` (
   INDEX `fk_pollvotes_users1_idx` (`by` ASC),
   CONSTRAINT `fk_pollvotes_polloptions1`
     FOREIGN KEY (`polloptions_id`)
-    REFERENCES `mydb`.`polloptions` (`id`)
+    REFERENCES `jverhoev5_db`.`polloptions` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pollvotes_users1`
     FOREIGN KEY (`by`)
-    REFERENCES `mydb`.`users` (`id`)
+    REFERENCES `jverhoev5_db`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users_categories`
+-- Table `jverhoev5_db`.`users_categories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users_categories` (
-  `users_id` INT NOT NULL,
-  `rights_name` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`users_categories` (
   `categories_id` INT NOT NULL,
+  `users_id` INT NOT NULL,
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
-  INDEX `fk_users_subcategories_users1_idx` (`users_id` ASC),
-  PRIMARY KEY (`users_id`),
-  INDEX `fk_users_subcategories_rights1_idx` (`rights_name` ASC),
-  UNIQUE INDEX `users_id_UNIQUE` (`users_id` ASC),
+  `rights_id` INT NOT NULL,
   INDEX `fk_users_categories_categories1_idx` (`categories_id` ASC),
-  CONSTRAINT `fk_users_subcategories_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `mydb`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_subcategories_rights1`
-    FOREIGN KEY (`rights_name`)
-    REFERENCES `mydb`.`rights` (`name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_users_categories_rights1_idx` (`rights_id` ASC),
+  INDEX `fk_users_categories_users1_idx` (`users_id` ASC),
+  PRIMARY KEY (`categories_id`, `users_id`),
   CONSTRAINT `fk_users_categories_categories1`
     FOREIGN KEY (`categories_id`)
-    REFERENCES `mydb`.`categories` (`id`)
+    REFERENCES `jverhoev5_db`.`categories` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_categories_rights1`
+    FOREIGN KEY (`rights_id`)
+    REFERENCES `jverhoev5_db`.`rights` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_categories_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `jverhoev5_db`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users_read_replies`
+-- Table `jverhoev5_db`.`users_read_replies`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users_read_replies` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`users_read_replies` (
   `users_id` INT NOT NULL,
   `replies_id` INT NOT NULL,
   `created_at` DATETIME NULL,
@@ -236,21 +235,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users_read_replies` (
   INDEX `fk_users_has_replies_users1_idx` (`users_id` ASC),
   CONSTRAINT `fk_users_has_replies_users1`
     FOREIGN KEY (`users_id`)
-    REFERENCES `mydb`.`users` (`id`)
+    REFERENCES `jverhoev5_db`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_has_replies_replies1`
     FOREIGN KEY (`replies_id`)
-    REFERENCES `mydb`.`replies` (`id`)
+    REFERENCES `jverhoev5_db`.`replies` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`news`
+-- Table `jverhoev5_db`.`news`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`news` (
+CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`news` (
   `id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
   `content` TEXT NULL,
@@ -261,7 +260,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`news` (
   INDEX `fk_news_users1_idx` (`users_id` ASC),
   CONSTRAINT `fk_news_users1`
     FOREIGN KEY (`users_id`)
-    REFERENCES `mydb`.`users` (`id`)
+    REFERENCES `jverhoev5_db`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
