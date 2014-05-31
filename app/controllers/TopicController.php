@@ -113,6 +113,41 @@ class TopicController extends BaseController {
 			$reply->by = $user->id;
 			$reply->topics_id = $topic->id;
 			$reply->save();
+			
+			if (Input::get('polloption1') != null) {
+				$polloption1 = new Polloption;
+				$polloption1->topics_id = $topic->id;
+				$polloption1->description = Input::get('polloption1');
+				$polloption1->save();
+			}
+			
+			if (Input::get('polloption2') != null) {
+				$polloption2 = new Polloption;
+				$polloption2->topics_id = $topic->id;
+				$polloption2->description = Input::get('polloption3');
+				$polloption2->save();
+			}
+			
+			if (Input::get('polloption3') != null) {
+				$polloption3 = new Polloption;
+				$polloption3->topics_id = $topic->id;
+				$polloption3->description = Input::get('polloption3');
+				$polloption3->save();
+			}
+			
+			if (Input::get('polloption4') != null) {
+				$polloption4 = new Polloption;
+				$polloption4->topics_id = $topic->id;
+				$polloption4->description = Input::get('polloption4');
+				$polloption4->save();
+			}
+			
+			if (Input::get('polloption5') != null) {
+				$polloption5 = new Polloption;
+				$polloption5->topics_id = $topic->id;
+				$polloption5->description = Input::get('polloption5');
+				$polloption5->save();
+			}
 		
 			return Redirect::route('forum-category',Input::get('id'));
 		}

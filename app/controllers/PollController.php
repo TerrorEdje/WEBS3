@@ -20,7 +20,6 @@ class PollController extends BaseController {
 		else
 		{
 			$pollvote = new Pollvote;
-			$pollvote->date = date("Y-m-d H:i:s");
 			$pollvote->polloptions_id = Input::get('poll');
 			$user = User::find(Auth::user()->id);
 			$pollvote->by = $user->id;

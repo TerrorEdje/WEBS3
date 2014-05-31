@@ -14,10 +14,16 @@
 				There are no topics at the moment.
 			</div>
 		</div>
+		<br/>
 		<div class="row">
-			<div class="col-md-4">
-				<a class="btn-primary button" href="{{ URL::route('forum-topic-create-get',$subcategory['id'] )}}">Create topic</a>
+			<div>
+				{{ Form::open(array('route' => array('forum-topic-create-get', $name))) }}
+					{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
+				{{ Form::close() }}
 			</div>
+			<!-- <div class="col-md-4">
+				<a class="btn-primary button" href="{{ URL::route('forum-topic-create-get',$subcategory['id'] )}}">Create topic</a>
+			</div> -->
 		</div>
 	@else
 		<div class="row">
@@ -26,6 +32,9 @@
 					{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
 				{{ Form::close() }}
 			</div>
+			<!-- <div class="col-md-4">
+				<a class="btn-primary button" href="{{ URL::route('forum-topic-create-get',$subcategory['id'] )}}">Create topic</a>
+			</div> -->
 		</div>
 		<div class="row">
 			<table class="col-sm-12 topicsTable">
