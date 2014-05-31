@@ -9,7 +9,7 @@ USE `jverhoev5_db` ;
 -- Table `jverhoev5_db`.`rights`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`rights` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NULL,
   `created_at` DATETIME NULL,
@@ -54,7 +54,7 @@ ENGINE = InnoDB;
 -- Table `jverhoev5_db`.`categories`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`categories` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
   `hidden` INT NULL,
@@ -69,7 +69,7 @@ ENGINE = InnoDB;
 -- Table `jverhoev5_db`.`subcategories`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`subcategories` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NULL,
   `hidden` INT NULL,
@@ -250,7 +250,7 @@ ENGINE = InnoDB;
 -- Table `jverhoev5_db`.`news`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`news` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `content` TEXT NULL,
   `users_id` INT NOT NULL,
