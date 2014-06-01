@@ -39,7 +39,7 @@ class TopicController extends BaseController {
 			$infoVote['amountOfVotes'] = $amountOfVotes;
 			if ($amountOfVotes != 0) {
 				$res = ($amountOfVotes / $totalAmountOfVotes) * 100;
-				$infoVote['percentage'] = round($res, 2);
+				$infoVote['percentage'] = round($res, 0);
 			}
 			else {
 				$infoVote['percentage'] = 0;

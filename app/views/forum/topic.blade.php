@@ -41,10 +41,23 @@
 			@else
 				<span>Results:</span><br>
 				<span>Total amount of votes: {{ $topic['totalAmountOfVotes'] }}</span><br>
-				@foreach ($topic['infoPollvotes'] as $infoVote)	
-					{{ $infoVote['polloption']->description, ': ', $infoVote['amountOfVotes'], ' votes', ' (', $infoVote['percentage'],'%)' }} <br>
-				@endforeach
-			
+				<table>
+					@foreach ($topic['infoPollvotes'] as $infoVote)
+						<tr>
+							<td class="pollResultsTD">{{ $infoVote['polloption']->description, ': ' }}</td>
+							<td class="resultsBarTD">
+								@for ($i = 0; $i < $infoVote['percentage']; $i++)
+									<span class="percentageBarBlue bg-primary">&nbsp;</span>
+								@endfor
+								@for ($i = 0; $i < (100-$infoVote['percentage']); $i++)
+									<span class="percentageBarWhite">&nbsp;</span>
+								@endfor
+							</td>
+							<td class="percentageTD ">{{ $infoVote['percentage'], '%' }}</td>
+							<td class="pollResultsTD">{{ ' (', $infoVote['amountOfVotes'], ' votes)' }}</td>
+						</tr>
+					@endforeach	
+				</table>
 			@endif
 		</div>
 	@endif

@@ -163,6 +163,34 @@ ul.sub_navigation li
 	padding: 10px;
 }
 
+.pollResultsTD 
+{
+	padding-right: 10px;
+}
+
+.resultsBarTD 
+{
+	border: 1px black solid;
+}
+
+.percentageTD 
+{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.percentageBarBlue 
+{
+	float: left;
+}
+
+.percentageBarWhite 
+{
+	background-color: white;
+	float: left;
+}
+
+
 
 
 
