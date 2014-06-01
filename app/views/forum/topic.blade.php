@@ -39,8 +39,8 @@
 				{{ Form::token() }}
 				{{ Form::close() }}
 			@else
-				<span>Results:</span><br>
-				<span>Total amount of votes: {{ $topic['totalAmountOfVotes'] }}</span><br>
+				<span>Total amount of votes: {{ $topic['totalAmountOfVotes'], ' votes' }}</span><br>
+				<br>
 				<table>
 					@foreach ($topic['infoPollvotes'] as $infoVote)
 						<tr>
@@ -58,6 +58,7 @@
 						</tr>
 					@endforeach	
 				</table>
+				<br>
 			@endif
 		</div>
 	@endif
