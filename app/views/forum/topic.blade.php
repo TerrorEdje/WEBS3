@@ -41,8 +41,8 @@
 			@else
 				<span>Results:</span><br>
 				<span>Total amount of votes: {{ $topic['totalAmountOfVotes'] }}</span><br>
-				@foreach ($topic['votes'] as $polloption => $amountOfVotes)	
-					{{ $polloption, ': ' ,$amountOfVotes, ' votes' }} <br>
+				@foreach ($topic['infoPollvotes'] as $infoVote)	
+					{{ $infoVote['polloption']->description, ': ', $infoVote['amountOfVotes'], ' votes', ' (', $infoVote['percentage'],'%)' }} <br>
 				@endforeach
 			
 			@endif

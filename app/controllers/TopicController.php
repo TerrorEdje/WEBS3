@@ -16,10 +16,9 @@ class TopicController extends BaseController {
 		$user = User::find(Auth::user()->id);
 		
 		$totalAmountOfVotes = 0;
-		$infoPollvotes = array();
 		foreach ($polloptions as $polloption) {
 			$amountOfPollvotes = Pollvote::where('polloptions_id', '=', $polloption->id)->count();
-			$infoPollvotes[$polloption->description] = $amountOfPollvotes;
+			$totalAmountOfVotes = $totalAmountOfVotes + $amountOfPollvotes;
 			if ($infoTopic['voted'] != true) {
 				$pollvotes = Pollvote::where('polloptions_id', '=', $polloption->id)->get();
 				foreach ($pollvotes as $pollvote) {
@@ -29,11 +28,25 @@ class TopicController extends BaseController {
 					}
 				}
 			}
-			$totalAmountOfVotes = $totalAmountOfVotes + $amountOfPollvotes;
 		}
-		
-		$infoTopic['votes'] = $infoPollvotes;
 		$infoTopic['totalAmountOfVotes'] = $totalAmountOfVotes;
+		
+		$infoPollvotes = array();
+		foreach ($polloptions as $polloption) {
+			$infoVote = array();
+			$infoVote['polloption'] = $polloption;
+			$amountOfVotes = Pollvote::where('polloptions_id', '=', $polloption->id)->count();
+			$infoVote['amountOfVotes'] = $amountOfVotes;
+			if ($amountOfVotes != 0) {
+				$res = ($totalAmountOfVotes / $amountOfVotes) * 100;
+				$infoVote['percentage'] = round($res, 2);
+			}
+			else {
+				$infoVote['percentage'] = 0;
+			}
+			array_push($infoPollvotes, $infoVote);
+		}	
+		$infoTopic['infoPollvotes'] = $infoPollvotes;
 			
 		$firstReply = null;
 		
