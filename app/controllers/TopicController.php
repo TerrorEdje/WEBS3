@@ -38,7 +38,7 @@ class TopicController extends BaseController {
 			$amountOfVotes = Pollvote::where('polloptions_id', '=', $polloption->id)->count();
 			$infoVote['amountOfVotes'] = $amountOfVotes;
 			if ($amountOfVotes != 0) {
-				$res = ($totalAmountOfVotes / $amountOfVotes) * 100;
+				$res = ($amountOfVotes / $totalAmountOfVotes) * 100;
 				$infoVote['percentage'] = round($res, 2);
 			}
 			else {
