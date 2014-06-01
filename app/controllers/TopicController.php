@@ -15,6 +15,7 @@ class TopicController extends BaseController {
 		
 		$user = User::find(Auth::user()->id);
 		
+		$totalAmountOfVotes = 0;
 		$infoPollvotes = array();
 		foreach ($polloptions as $polloption) {
 			$amountOfPollvotes = Pollvote::where('polloptions_id', '=', $polloption->id)->count();
@@ -28,9 +29,11 @@ class TopicController extends BaseController {
 					}
 				}
 			}
+			$totalAmountOfVotes = $totalAmountOfVotes + $amountOfPollvotes;
 		}
 		
 		$infoTopic['votes'] = $infoPollvotes;
+		$infoTopic['totalAmountOfVotes'] = $totalAmountOfVotes;
 			
 		$firstReply = null;
 		
