@@ -140,7 +140,7 @@ class TopicController extends BaseController {
 			if (Input::get('polloption2') != null) {
 				$polloption2 = new Polloption;
 				$polloption2->topics_id = $topic->id;
-				$polloption2->description = Input::get('polloption3');
+				$polloption2->description = Input::get('polloption2');
 				$polloption2->save();
 			}
 			
