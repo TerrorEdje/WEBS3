@@ -1,21 +1,29 @@
 Home - Edwin
 
-Inloggen - Edwin 23-5-2014
+Inloggen - Edwin 23-5-2014 - Af
 
-Registeren - Edwin 23-5-2014
+Registeren - Edwin 23-5-2014 - Af
 
-Overzicht categorieën - Jip 23-5-2014
+Overzicht categorieën - Jip 23-5-2014 - Af
 
-Overzicht topics - Jip 23-5-2014
+Overzicht topics - Jip 23-5-2014 - Af
 
-Topic pagina - Jip 30-5-2014
+Topic pagina - Jip 30-5-2014 - Af
 
 Users beheren - Edwin 30-5-2014
 
-Categorieën beheren - Edwin 30-5-2014
+Categorieën beheren - Edwin 30-5-2014 - Af
 
-Polls - Jip 30-5-2014
+Polls - Jip 30-5-2014- Af
 
-Layout met simpele bootstrap
+Javascript Favorieten - Edwin
 
-Model bijwerken
+Newlines - Jip
+
+Profiel view - Jip
+
+Pol create view - Edwin
+
+Menu layer - Jip
+
+Menu DB - Jip & Edwin
