@@ -43,51 +43,51 @@ class HomeController extends BaseController {
 		$menu = new Menu;
 		$menu->name = "Home";
 		$menu->link = "home";
-		$menu->rights = $newuser->id;
+		$menu->rights_id = $newuser->id;
 		$menu->save();
 
 		$menu = new Menu;
 		$menu->name = "Forum";
 		$menu->link = "forum";
-		$menu->rights = $newuser->id;
+		$menu->rights_id = $newuser->id;
 		$menu->save();
 
 		$account = new Menu;
 		$account->name = "Account";
 		$account->link = "profile-user-loggedin";
-		$account->rights = $newuser->id;
+		$account->rights_id = $newuser->id;
 		$account->save();
 
 		$menu = new Menu;
 		$menu->name = "Change password";
 		$menu->link = "account-change-password";
-		$menu->rights = $newuser->id;
+		$menu->rights_id = $newuser->id;
 		$menu->parent = $account->id;
 		$menu->save();
 
 		$menu = new Menu;
 		$menu->name = "Change profile";
 		$menu->link = "profile-change";
-		$menu->rights = $newuser->id;
+		$menu->rights_id = $newuser->id;
 		$menu->parent = $account->id;
 		$menu->save();
 
 		$settings = new Menu;
 		$settings->name = "Settings";
-		$settings->rights = $admin->id;
+		$settings->rights_id = $admin->id;
 		$settings->save();
 
 		$menu = new Menu;
 		$menu->name = "Manage categories";
 		$menu->link = "categories-manage";
-		$menu->rights = $admin->id;
+		$menu->rights_id = $admin->id;
 		$menu->parent = $settings->id;
 		$menu->save();
 
 		$menu = new Menu;
 		$menu->name = "Logout";
 		$menu->link = "account-sign-out";
-		$menu->rights = $newuser->id;
+		$menu->rights_id = $newuser->id;
 		$menu->save();
 
 		return Redirect::route('home')->with('global','Database has been filled.');
