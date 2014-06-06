@@ -7,6 +7,92 @@ class HomeController extends BaseController {
 		return View::make('home');
 	}
 
+	public function getDatabase()
+	{
+		$newuser = new Right;
+		$newuser->name = "New user";
+		$newuser->save();
+
+		$user = new Right;
+		$user->name = "User";
+		$user->save();
+
+		$moderator = new Right;
+		$moderator->name = "Moderator";
+		$moderator->save();
+
+		$admin = new Right;
+		$admin->name = "Admin";	
+		$admin->save();
+
+		$menu = new Menu;
+		$menu->name = "Home";
+		$menu->link = "home";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->name = "Login";
+		$menu->link = "account-sign-in";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->name = "Register";
+		$menu->link = "/account/create";
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->name = "Home";
+		$menu->link = "home";
+		$menu->rights = $newuser->id;
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->name = "Forum";
+		$menu->link = "forum";
+		$menu->rights = $newuser->id;
+		$menu->save();
+
+		$account = new Menu;
+		$account->name = "Account";
+		$account->link = "profile-user-loggedin";
+		$account->rights = $newuser->id;
+		$account->save();
+
+		$menu = new Menu;
+		$menu->name = "Change password";
+		$menu->link = "account-change-password";
+		$menu->rights = $newuser->id;
+		$menu->parent = $account->id;
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->name = "Change profile";
+		$menu->link = "profile-change";
+		$menu->rights = $newuser->id;
+		$menu->parent = $account->id;
+		$menu->save();
+
+		$settings = new Menu;
+		$settings->name = "Settings";
+		$settings->rights = $admin->id;
+		$settings->save();
+
+		$menu = new Menu;
+		$menu->name = "Manage categories";
+		$menu->link = "categories-manage";
+		$menu->rights = $admin->id;
+		$menu->parent = $settings->id;
+		$menu->save();
+
+		$menu = new Menu;
+		$menu->name = "Logout";
+		$menu->link = "account-sign-out";
+		$menu->rights = $newuser->id;
+		$menu->save();
+
+		return Redirect::route('home')->with('global','Database has been filled.');
+	}
+
 }
 
 ?>

@@ -270,14 +270,20 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`menu` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `parent` VARCHAR(45) NULL,
   `link` VARCHAR(100) NULL,
   `rights_id` INT NULL,
+  `parent` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_menu_rights1_idx` (`rights_id` ASC),
+  INDEX `fk_menu_menu1_idx` (`parent` ASC),
   CONSTRAINT `fk_menu_rights1`
     FOREIGN KEY (`rights_id`)
     REFERENCES `jverhoev5_db`.`rights` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_menu_menu1`
+    FOREIGN KEY (`parent`)
+    REFERENCES `jverhoev5_db`.`menu` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

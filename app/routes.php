@@ -94,6 +94,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'ProfileController@user'
 	));
 
+	Route::get('profile',array(
+		'as' => 'profile-user-loggedin',
+		'uses' => 'ProfileController@loggedInUser'
+	));
+
 	Route::get('profile/change',array(
 		'as' => 'profile-change',
 		'uses' => 'ProfileController@getChangeProfile'
@@ -136,6 +141,11 @@ Route::group(array('before' => 'guest'), function()
 	));
 	
 	});
+
+	Route::get('database', array(
+		'as' => 'database',
+		'uses' => 'HomeController@getDatabase'
+	));
 	
 	Route::get('account/create',array(
 		'as' => 'account-create',
