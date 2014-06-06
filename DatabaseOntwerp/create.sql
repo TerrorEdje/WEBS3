@@ -273,6 +273,8 @@ CREATE TABLE IF NOT EXISTS `jverhoev5_db`.`menu` (
   `link` VARCHAR(100) NULL,
   `rights_id` INT NULL,
   `parent` INT NULL,
+  `created_at` DATETIME NULL,
+  `updated_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_menu_rights1_idx` (`rights_id` ASC),
   INDEX `fk_menu_menu1_idx` (`parent` ASC),
