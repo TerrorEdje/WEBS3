@@ -14,7 +14,7 @@
 			</tr>
 			<tr>
 				<td class="col-md-2 tableTD">{{ HTML::image('uploads/' . $reply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}</td>
-				<td class="col-md-10 tableTD">{{ $reply['reply']->content }}</td>
+				<td class="col-md-10 tableTD">{{ nl2br($reply['reply']->content) }}</td>
 			</tr>
 			<tr>
 				<td class="col-md-2 tableTD"></td>
@@ -81,7 +81,7 @@
 					</tr>
 					<tr>
 						<td class="col-sm-2 tableTD">{{ HTML::image('uploads/' . $infoReply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}</td>
-						<td class="col-sm-10 tableTD">{{ $infoReply['reply']->content }}</td>
+						<td class="col-sm-10 tableTD">{{ nl2br($infoReply['reply']->content) }}</td>
 					</tr>
 					<tr>
 						<td class="col-sm-2 tableTD"></td>
