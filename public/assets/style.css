@@ -31,6 +31,8 @@ ul.sub_navigation li
 .tableTD
 {
 	padding: 10px;
+	vertical-align: top;
+	text-align: left;
 }
 
 .form 
@@ -206,6 +208,7 @@ ul.sub_navigation li
 
 .profileTabelDateTD
 {
+	vertical-align: top;
 	text-align: right;
 	padding: 10px;
 }
