@@ -8,3 +8,10 @@ $('body').ready(function() {
 			$(this).find('.sub_navigation').toggle();
 	});
 });
+
+$(document).ready(function(){
+  $("#polltitle").click(function(){
+    $("#poll").slideToggle();
+  });
+  $('#poll').hide();
+});

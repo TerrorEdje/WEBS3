@@ -4,5 +4,7 @@
 	{{HTML::style('assets/bootstrap.css')}}
 	{{HTML::script('assets/bootstrap.js')}}
 	{{HTML::script('assets/jquery-1.11.1.js')}}
-	{{HTML::script('assets/javascript.js')}}
+	{{HTML::script('assets/jquery-ui-1.10.4.js')}}
+	{{HTML::script('assets/javascript.js')}}	
+	</script>
 </head>

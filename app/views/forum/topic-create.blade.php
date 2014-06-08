@@ -29,14 +29,14 @@
 				
 				<br>
 				
-				Polloptions:<br>
-				{{ Form::text('polloption1', Input::old('text'), array('class' => 'text')) }}<br>
-				{{ Form::text('polloption2', Input::old('text'), array('class' => 'text')) }}<br>
-				{{ Form::text('polloption3', Input::old('text'), array('class' => 'text')) }}<br>
-				{{ Form::text('polloption4', Input::old('text'), array('class' => 'text')) }}<br>
-				{{ Form::text('polloption5', Input::old('text'), array('class' => 'text')) }}<br>
-				
-				<br>
+				<p><a id="polltitle" href="#">Create a poll</a><p>
+				<p id="poll">
+					{{ Form::text('polloption1', Input::old('text'), array('class' => 'text', 'placeholder' => 'Leave blank for less options')) }}<br>
+					{{ Form::text('polloption2', Input::old('text'), array('class' => 'text', 'placeholder' => 'Leave blank for less options')) }}<br>
+					{{ Form::text('polloption3', Input::old('text'), array('class' => 'text', 'placeholder' => 'Leave blank for less options')) }}<br>
+					{{ Form::text('polloption4', Input::old('text'), array('class' => 'text', 'placeholder' => 'Leave blank for less options')) }}<br>
+					{{ Form::text('polloption5', Input::old('text'), array('class' => 'text', 'placeholder' => 'Leave blank for less options')) }}<br>
+				</p>
 				
 				{{ Form::hidden('id', $subcategory['id'] ) }}
 				{{ Form::submit('Create', array('class' => 'btn-primary button')) }}
