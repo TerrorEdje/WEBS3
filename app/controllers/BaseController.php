@@ -9,12 +9,18 @@ class BaseController extends Controller {
 	 */
 	protected function setupLayout()
 	{
-		if ( ! is_null($this->layout))
+		if (! is_null($this->layout))
 		{
-			$menus = Menu::all();
-			echo "hoi";
-			$this->layout = View::make($this->layout)->with('menus',$menus);
+
+			$this->layout = View::make($this->layout);
 		}
+	}
+
+	public function __construct()
+	{
+		$this->menus = Menu::all();
+
+		View::share('menus',$this->menus->all());
 	}
 
 }

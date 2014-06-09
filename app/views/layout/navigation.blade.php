@@ -1,6 +1,8 @@
 <div class="row">
 	<ul class="nav nav-pills">
-		
+		@foreach($menus as $menu)
+			{{ $menu->name }}
+		@endforeach
 		<li><a href="{{ URL::route('home') }}">Home</a></li>		
 		@if(Auth::check())
 			<li><a href="{{ URL::route('forum') }}">Forum</a></li>

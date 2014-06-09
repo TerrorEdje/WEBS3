@@ -7,6 +7,8 @@ class HomeController extends BaseController {
 		return View::make('home');
 	}
 
+	
+
 	public function getDatabase()
 	{
 		$newuser = new Right;
