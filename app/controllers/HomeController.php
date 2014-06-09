@@ -39,7 +39,7 @@ class HomeController extends BaseController {
 
 		$menu = new Menu;
 		$menu->name = "Register";
-		$menu->link = "/account/create";
+		$menu->link = "account-create";
 		$menu->save();
 
 		$menu = new Menu;

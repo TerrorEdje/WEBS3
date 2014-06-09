@@ -18,9 +18,12 @@ class BaseController extends Controller {
 
 	public function __construct()
 	{
-		$this->menus = Menu::all();
+		$mainmenus = Menu::where('parent','=',NULL)->get();
+		//var_dump($mainmenus);
+		$submenus = Menu::where('parent','>','1')->get();
 
-		View::share('menus',$this->menus->all());
+		View::share('menus',$mainmenus);
+		View::share('submenus',$submenus);
 	}
 
 }
