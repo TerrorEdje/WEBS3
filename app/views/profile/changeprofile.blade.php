@@ -7,7 +7,7 @@
 	</div>
 	
 	<div class="col-md-12 form">
-		{{ Form::open(array('route' => array('profile-change-post'))) }}
+		{{ Form::open(array('route' => array('profile-change-post'),  'files' => true)) }}
 		
 			Current image:<br>
 			{{ HTML::image('uploads/' . $user['image'],'Image', array('width' => '100', 'height' => '100')) }}<br>
@@ -15,9 +15,9 @@
 			<br>
 			
 			Image:<br>
-			{{ Form::file('image') }}
-			@if($errors->has('image'))
-				{{ $errors->first('image', '<span class="text-danger">:message</span>') }}<br>
+			{{ Form::file('picture') }}
+			@if($errors->has('picture'))
+				{{ $errors->first('picture', '<span class="text-danger">:message</span>') }}<br>
 			@endif
 			
 			<br>

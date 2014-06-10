@@ -32,7 +32,7 @@ class ProfileController extends BaseController {
 	{
 		$validator = Validator::make(Input::all(),
 			array(
-				'image' => 'image',
+				'picture' => 'image',
 			)
 		);
 		
@@ -42,26 +42,40 @@ class ProfileController extends BaseController {
 		}
 		else
 		{
-			$user = User::where('username','=',Auth::user()->username);
-
-			if ($user->count())
+			if (Auth::check())
 			{
+				$user = Auth::user();
 				$user = $user->first();
 				$user->signature = Input::get('signature');
-				$image = Input::file('image');
-				if (isset($image))
+				if (Input::hasFile('picture'))
 				{
+					$file = Input::file('picture');
 					$destinationPath= 'uploads';
 					$filename = str_random(12);
-					$extension = $image->getClientOriginalExtension();
-					$upload_success = Input::file('image')->move($destinationPath,$filename. "." . $extension);
+					$extension = $file->getClientOriginalExtension();
+					$upload_success = $file->move($destinationPath,$filename. "." . $extension);
 					$user->image = $filename . "." .$extension;
+					$user->save();
+					return Redirect::route('home')->with('global','Image and signature updated!');
 				}
 				$user->save();
-				return Redirect::route('home')->with('global','Profile updated!');
+				return Redirect::route('home')->with('global','Signature updated!');
 			}
 		}
 		return Redirect::route('home')->with('global','Failed updating your profile');
+	}
+
+	public function loggedInUser()
+	{
+		if (Auth::check())
+			$user = Auth::user();
+		
+		if(isset($user))
+		{
+			return View::make('profile/user')->with('user',$user);
+		}
+		
+		return Redirect::route('home')->with('global','This user can not be found.');
 	}
 }
 
