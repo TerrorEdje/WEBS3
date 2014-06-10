@@ -44,6 +44,17 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('admin', function()
+{
+	if (Auth::check())
+	{
+		if (Auth::user()->rights_id != 4)
+		{
+			return Redirect::route('home')->with('global','Access denied for this page.');
+		}
+	}
+});
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter

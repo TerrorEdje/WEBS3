@@ -43,15 +43,18 @@ Route::group(array('before' => 'auth'), function()
 		/*
 		| Admin deel
 		*/
-		Route::post('settings/categories/subcategory', array(
-			'as'	=> 'manage-category-subcategory-post',
-			'uses'	=> 'CategoryController@postSubcategory'
-		));
+		Route::group(array('before' => 'admin'), function() 
+		{
+			Route::post('settings/categories/subcategory', array(
+				'as'	=> 'manage-category-subcategory-post',
+				'uses'	=> 'CategoryController@postSubcategory'
+			));
 
-		Route::post('settings/categories/category', array(
-			'as'	=> 'manage-category-category-post',
-			'uses'	=> 'CategoryController@postCategory'
-		));
+			Route::post('settings/categories/category', array(
+				'as'	=> 'manage-category-category-post',
+				'uses'	=> 'CategoryController@postCategory'
+			));
+		});
 	});
 
 	Route::get('forum/topic/{id}', array(
@@ -107,10 +110,13 @@ Route::group(array('before' => 'auth'), function()
 	/*
 	| Admin deel
 	*/
-	Route::get('settings/categories',array(
-		'as' => 'categories-manage',
-		'uses' => 'CategoryController@getManageCategories'
-	));
+	Route::group(array('before' => 'admin'), function() 
+	{
+		Route::get('settings/categories',array(
+			'as' => 'categories-manage',
+			'uses' => 'CategoryController@getManageCategories'
+		));
+	});
 });
 
 /*
