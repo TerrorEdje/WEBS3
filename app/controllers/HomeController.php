@@ -87,6 +87,13 @@ class HomeController extends BaseController {
 		$menu->save();
 
 		$menu = new Menu;
+		$menu->name = "Manage permissions";
+		$menu->link = "permissions-manage";
+		$menu->rights_id = $admin->id;
+		$menu->parent = $settings->id;
+		$menu->save();
+
+		$menu = new Menu;
 		$menu->name = "Logout";
 		$menu->link = "account-sign-out";
 		$menu->rights_id = $newuser->id;

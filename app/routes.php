@@ -54,6 +54,11 @@ Route::group(array('before' => 'auth'), function()
 				'as'	=> 'manage-category-category-post',
 				'uses'	=> 'CategoryController@postCategory'
 			));
+
+			Route::post('settings/permissions/post', array(
+				'as'	=> 'manage-permissons-post',
+				'uses'	=> 'AccountController@postPermissions'
+			));
 		});
 	});
 
@@ -115,6 +120,11 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('settings/categories',array(
 			'as' => 'categories-manage',
 			'uses' => 'CategoryController@getManageCategories'
+		));
+
+		Route::get('settings/permissions',array(
+			'as' => 'permissions-manage',
+			'uses' => 'AccountController@getManagePermissions'
 		));
 	});
 });

@@ -40,7 +40,7 @@ class AccountController extends BaseController {
 			$user->active=0;
 			$user->lasttimeonline = date("Y-m-d H:i:s");
 			$user->timesonline = 0;
-			$user->rights_id = 2;
+			$user->rights_id = 1;
 			$user->save();
 			
 			if ($user) {
@@ -237,6 +237,52 @@ class AccountController extends BaseController {
 		}
 		
 		return Redirect::route('home')->with('global','Could not recovery your account.');
+	}
+
+	public function getManagePermissions()
+	{
+		$prepareusers = User::orderBy('username')->get();
+		$users = array();
+		if (Auth::check())
+		{
+			foreach($prepareusers as $user)
+			{
+				if ($user->id != Auth::user()->id)
+				{
+					array_push($users,$user);
+				}
+			}
+		}
+		$rights = Right::lists('name','id');
+		return View::make('settings/permissions')->with('rights',$rights)->with('users',$users);
+	}
+
+	public function postPermissions()
+	{
+		$validator = Validator::make(Input::all(),
+			array(
+				'amountOfUsers' => 'required'
+			)
+		);
+		
+		if($validator->fails())
+		{
+			return Redirect::route('manage-permissions')->withErrors($validator)->withInput();
+		}
+		else
+		{
+			for($i = 0; $i < Input::get('amountOfUsers'); $i++)
+			{
+				$currentUserId = Input::get('userid'.$i);
+				$user = User::find( $currentUserId );
+				$user->rights_id = Input::get('right'.$i);
+				$user->save();
+			}
+
+			return Redirect::route('home')->with('global','Updated permissions.');
+		}
+		return Redirect::route('home')->with('global','Updating permissions failed.');
+
 	}
 }
 
