@@ -45,7 +45,6 @@ class ProfileController extends BaseController {
 			if (Auth::check())
 			{
 				$user = Auth::user();
-				$user = $user->first();
 				$user->signature = Input::get('signature');
 				if (Input::hasFile('picture'))
 				{

@@ -22,8 +22,8 @@ Newlines - Jip
 
 Profiel view - Jip
 
-Pol create view - Edwin
+Pol create view - Edwin - Af
 
 Menu layer - Jip
 
-Menu DB - Jip & Edwin
+Menu DB - Jip & Edwin - Af
