@@ -64,6 +64,15 @@ ul.sub_navigation li
     max-height: 100px;
 }
 
+.selectbox
+{
+	border-radius: 4px; 
+	min-width: 100%; 
+    max-width: 100%;
+	min-height: 30px;
+    max-height: 30px;
+}
+
 .button
 {
 	border-radius:4px;
