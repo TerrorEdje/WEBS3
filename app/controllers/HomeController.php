@@ -4,10 +4,15 @@ class HomeController extends BaseController {
 	
 	public function home()
 	{
-		return View::make('home');
-	}
-
+		$allNews = array();
 	
+		$dbNews = News::orderBy('created_at', 'desc')->get();
+		foreach ($dbNews as $news) {
+			$by = User::find($news->users_id);
+			$allNews[$by->username] = $news;
+		}
+		return View::make('home')->with('allNews', $allNews);
+	}
 
 	public function getDatabase()
 	{

@@ -21,7 +21,11 @@
 					
 						<div class="infoSubCategory">
 							<p>
-								{{ $infoSubcategory['description'] }}<br>
+								@if ($infoSubcategory['description'] != null)
+									{{ $infoSubcategory['description'] }}<br>
+								@else
+									This subcategory has no description.
+								@endif
 							</p>
 							<p>
 								Topics: {{ $infoSubcategory['amountOfTopics'] }}
