@@ -59,6 +59,11 @@ Route::group(array('before' => 'auth'), function()
 				'as'	=> 'manage-permissons-post',
 				'uses'	=> 'AccountController@postPermissions'
 			));
+			
+			Route::post('settings/news/post', array(
+				'as'	=> 'manage-news-post',
+				'uses'	=> 'NewsController@postNews'
+			));			
 		});
 	});
 
@@ -126,6 +131,12 @@ Route::group(array('before' => 'auth'), function()
 			'as' => 'permissions-manage',
 			'uses' => 'AccountController@getManagePermissions'
 		));
+		
+		Route::get('settings/news',array(
+			'as' => 'news-manage',
+			'uses' => 'NewsController@getManageNews'
+		));
+		
 	});
 });
 

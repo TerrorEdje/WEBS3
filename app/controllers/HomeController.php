@@ -6,7 +6,7 @@ class HomeController extends BaseController {
 	{
 		$allNews = array();
 	
-		$dbNews = News::orderBy('created_at', 'desc')->get();
+		$dbNews = News::OrderBy('created_at', 'desc')->get();
 		foreach ($dbNews as $news) {
 			$by = User::find($news->users_id);
 			$allNews[$by->username] = $news;
