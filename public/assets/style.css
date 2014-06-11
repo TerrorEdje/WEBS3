@@ -228,6 +228,14 @@ ul.sub_navigation li
 	font-weight: bold;
 }
 
+.titleCategorie {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.subCategorieLink {
+	padding-right: 15px;;
+}
 
 
 

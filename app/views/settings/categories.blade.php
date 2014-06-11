@@ -28,55 +28,51 @@
 					
 			{{ Form::submit('Add category', array('class' => 'btn-primary button')) }}
 		
+		{{ Form::token() }}
 		{{ Form::close() }}
 		
 	</div>
 		
+	@foreach ($categories as $infoCategory)		
+		<div class="col-md-12 form">
 		
-		
-		
-		
-		@foreach ($categories as $infoCategory)
-		<div class="row">
-			<div class="col-md-12 titleBlock bg-primary">
-				{{ $infoCategory['category']->name }}
-			</div>
-		</div>
-		
-		
-		
-		
-		
-			<div class="row">
+			<span class="titleCategorie">{{ $infoCategory['category']->name }}</span>
+	
+			<br>
 			
-				@foreach ($infoCategory['subcategories'] as $infoSubcategory)
-					<div class="col-md-3">
-						<a href="{{ URL::route('forum-category',$infoSubcategory['name']) }}">{{  $infoSubcategory['name'] }}</a>
-					</div>
-				@endforeach
+			@foreach ($infoCategory['subcategories'] as $infoSubcategory)
+				<a href="{{ URL::route('forum-category', $infoSubcategory['name']) }}" class="subCategorieLink">{{  $infoSubcategory['name'] }}</a>
+			@endforeach
 				
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<form action="{{ URL::route('manage-category-subcategory-post') }}" method="post">
-						<div class="field">
-							Subcategory name: {{Form::text('subcategoryname')}}
-							@if($errors->has('subcategoryname'))
-								{{ $errors->first('subcategoryname') }}
-							@endif
-						</div>
-						<div class="field">
-							Short description: {{Form::text('subcategorydescription')}}
-							@if($errors->has('subcategorydescription'))
-								{{ $errors->first('subcategorydescription') }}
-							@endif
-						</div>
-						<input type="submit" value="Add subcategory">
-						{{ Form::hidden('category',$infoCategory['category']->id) }}
-						{{ Form::token() }}
-					</form>
-				</div>
-			</div>
-		@endforeach
+			<br>
+			<br>	
+						
+			{{ Form::open(array('route' => array('manage-category-subcategory-post'))) }}
+					
+				Subcategory name:<br>
+				{{ Form::text('subcategoryname', null, array('class' => 'text')) }}
+				@if($errors->has('subcategoryname'))
+					{{ $errors->first('subcategoryname', '<span class="text-danger">:message</span>') }}
+				@endif
+					
+				<br>
+				
+				Short description:<br>
+				{{ Form::text('subcategorydescription', null, array('class' => 'text')) }}
+				@if($errors->has('subcategorydescription'))
+					{{ $errors->first('subcategorydescription', '<span class="text-danger">:message</span>') }}
+				@endif
+				
+				<br>
+						
+				{{ Form::hidden('category',$infoCategory['category']->id) }}
+				
+				{{ Form::submit('Add subcategory', array('class' => 'btn-primary button')) }}
+			
+			{{ Form::token() }}
+			{{ Form::close() }}
+			
+		</div>
+	@endforeach
 
 @stop
