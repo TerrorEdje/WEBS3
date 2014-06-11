@@ -3,7 +3,7 @@
 @section('content')
 
 	<div class="col-md-12 titleBlock bg-primary">
-		Permissons
+		Permissons management
 	</div>
 	
 	<div class="col-md-12 form">
