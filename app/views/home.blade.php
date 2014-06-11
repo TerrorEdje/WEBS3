@@ -12,19 +12,19 @@
 		News
 	</div>
 	
-	@foreach ($allNews as $username => $news) 
+	@foreach ($allNews as $infoNews) 
 		<table class="col-md-12 newsTable">
 			<tr>
-				<td class="col-md-9 titleNewsTD">{{ $news->name }}</td>
+				<td class="col-md-9 titleNewsTD">{{ $infoNews['news']->name }}</td>
 				<td class="col-md-3 tableTD">
-					{{ date("D d M Y", strtotime($news->created_at)), ' at ', date("H:i", strtotime($news->created_at)) }}
+					{{ date("D d M Y", strtotime($infoNews['news']->created_at)), ' at ', date("H:i", strtotime($infoNews['news']->created_at)) }}
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="col-md-12 tableTD">{{ $news->content }}</td>
+				<td colspan="2" class="col-md-12 tableTD">{{ $infoNews['news']->content }}</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="col-md-12 tableTD">Written by: {{ $username }}</td>
+				<td colspan="2" class="col-md-12 tableTD">Written by: {{ $infoNews['by'] }}</td>
 			</tr>
 		</table>
 	@endforeach

@@ -6,10 +6,13 @@ class HomeController extends BaseController {
 	{
 		$allNews = array();
 	
-		$dbNews = News::OrderBy('created_at', 'desc')->get();
+		$infoNews = array();
+		$dbNews = News::orderBy('created_at', 'desc')->get();
 		foreach ($dbNews as $news) {
 			$by = User::find($news->users_id);
-			$allNews[$by->username] = $news;
+			$infoNews['by'] = $by->username;
+			$infoNews['news'] = $news;
+			array_push($allNews, $infoNews);
 		}
 		return View::make('home')->with('allNews', $allNews);
 	}
