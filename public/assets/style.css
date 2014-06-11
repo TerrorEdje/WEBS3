@@ -154,6 +154,8 @@ ul.sub_navigation li
 	margin-left: auto; 
     margin-right: auto;
 	border-radius: 4px;
+	min-width: 100%; 
+    max-width: 100%; 
 }
 
 .replyTabelUsernameTD
