@@ -48,7 +48,8 @@ Route::filter('admin', function()
 {
 	if (Auth::check())
 	{
-		if (Auth::user()->rights_id != 4)
+		$id = Right::where('name','=','admin')->first()->id;
+		if (Auth::user()->rights_id != $id)
 		{
 			return Redirect::route('home')->with('global','Access denied for this page.');
 		}

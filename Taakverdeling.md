@@ -18,9 +18,9 @@ Polls - Jip 30-5-2014- Af
 
 Javascript Favorieten - Edwin
 
-Newlines - Jip
+Newlines - Jip - Af
 
-Profiel view - Jip
+Profiel view - Jip - Af
 
 Pol create view - Edwin - Af
 

@@ -25,5 +25,4 @@ class BaseController extends Controller {
 		View::share('menus',$mainmenus);
 		View::share('submenus',$submenus);
 	}
-
 }
