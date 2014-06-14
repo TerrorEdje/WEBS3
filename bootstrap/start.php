@@ -69,3 +69,5 @@ require $framework.'/Illuminate/Foundation/start.php';
 |
 */
 return $app;
+
+include_once('../app/authorisation/authorisation.php')
