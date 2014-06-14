@@ -230,18 +230,14 @@ ul.sub_navigation li
 	font-weight: bold;
 }
 
-.titleCategorie {
+.titleCategory {
 	font-size: 20px;
 	font-weight: bold;
 	color: black;
 }
 
-.categorieLink {
+.categoryLink {
 	color: black;
-}
-
-.subCategorieLink {
-	padding-right: 15px;;
 }
 
 .newsTable

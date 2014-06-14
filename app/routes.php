@@ -142,9 +142,19 @@ Route::group(array('before' => 'auth'), function()
 			'uses' => 'CategoryController@getUpdateCategory'
 		));
 		
+		Route::get('delete/category/{id}',array(
+			'as' => 'delete-category',
+			'uses' => 'CategoryController@getDeleteCategory'
+		));
+		
 		Route::get('update/subcategory/{id}',array(
 			'as' => 'update-subcategory',
 			'uses' => 'CategoryController@getUpdateSubcategory'
+		));
+		
+		Route::get('delete/subcategory/{id}',array(
+			'as' => 'delete-subcategory',
+			'uses' => 'CategoryController@getDeleteSubcategory'
 		));
 
 		Route::get('settings/permissions',array(

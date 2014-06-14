@@ -188,6 +188,19 @@ class CategoryController extends BaseController {
 			return Redirect::route('categories-manage');
 		}
 	}
+	
+	public function getDeleteCategory($id)
+	{
+		Category::where('id', '=', $id)->delete();
+		return Redirect::route('categories-manage');
+	}
+	
+	public function getDeleteSubcategory($id)
+	{
+		Subcategory::where('id', '=', $id)->delete();
+		return Redirect::route('categories-manage');
+	}
+	
 }
 
 ?>
