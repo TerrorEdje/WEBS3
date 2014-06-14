@@ -22,13 +22,19 @@ function checkAccess()
 	return false;
 }
 
-function debug_to_console( $data ) {
-
-    if ( is_array( $data ) )
-        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-    else
-        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
-    echo $output;
+function checkAccessById()
+{
+	if (Auth::check())
+	{
+		$allowedRights = func_get_args();
+		foreach ($allowedRights as $allowed)
+		{
+			if (Auth::user()->rights_id == $allowed)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
 }
 ?>
