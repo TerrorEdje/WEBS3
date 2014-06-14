@@ -261,6 +261,8 @@ ul.sub_navigation li
 
 .searchbox {
 	border-radius: 4px;
+	min-width: 100%; 
+    max-width: 100%; 
 	min-height: 30px;
     max-height: 30px;
 	margin-top: 5px;
