@@ -19,7 +19,7 @@
 			<tr>
 				<td class="col-md-2 tableTD">
 					&nbsp;&nbsp;&nbsp;
-					<a href="{{ URL::route('update-reply', $reply['reply']->id) }}" class="iconLink">
+					<a href="{{ URL::route('update-topic', $topic['topic']->id) }}" class="iconLink">
 						<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
 					</a>				
 				</td>

@@ -169,6 +169,39 @@ class TopicController extends BaseController {
 		}
 	}
 	
+	public function getUpdateTopic($id)
+	{	
+		$topic = Topic::find($id);
+		$reply = Reply::where('topics_id', '=', $id)->orderBy('created_at', 'asc')->first();
+		return View::make('forum/updateTopic')->with('topic', $topic)->with('reply', $reply);
+	}
+
+	public function postUpdateTopic()
+	{				
+		$validator = Validator::make(Input::all(),
+			array(
+				'content' => 'required',
+				'title' => 'required'
+			)
+		);
+		
+		if($validator->fails()) {
+			$name = Input::get('name');
+			return Redirect::route('update-topic', Input::get('topicID'))->withErrors($validator)->withInput();
+		}
+		else {
+			$topic = Topic::find(Input::get('topicID'));
+			$topic->title = Input::get('title');
+			$topic->save();
+			
+			$reply = Reply::find(Input::get('replyID'));
+			$reply->content = Input::get('content');
+			$reply->save();
+				
+			return Redirect::route('forum-topic', $topic->id);
+		}
+	}
+	
 	public function getUpdateReply($id)
 	{	
 		$reply = Reply::find($id);
@@ -185,7 +218,7 @@ class TopicController extends BaseController {
 		
 		if($validator->fails())
 		{
-			return Redirect::route('update_reply')->withErrors($validator)->withInput();
+			return Redirect::route('update-reply', Input::get('replyID'))->withErrors($validator)->withInput();
 		}
 		else
 		{

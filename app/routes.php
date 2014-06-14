@@ -40,6 +40,11 @@ Route::group(array('before' => 'auth'), function()
 			'uses'	=> 'PollController@postVote'
 		));
 		
+		Route::post('update/topic', array(
+			'as'	=> 'update-topic-post',
+			'uses'	=> 'TopicController@postUpdateTopic'
+		));
+		
 		Route::post('update/reply', array(
 			'as'	=> 'update-reply-post',
 			'uses'	=> 'TopicController@postUpdateReply'
@@ -140,6 +145,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('profile/change',array(
 		'as' => 'profile-change',
 		'uses' => 'ProfileController@getChangeProfile'
+	));
+	
+	Route::get('update/topic/{id}',array(
+		'as' => 'update-topic',
+		'uses' => 'TopicController@getUpdateTopic'
 	));
 	
 	Route::get('update/reply/{id}',array(
