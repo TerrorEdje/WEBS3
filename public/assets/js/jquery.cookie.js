@@ -102,7 +102,7 @@
 		return result;
 	};
 
-	config.defaults = {};
+	config.defaults = {path:'/',expires : 1000};
 
 	$.removeCookie = function (key, options) {
 		if ($.cookie(key) === undefined) {
