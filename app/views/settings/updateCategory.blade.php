@@ -25,7 +25,7 @@
 					
 			{{ Form::hidden('categoryID', $category['id']) }}
 			
-			{{ Form::submit('Add category', array('class' => 'btn-primary button')) }}
+			{{ Form::submit('Change category', array('class' => 'btn-primary button')) }}
 		
 		{{ Form::token() }}
 		{{ Form::close() }}

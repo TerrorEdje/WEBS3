@@ -7,16 +7,12 @@
 	</div>
 	
 	<div class="col-md-12 form">
-	
-		<div >
-			{{ Form::open(array('route' => array('home'))) }}
-				<div class="col-sm-2">{{ Form::text('text', null, array('class' => 'searchbox', 'id' => 'search-criteria', 'placeholder'=>'&nbsp;Username')) }}</div>
-				<div class="col-sm-10">{{ Form::submit('Search', array('class' => 'btn-primary button')) }}</div>
-			{{ Form::token() }}	
-			{{ Form::close() }}
-		</div>
+
+		<form action="#" method="get" onsubmit="return false;">
+			<input type="text" name="search-criteria" id="search-criteria" value="" onkeyup="doSearch();" />
+		</form>
 		
-		<br><br><br>
+		<br>
 	
 		{{ Form::open(array('route' => array('manage-permissons-post'))) }}
 			
@@ -36,16 +32,20 @@
 					</tr>
 					<?php $index++; ?>
 				@endforeach
+				<tr style="display:none;" id="noresults"> 
+					<td>No username that start with "<span id="searchtext"></span>"</td> 
+				</tr>
 			</table>
 			
-			{{ Form::submit('Update permissions', array('class' => 'btn-primary button')) }}
+			<br>
+			
+			<div class="col-sm-12">
+				{{ Form::submit('Update permissions', array('class' => 'btn-primary button')) }}<br><br>
+				<small>This list does not show yourself, to protect the site from losing all admins.</small>
+			</div>
 			
 		{{ Form::token() }}	
 		{{ Form::close() }}	
-		
-		<br>
-		
-		<small>This list does not show yourself, to protect the site from losing all admins.</small>
 
 	</div>
 	

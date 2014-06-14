@@ -25,7 +25,7 @@
 					
 			{{ Form::hidden('subcategoryID', $subcategory['id']) }}
 			
-			{{ Form::submit('Add subcategory', array('class' => 'btn-primary button')) }}
+			{{ Form::submit('Change subcategory', array('class' => 'btn-primary button')) }}
 		
 		{{ Form::token() }}
 		{{ Form::close() }}
