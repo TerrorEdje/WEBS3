@@ -46,13 +46,9 @@ Route::filter('auth.basic', function()
 
 Route::filter('admin', function()
 {
-	if (Auth::check())
+	if (!checkAccess("Admin"))
 	{
-		$id = Right::where('name','=','admin')->first()->id;
-		if (Auth::user()->rights_id != $id)
-		{
-			return Redirect::route('home')->with('global','Access denied for this page.');
-		}
+		return Redirect::route('home')->with('global','Access denied for this page.');
 	}
 });
 

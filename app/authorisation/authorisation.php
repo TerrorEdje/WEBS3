@@ -1,20 +1,34 @@
 <?php
-public function checkAccess()
+function checkAccess()
 {
-	$rights = Right::all();
-	$allowedRights = func_get_args();
-
-	foreach ($allowedRights as $allowed)
+	if (Auth::check())
 	{
-		foreach($rights as $right)
+		$rights = Right::all();
+		$allowedRights = func_get_args();
+		foreach ($allowedRights as $allowed)
 		{
-			if ($right['name'] == $allowed)
+			foreach($rights as $right)
 			{
-				return true;
+				if ($right->name == $allowed)
+				{
+					if (Auth::user()->rights_id == $right->id)
+					{
+						return true;
+					}
+				}
 			}
 		}
 	}
-
 	return false;
+}
+
+function debug_to_console( $data ) {
+
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+    echo $output;
 }
 ?>
