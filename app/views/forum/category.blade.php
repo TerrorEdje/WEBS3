@@ -21,9 +21,6 @@
 					{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
 				{{ Form::close() }}
 			</div>
-			<!-- <div class="col-md-4">
-				<a class="btn-primary button" href="{{ URL::route('forum-topic-create-get',$subcategory['id'] )}}">Create topic</a>
-			</div> -->
 		</div>
 	@else
 		<div class="row">
@@ -32,9 +29,6 @@
 					{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
 				{{ Form::close() }}
 			</div>
-			<!-- <div class="col-md-4">
-				<a class="btn-primary button" href="{{ URL::route('forum-topic-create-get',$subcategory['id'] )}}">Create topic</a>
-			</div> -->
 		</div>
 		<div class="row">
 			<table class="col-sm-12 topicsTable">
@@ -58,7 +52,10 @@
 				@endforeach
 				@foreach ($closedTopics as $infoTopic)
 					<tr>
-						<td class="col-sm-6 topicsTabelNameTD">{{ link_to_route('forum-topic', $infoTopic['topic']->title, array('id' => $infoTopic['topic']->id )) }}</td>
+						<td class="col-sm-6 topicsTabelNameTD">
+							<i class="indicator glyphicon glyphicon-trash"></i>
+							{{ link_to_route('forum-topic', $infoTopic['topic']->title, array('id' => $infoTopic['topic']->id )) }}
+						</td>
 						<td class="col-sm-2 tableTD">{{ $infoTopic['by'] }}</td>
 						<td class="col-sm-2 tableTD">{{ $infoTopic['amountOfReplies'] }}</td>
 						@if ($infoTopic['lastReply'] == 0) 
