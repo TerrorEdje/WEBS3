@@ -259,5 +259,12 @@ ul.sub_navigation li
 	padding: 10px;
 }
 
+.searchbox {
+	border-radius: 4px;
+	min-height: 30px;
+    max-height: 30px;
+	margin-top: 5px;
+}
+
 
 

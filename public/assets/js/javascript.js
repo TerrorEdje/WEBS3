@@ -15,3 +15,19 @@ $(document).ready(function(){
   });
   $('#poll').hide();
 });
+
+$(document).ready(function(){
+	$("#search-criteria").on("keyup", function() {
+		var criteria = $(this).val().toLowerCase();
+		$(".product").each( function() {
+			var article = $(this).text().toLowerCase();
+			if (article.search(criteria)!=-1) {
+				$(this).show();
+			}
+			else {
+				$(this).hide();
+			}
+		});
+   });
+});
+
