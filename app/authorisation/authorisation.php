@@ -37,4 +37,21 @@ function checkAccessById()
 	}
 	return false;
 }
+
+function checkAccessReply($id)
+{
+	$reply = Reply::find($id);
+	if (Auth::check())
+	{
+		if (Auth::user()->id == $reply->by)
+		{
+			return true;
+		}
+		if (checkAccess("Admin","Moderator"))
+		{
+			return true;
+		}
+	}
+	return false;
+}
 ?>
