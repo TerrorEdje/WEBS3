@@ -18,18 +18,20 @@
 			</tr>
 			<tr>
 				<td class="col-md-2 tableTD">
-					&nbsp;&nbsp;&nbsp;
-					<a href="{{ URL::route('delete-topic', $topic['topic']->id) }}" class="iconLink">
-						<span><i class="indicator glyphicon glyphicon-trash"></i></span>
-					</a>
-					&nbsp;&nbsp;&nbsp;
-					<a href="{{ URL::route('close-topic', $topic['topic']->id) }}" class="iconLink">
-						<span><i class="indicator glyphicon glyphicon-lock"></i></span>
-					</a>
-					&nbsp;&nbsp;&nbsp;
-					<a href="{{ URL::route('update-topic', $topic['topic']->id) }}" class="iconLink">
-						<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
-					</a>				
+					@if (checkAccessReply($reply['reply']->id))
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ URL::route('delete-topic', $topic['topic']->id) }}" class="iconLink">
+							<span><i class="indicator glyphicon glyphicon-trash"></i></span>
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ URL::route('close-topic', $topic['topic']->id) }}" class="iconLink">
+							<span><i class="indicator glyphicon glyphicon-lock"></i></span>
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ URL::route('update-topic', $topic['topic']->id) }}" class="iconLink">
+							<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
+						</a>	
+					@endif
 				</td>
 				<td class="col-md-10 tableTD">{{ $reply['by']->signature }}</td>
 			</tr>
@@ -98,7 +100,7 @@
 					</tr>
 					<tr>
 						<td class="col-sm-2 tableTD">
-							@if (checkAccessReply($infoReply['reply']->id)
+							@if (checkAccessReply($infoReply['reply']->id))
 								&nbsp;&nbsp;&nbsp;
 								<a href="{{ URL::route('delete-reply', $infoReply['reply']->id) }}" class="iconLink">
 									<span><i class="indicator glyphicon glyphicon-trash"></i></span>
