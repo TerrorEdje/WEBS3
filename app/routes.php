@@ -73,7 +73,13 @@ Route::group(array('before' => 'auth'), function()
 			Route::post('settings/news/post', array(
 				'as'	=> 'manage-news-post',
 				'uses'	=> 'NewsController@postNews'
-			));			
+			));		
+
+			Route::post('update/news', array(
+				'as'	=> 'update-news-post',
+				'uses'	=> 'NewsController@postUpdateNews'
+			));
+			
 		});
 	});
 
@@ -169,6 +175,16 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('settings/news',array(
 			'as' => 'news-manage',
 			'uses' => 'NewsController@getManageNews'
+		));
+		
+		Route::get('update/news/{id}',array(
+			'as' => 'update-news',
+			'uses' => 'NewsController@getUpdateNews'
+		));
+		
+		Route::get('delete/news/{id}',array(
+			'as' => 'delete-news',
+			'uses' => 'NewsController@getDeleteNews'
 		));
 		
 	});

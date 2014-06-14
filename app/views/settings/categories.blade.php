@@ -48,7 +48,7 @@
 				@foreach ($infoCategory['subcategories'] as $infoSubcategory)
 					<a href="{{ URL::route('update-subcategory', $infoSubcategory['id']) }}" class="subCategoryLink">{{  $infoSubcategory['name'] }}&nbsp;</a>
 					@if ($infoSubcategory->getAmountOfTopics() == 0)
-						<a href="{{ URL::route('delete-subcategory', $infoSubcategory['id']) }}" class="deleteLink">
+						<a href="{{ URL::route('delete-subcategory', $infoSubcategory['id']) }}" class="iconLink">
 							<span><i class="indicator glyphicon glyphicon-trash"></i></span>
 						</a>
 					@endif
