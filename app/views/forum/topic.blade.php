@@ -19,6 +19,10 @@
 			<tr>
 				<td class="col-md-2 tableTD">
 					&nbsp;&nbsp;&nbsp;
+					<a href="{{ URL::route('delete-topic', $topic['topic']->id) }}" class="iconLink">
+						<span><i class="indicator glyphicon glyphicon-trash"></i></span>
+					</a>
+					&nbsp;&nbsp;&nbsp;
 					<a href="{{ URL::route('update-topic', $topic['topic']->id) }}" class="iconLink">
 						<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
 					</a>				

@@ -152,6 +152,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'TopicController@getUpdateTopic'
 	));
 	
+	Route::get('delete/topic/{id}',array(
+		'as' => 'delete-topic',
+		'uses' => 'TopicController@getDeleteTopic'
+	));
+	
 	Route::get('update/reply/{id}',array(
 		'as' => 'update-reply',
 		'uses' => 'TopicController@getUpdateReply'

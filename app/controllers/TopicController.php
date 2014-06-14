@@ -202,6 +202,20 @@ class TopicController extends BaseController {
 		}
 	}
 	
+	public function getDeleteTopic($id)
+	{
+		$topic = Topic::find($id);
+		$polloptions = $topic->getPolloptions();
+		foreach ($polloptions as $polloption) {
+			Pollvote::where('polloptions_id', '=', $polloption->id)->delete();
+		}
+		Polloption::where('topics_id', '=', $id)->delete();
+		Reply::where('topics_id', '=', $id)->delete();
+		Topic::where('id', '=', $id)->delete();
+		
+		return Redirect::route('forum-category', $topic->subcategories_id);
+	}
+	
 	public function getUpdateReply($id)
 	{	
 		$reply = Reply::find($id);
