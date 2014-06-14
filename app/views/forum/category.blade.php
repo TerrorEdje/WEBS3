@@ -53,7 +53,7 @@
 				@foreach ($closedTopics as $infoTopic)
 					<tr>
 						<td class="col-sm-6 topicsTabelNameTD">
-							<i class="indicator glyphicon glyphicon-trash"></i>
+							<i class="indicator glyphicon glyphicon-lock"></i>
 							{{ link_to_route('forum-topic', $infoTopic['topic']->title, array('id' => $infoTopic['topic']->id )) }}
 						</td>
 						<td class="col-sm-2 tableTD">{{ $infoTopic['by'] }}</td>

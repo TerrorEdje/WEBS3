@@ -240,6 +240,10 @@ ul.sub_navigation li
 	color: black;
 }
 
+.deleteLink {
+	color: black;
+}
+
 .newsTable
 {
 	background-color: #ebebeb;

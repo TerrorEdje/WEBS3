@@ -33,12 +33,12 @@
 	@foreach ($categories as $infoCategory)		
 		<div class="col-md-12 form">
 		
-			<span class="titleCategory">
-				<a href="{{ URL::route('update-category', $infoCategory['category']->id) }}" class="categoryLink">{{  $infoCategory['category']->name }}</a>
-				@if (count($infoCategory['subcategories']) == 0)
-					<a href="{{ URL::route('delete-category', $infoCategory['category']->id) }}"><span><i class="indicator glyphicon glyphicon-trash"></i></span></a>
-				@endif
-			</span>
+			<span class="titleCategory"><a href="{{ URL::route('update-category', $infoCategory['category']->id) }}" class="categoryLink">{{  $infoCategory['category']->name }}</a>&nbsp;</span>
+			@if (count($infoCategory['subcategories']) == 0)
+					<a href="{{ URL::route('delete-category', $infoCategory['category']->id) }}" class="deleteLink">
+						<span><i class="indicator glyphicon glyphicon-trash"></i></span>
+					</a>
+			@endif
 	
 			<br>
 			
@@ -48,7 +48,9 @@
 				@foreach ($infoCategory['subcategories'] as $infoSubcategory)
 					<a href="{{ URL::route('update-subcategory', $infoSubcategory['id']) }}" class="subCategoryLink">{{  $infoSubcategory['name'] }}&nbsp;</a>
 					@if ($infoSubcategory->getAmountOfTopics() == 0)
-						<a href="{{ URL::route('delete-subcategory', $infoSubcategory['id']) }}"><span><i class="indicator glyphicon glyphicon-trash"></i></span></a>
+						<a href="{{ URL::route('delete-subcategory', $infoSubcategory['id']) }}" class="deleteLink">
+							<span><i class="indicator glyphicon glyphicon-trash"></i></span>
+						</a>
 					@endif
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				@endforeach
