@@ -39,6 +39,11 @@ Route::group(array('before' => 'auth'), function()
 			'as'	=> 'forum-topic-vote-post',
 			'uses'	=> 'PollController@postVote'
 		));
+		
+		Route::post('update/reply', array(
+			'as'	=> 'update-reply-post',
+			'uses'	=> 'TopicController@postUpdateReply'
+		));
 
 		/*
 		| Admin deel
@@ -135,6 +140,11 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('profile/change',array(
 		'as' => 'profile-change',
 		'uses' => 'ProfileController@getChangeProfile'
+	));
+	
+	Route::get('update/reply/{id}',array(
+		'as' => 'update-reply',
+		'uses' => 'TopicController@getUpdateReply'
 	));
 	
 	/*

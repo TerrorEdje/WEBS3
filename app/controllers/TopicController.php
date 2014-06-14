@@ -168,6 +168,34 @@ class TopicController extends BaseController {
 			return Redirect::route('forum-category',Input::get('id'));
 		}
 	}
+	
+	public function getUpdateReply($id)
+	{	
+		$reply = Reply::find($id);
+		return View::make('forum/updateReply')->with('reply', $reply);
+	}
+
+	public function postUpdateReply()
+	{				
+		$validator = Validator::make(Input::all(),
+			array(
+				'content' => 'required'
+			)
+		);
+		
+		if($validator->fails())
+		{
+			return Redirect::route('update_reply')->withErrors($validator)->withInput();
+		}
+		else
+		{
+			$reply = Reply::find(Input::get('replyID'));
+			$reply->content = Input::get('content');
+			$reply->save();
+			
+			return Redirect::route('forum-topic', $reply->topics_id);
+		}
+	}
 
 }
 

@@ -17,7 +17,12 @@
 				<td class="col-md-10 tableTD">{{ nl2br($reply['reply']->content) }}</td>
 			</tr>
 			<tr>
-				<td class="col-md-2 tableTD"></td>
+				<td class="col-md-2 tableTD">
+					&nbsp;&nbsp;&nbsp;
+					<a href="{{ URL::route('update-reply', $reply['reply']->id) }}" class="iconLink">
+						<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
+					</a>				
+				</td>
 				<td class="col-md-10 tableTD">{{ $reply['by']->signature }}</td>
 			</tr>
 		</table>
@@ -84,7 +89,12 @@
 						<td class="col-sm-10 tableTD">{{ nl2br($infoReply['reply']->content) }}</td>
 					</tr>
 					<tr>
-						<td class="col-sm-2 tableTD"></td>
+						<td class="col-sm-2 tableTD">
+							&nbsp;&nbsp;&nbsp;
+							<a href="{{ URL::route('update-reply', $infoReply['reply']->id) }}" class="iconLink">
+								<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
+							</a>					
+						</td>
 						<td class="col-sm-10 tableTD">{{ $infoReply['by']->signature }}</td>
 					</tr>
 				</table>
