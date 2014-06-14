@@ -46,7 +46,6 @@ $(document).ready(function(){
 	$("#search-criteria").on("keyup", function() {	
 		var criteria = $(this).val().toLowerCase();
 		$(".user").each( function() {
-			console.log(criteria);
 			var usertext = $(this).text().toLowerCase();
 			if (usertext.search(criteria)!=-1)
 			{
