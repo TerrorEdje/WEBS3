@@ -97,6 +97,10 @@ Route::group(array('before' => 'auth'), function()
 		'uses'	=> 'CategoryController@getCategory'
 	));
 
+	Route::get('forum/category', array(
+		'as'	=> 'forum-category-js',
+	));
+
 	Route::get('forum', array(
 		'as'	=> 'forum',
 		'uses'	=> 'CategoryController@getCategories'

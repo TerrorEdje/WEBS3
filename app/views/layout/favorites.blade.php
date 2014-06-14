@@ -68,7 +68,10 @@
 		for (i = 0; i < favorites.length; i++)
 		{
 			var objLi = $('<li></li>');
-			objLi.text(favorites[i].name + favorites[i].id);
+			var objA = $('<a></a>');
+			objA.text(favorites[i].name);
+			objA.attr("href","{{ URL::route('forum-category-js') }}/" + favorites[i].id);
+			objLi.append(objA);
 			objUl.append(objLi);
 		}
 		$('#favorites').append(objUl);
