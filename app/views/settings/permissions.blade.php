@@ -7,10 +7,11 @@
 	</div>
 	
 	<div class="col-md-12 form">
-
-		<input type="text" name="search-criteria" id="search-criteria" />
+	
+		<div class="col-md-2 searchboxLabel">Search on username:</div>
+		<div class="col-md-10"><input type="text" name="search-criteria" id="search-criteria" class="searchbox"/></div>
 		
-		<br>
+		<br><br><br>
 	
 		{{ Form::open(array('route' => array('manage-permissons-post'))) }}
 			
