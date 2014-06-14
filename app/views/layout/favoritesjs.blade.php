@@ -77,6 +77,12 @@
 		}
 		if (favorites.length > 0)
 		{
+			var divFavo = $('<div></div>');
+			divFavo.addClass("col-md-11");
+
+			var divDelete = $('<div></div>');
+			divFavo.addClass("col-md-1");
+
 			var objUl = $('<ul></ul>');
 			objUl.addClass("nav nav-tabs");
 			for (i = 0; i < favorites.length; i++)
@@ -88,7 +94,10 @@
 				objLi.append(objA);
 				objUl.append(objLi);
 			}
-			$('#favorites').append(objUl);
+
+			divFavo.append(objUl);
+			$('#favorites').append(divFavo);
+			$('#favorites').append(divDelete);
 		}
 	}
 

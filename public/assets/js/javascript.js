@@ -16,7 +16,7 @@ $(document).ready(function(){
   $('#poll').hide();
 });
 
-function doSearch() {
+/*function doSearch() {
     var text = document.getElementById("search-criteria");
     var v = text.value.toLowerCase();
     var rows = document.getElementsByTagName("tr");
@@ -40,5 +40,24 @@ function doSearch() {
     } else {
         n.style.display = "none";
     }
-}
+}*/
+
+$(document).ready(function(){
+	$("#search-criteria").on("keyup", function() {	
+		var criteria = $(this).val().toLowerCase();
+		$(".user").each( function() {
+			console.log(criteria);
+			var usertext = $(this).text().toLowerCase();
+			if (usertext.search(criteria)!=-1)
+			{
+				$(this).show();
+			}
+			else
+			{
+				$(this).hide();
+			}
+		});
+	});
+	
+});
 

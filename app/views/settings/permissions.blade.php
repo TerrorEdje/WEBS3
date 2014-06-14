@@ -8,9 +8,7 @@
 	
 	<div class="col-md-12 form">
 
-		<form action="#" method="get" onsubmit="return false;">
-			<input type="text" name="search-criteria" id="search-criteria" value="" onkeyup="doSearch();" />
-		</form>
+		<input type="text" name="search-criteria" id="search-criteria" />
 		
 		<br>
 	
@@ -21,7 +19,7 @@
 			<table class="col-sm-12">
 				<?php $index = 0; ?>
 				@foreach($users as $user)
-					<tr>
+					<tr class="user">
 						<td class="col-sm-2">
 							{{ $user->username }}
 							{{ Form::hidden('userid'. $index,$user->id) }}
