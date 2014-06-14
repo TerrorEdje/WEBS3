@@ -114,19 +114,18 @@
 		@endif
 	</div>
 
-	<div class="col-md-12 titleBlock bg-primary">
-		Reply
-	</div>
-	
-	<div class="col-md-12 form">
-		{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
-			{{ Form::textarea('content', null, array('class' => 'textarea')) }}<br>
-			@if($errors->has('content'))
-				{{ $errors->first('content', '<span class="text-danger">:message</span>') }}<br>
-			@endif	
-			{{ Form::submit('Reply', array('class' => 'btn-primary button')) }}
-		{{ Form::close() }}
-	</div>
+	@if ($topic['topic']->open == true)
+		<div class="col-md-12 titleBlock bg-primary">Reply</div>
+		<div class="col-md-12 form">
+			{{ Form::open(array('route' => array('forum-topic-post', $topic['topic']->id))) }}
+				{{ Form::textarea('content', null, array('class' => 'textarea')) }}<br>
+				@if($errors->has('content'))
+					{{ $errors->first('content', '<span class="text-danger">:message</span>') }}<br>
+				@endif	
+				{{ Form::submit('Reply', array('class' => 'btn-primary button')) }}
+			{{ Form::close() }}
+		</div>
+	@endif
 	
 	&nbsp;<br>
 	
