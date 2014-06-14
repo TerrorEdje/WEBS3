@@ -216,6 +216,15 @@ class TopicController extends BaseController {
 		return Redirect::route('forum-category', $topic->subcategories_id);
 	}
 	
+	public function getCloseTopic($id)
+	{
+		$topic = Topic::find($id);
+		$topic->open = false;
+		$topic->save();
+		
+		return Redirect::route('forum-topic', $topic->id)->with('global','The topic is closed.');
+	}
+	
 	public function getUpdateReply($id)
 	{	
 		$reply = Reply::find($id);

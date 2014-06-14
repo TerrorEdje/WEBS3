@@ -30,7 +30,7 @@
 				$news->users_id = $user->id;
 				$news->save();
 				
-				return Redirect::route('home')->with('global','News has been added.');
+				return Redirect::route('home');
 			}
 		}
 		

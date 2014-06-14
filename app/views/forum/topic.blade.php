@@ -23,6 +23,10 @@
 						<span><i class="indicator glyphicon glyphicon-trash"></i></span>
 					</a>
 					&nbsp;&nbsp;&nbsp;
+					<a href="{{ URL::route('close-topic', $topic['topic']->id) }}" class="iconLink">
+						<span><i class="indicator glyphicon glyphicon-lock"></i></span>
+					</a>
+					&nbsp;&nbsp;&nbsp;
 					<a href="{{ URL::route('update-topic', $topic['topic']->id) }}" class="iconLink">
 						<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
 					</a>				
