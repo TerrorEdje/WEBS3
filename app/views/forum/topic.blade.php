@@ -91,6 +91,10 @@
 					<tr>
 						<td class="col-sm-2 tableTD">
 							&nbsp;&nbsp;&nbsp;
+							<a href="{{ URL::route('delete-reply', $infoReply['reply']->id) }}" class="iconLink">
+								<span><i class="indicator glyphicon glyphicon-trash"></i></span>
+							</a>
+							&nbsp;&nbsp;&nbsp;
 							<a href="{{ URL::route('update-reply', $infoReply['reply']->id) }}" class="iconLink">
 								<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
 							</a>					

@@ -196,7 +196,14 @@ class TopicController extends BaseController {
 			return Redirect::route('forum-topic', $reply->topics_id);
 		}
 	}
-
+	
+	public function getDeleteReply($id)
+	{
+		$reply = Reply::find($id);
+		Reply::where('id', '=', $id)->delete();
+		return Redirect::route('forum-topic', $reply->topics_id);
+	}
+	
 }
 
 ?>

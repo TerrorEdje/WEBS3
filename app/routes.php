@@ -147,6 +147,11 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'TopicController@getUpdateReply'
 	));
 	
+	Route::get('delete/reply/{id}',array(
+		'as' => 'delete-reply',
+		'uses' => 'TopicController@getDeleteReply'
+	));
+	
 	/*
 	| Admin deel
 	*/
