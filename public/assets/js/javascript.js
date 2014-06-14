@@ -30,7 +30,23 @@ $(document).ready(function(){
 				$(this).hide();
 			}
 		});
-	});
-	
+	});	
+});
+
+$(document).ready(function(){
+	$("#search-criteria").on("keyup", function() {	
+		var criteria = $(this).val().toLowerCase();
+		$(".topic").each( function() {
+			var topictext = $(this).text().toLowerCase();
+			if (topictext.search(criteria)!=-1)
+			{
+				$(this).show();
+			}
+			else
+			{
+				$(this).hide();
+			}
+		});
+	});	
 });
 

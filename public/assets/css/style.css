@@ -272,6 +272,15 @@ ul.sub_navigation li
 	margin-top: 7px;
 }
 
+.searchboxTopic {
+	border-radius: 4px;
+	min-width: 40%; 
+    max-width: 40%; 
+	min-height: 30px;
+    max-height: 30px;
+	margin-top: 5px;
+}
+
 .deletebutton {
 	margin-left:auto; 
 	margin-right:0;
