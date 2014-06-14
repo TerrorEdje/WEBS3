@@ -81,7 +81,13 @@
 			divFavo.addClass("col-md-11");
 
 			var divDelete = $('<div></div>');
-			divFavo.addClass("col-md-1");
+			divDelete.addClass("col-md-1");
+
+			var aDelete = $('<a></a>');
+			aDelete.text("Delete all favorites");
+			aDelete.attr("onClick","deleteAllFromFavorites()");
+			aDelete.attr("href","#");
+			divDelete.append(aDelete);
 
 			var objUl = $('<ul></ul>');
 			objUl.addClass("nav nav-tabs");
