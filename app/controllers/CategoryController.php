@@ -94,8 +94,7 @@ class CategoryController extends BaseController {
 
 		if($validator->fails())
 		{
-			$categories = $this->getMainCategories();
-			return View::make('settings/categories')->with('categories',$categories)->withErrors($validator)->withInput();
+			return Redirect::route('categories-manage')->withErrors($validator)->withInput();
 		}
 		else
 		{
@@ -105,8 +104,7 @@ class CategoryController extends BaseController {
 			$subcategory->categories_id = Input::get('category');
 			$subcategory->save();
 
-			$categories = $this->getMainCategories();
-			return View::make('settings/categories')->with('categories',$categories);
+			return Redirect::route('categories-manage');
 		}
 	}
 
@@ -120,8 +118,7 @@ class CategoryController extends BaseController {
 
 		if($validator->fails())
 		{
-			$categories = $this->getMainCategories();
-			return View::make('settings/categories')->with('categories',$categories)->withErrors($validator)->withInput();
+			return Redirect::route('categories-manage')->withErrors($validator)->withInput();
 		}
 		else
 		{
@@ -130,8 +127,65 @@ class CategoryController extends BaseController {
 			$category->description = Input::get('categorydescription');
 			$category->save();
 
-			$categories = $this->getMainCategories();
-			return View::make('settings/categories')->with('categories',$categories);
+			return Redirect::route('categories-manage');
+		}
+	}
+	
+	public function getUpdateSubcategory($id)
+	{
+		$subcategory = Subcategory::find($id);
+		return View::make('settings/updateSubcategory')->with('subcategory', $subcategory);
+	}
+	
+	public function postUpdateSubcategory()
+	{
+		$validator = Validator::make(Input::all(),
+			array(
+				'subcategoryname' => 'required',
+			)
+		);
+
+		if($validator->fails())
+		{
+			return Redirect::route('update-subcategory')->withErrors($validator)->withInput();
+		}
+		else
+		{
+			$subcategory = Subcategory::find(Input::get('subcategoryID'));
+			$subcategory->name = Input::get('subcategoryname');
+			$subcategory->description = Input::get('subcategorydescription');
+			$subcategory->save();
+
+			return Redirect::route('categories-manage');
+		}
+	}
+	
+	public function getUpdateCategory($id)
+	{
+		$category = Category::find($id);
+		return View::make('settings/updateCategory')->with('category', $category);
+	}
+	
+	public function postUpdateCategory()
+	{
+		$validator = Validator::make(Input::all(),
+			array(
+				'categoryname' => 'required',
+			)
+		);
+
+		if($validator->fails())
+		{
+			return Redirect::route('update-category')->withErrors($validator)->withInput();
+		}
+		else
+		{
+			$category = Category::find(Input::get('categoryID'));
+			$category->name = Input::get('categoryname');
+			$category->description = Input::get('categorydescription');
+			$category->save();
+
+			return Redirect::route('categories-manage');
 		}
 	}
 }

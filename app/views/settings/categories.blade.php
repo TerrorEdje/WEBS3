@@ -20,10 +20,7 @@
 					
 			Short description:<br>
 			{{Form::text('categorydescription', null, array('class' => 'text'))}}
-			@if($errors->has('categorydescription'))
-				{{ $errors->first('categorydescription', '<span class="text-danger">:message</span>') }}<br>
-			@endif
-				
+	
 			<br>
 					
 			{{ Form::submit('Add category', array('class' => 'btn-primary button')) }}
@@ -36,13 +33,18 @@
 	@foreach ($categories as $infoCategory)		
 		<div class="col-md-12 form">
 		
-			<span class="titleCategorie">{{ $infoCategory['category']->name }}</span>
+			<span class="titleCategorie"><a href="{{ URL::route('update-category', $infoCategory['category']->id) }}" class="categorieLink">{{  $infoCategory['category']->name }}</a>
+			</span>
 	
 			<br>
 			
-			@foreach ($infoCategory['subcategories'] as $infoSubcategory)
-				<a href="{{ URL::route('forum-category', $infoSubcategory['name']) }}" class="subCategorieLink">{{  $infoSubcategory['name'] }}</a>
-			@endforeach
+			@if (count($infoCategory['subcategories']) == 0)
+				This category has no subcategories.
+			@else
+				@foreach ($infoCategory['subcategories'] as $infoSubcategory)
+					<a href="{{ URL::route('update-subcategory', $infoSubcategory['id']) }}" class="subCategorieLink">{{  $infoSubcategory['name'] }}</a>
+				@endforeach
+			@endif
 				
 			<br>
 			<br>	
@@ -59,9 +61,6 @@
 				
 				Short description:<br>
 				{{ Form::text('subcategorydescription', null, array('class' => 'text')) }}
-				@if($errors->has('subcategorydescription'))
-					{{ $errors->first('subcategorydescription', '<span class="text-danger">:message</span>') }}
-				@endif
 				
 				<br>
 						

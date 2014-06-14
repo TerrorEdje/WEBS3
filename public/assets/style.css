@@ -233,6 +233,11 @@ ul.sub_navigation li
 .titleCategorie {
 	font-size: 20px;
 	font-weight: bold;
+	color: black;
+}
+
+.categorieLink {
+	color: black;
 }
 
 .subCategorieLink {

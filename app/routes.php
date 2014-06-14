@@ -54,6 +54,16 @@ Route::group(array('before' => 'auth'), function()
 				'as'	=> 'manage-category-category-post',
 				'uses'	=> 'CategoryController@postCategory'
 			));
+			
+			Route::post('update/category', array(
+				'as'	=> 'update-category-post',
+				'uses'	=> 'CategoryController@postUpdatecategory'
+			));
+			
+			Route::post('update/Subcategory', array(
+				'as'	=> 'update-subcategory-post',
+				'uses'	=> 'CategoryController@postUpdateSubcategory'
+			));
 
 			Route::post('settings/permissions/post', array(
 				'as'	=> 'manage-permissons-post',
@@ -125,6 +135,16 @@ Route::group(array('before' => 'auth'), function()
 		Route::get('settings/categories',array(
 			'as' => 'categories-manage',
 			'uses' => 'CategoryController@getManageCategories'
+		));
+		
+		Route::get('update/category/{id}',array(
+			'as' => 'update-category',
+			'uses' => 'CategoryController@getUpdateCategory'
+		));
+		
+		Route::get('update/subcategory/{id}',array(
+			'as' => 'update-subcategory',
+			'uses' => 'CategoryController@getUpdateSubcategory'
 		));
 
 		Route::get('settings/permissions',array(

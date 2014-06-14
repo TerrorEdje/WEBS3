@@ -34,7 +34,7 @@ class HomeController extends BaseController {
 		$admin = new Right;
 		$admin->name = "Admin";	
 		$admin->save();
-
+		
 		$menu = new Menu;
 		$menu->name = "Home";
 		$menu->link = "home";
