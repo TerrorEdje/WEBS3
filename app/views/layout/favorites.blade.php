@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	var categorys = new Array();
 
-	if (typeof JSON.parse($.cookie('favorites') === 'undefined')
+	if (!$.cookie('favorites'))
 	{
 		var favorites = new Array();
 	}
@@ -33,6 +33,26 @@
 			{
 				favorites.push(categorys[i]);
 				$.cookie('favorites', JSON.stringify(favorites));
+				showCategorys();
+				return true;
+			}
+		}
+
+	}
+
+	function deleteFromFavorites(id)
+	{
+		if (favorites == null)
+		{
+			return "Can't delete what's not there";
+		}
+		for (var i = 0; i < favorites.length; i++)
+		{
+			if(favorites[i].id == id)
+			{
+				favorites.splice(i,i+1);
+				$.cookie('favorites', JSON.stringify(favorites));
+				showCategorys();
 				return true;
 			}
 		}
@@ -40,14 +60,18 @@
 
 	function showCategorys()
 	{
+		var myNode = document.getElementById("favorites")
+		while (myNode.firstChild) {
+   		 	myNode.removeChild(myNode.firstChild);
+		}
 		var objUl = $('<ul></ul>');
 		for (i = 0; i < favorites.length; i++)
 		{
 			var objLi = $('<li></li>');
-			objLi.text(favorites[i].name);
+			objLi.text(favorites[i].name + favorites[i].id);
 			objUl.append(objLi);
 		}
-		$('.favorites').append(objUl);
+		$('#favorites').append(objUl);
 	}
 
 </script>

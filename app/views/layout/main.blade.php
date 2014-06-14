@@ -7,7 +7,7 @@
 		<div class="container">
 			@include('layout/navigation')
 
-			<div class="favorites">
+			<div id="favorites" class="favorites">
 
 			</div>
 
