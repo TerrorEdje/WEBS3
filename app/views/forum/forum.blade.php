@@ -28,6 +28,9 @@
 								@endif
 							</p>
 							<p>
+								<a href="#" onclick="addToFavorites({{$infoSubcategory['id']}})">Add to favorites <span class="glyphicon glyphicon-heart"></span></a>
+							</p>
+							<p>
 								Topics: {{ $infoSubcategory['amountOfTopics'] }}
 								<span class="right">Replies: {{ $infoSubcategory['amountOfReplies'] }}</span>
 							</p>

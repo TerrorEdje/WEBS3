@@ -7,7 +7,9 @@
 			{{ $subcategory['name'] }}
 		</div>
 	</div>
-	
+	<div class="row">
+		<a href="#" onclick="addToFavorites({{$subcategory['id']}})">Add to favorites <span class="glyphicon glyphicon-heart"></span></a>
+	</div>
 	@if ($openTopics == null && $closedTopics == null)
 		<div class="row">
 			<div class="col-md-12 messageBlock">
