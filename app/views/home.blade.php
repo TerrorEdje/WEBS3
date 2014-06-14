@@ -18,14 +18,16 @@
 				<td class="col-md-9 titleNewsTD">{{ $infoNews['news']->name }}</td>
 				<td class="col-md-3 tableTD">
 					{{ date("D d M Y", strtotime($infoNews['news']->created_at)), ' at ', date("H:i", strtotime($infoNews['news']->created_at)) }}
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="{{ URL::route('delete-news', $infoNews['news']->id) }}" class="iconLink">
-						<span><i class="indicator glyphicon glyphicon-trash"></i></span>
-					</a>
-					&nbsp;&nbsp;&nbsp;
-					<a href="{{ URL::route('update-news', $infoNews['news']->id) }}" class="iconLink">
-						<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
-					</a>
+					@if (checkAccess("Admin"))
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="{{ URL::route('delete-news', $infoNews['news']->id) }}" class="iconLink">
+							<span><i class="indicator glyphicon glyphicon-trash"></i></span>
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="{{ URL::route('update-news', $infoNews['news']->id) }}" class="iconLink">
+							<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
+						</a>
+					@endif
 				</td>
 			</tr>
 			<tr>
