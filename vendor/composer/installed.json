@@ -1685,5 +1685,44 @@
             "framework",
             "laravel"
         ]
+    },
+    {
+        "name": "mj/breadcrumb",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mjanssen/Laravel-4-breadcrumb.git",
+            "reference": "436e760a4b4f152606fd9b4cc2ec7507a460adae"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mjanssen/Laravel-4-breadcrumb/zipball/436e760a4b4f152606fd9b4cc2ec7507a460adae",
+            "reference": "436e760a4b4f152606fd9b4cc2ec7507a460adae",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "4.x",
+            "php": ">=5.3.0"
+        },
+        "time": "2014-03-07 10:24:34",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Mj\\Breadcrumb": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Marnix Janssen",
+                "email": "dev.marnix@gmail.com"
+            }
+        ],
+        "description": "A simple breadcrumb generator for Laravel 4"
     }
 ]

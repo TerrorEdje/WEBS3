@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1629abbb640a9fe0280e95fc215de768",
+    "hash": "de07fab2dda1305b8e9b13a1763fe971",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -340,6 +340,43 @@
                 "laravel"
             ],
             "time": "2014-06-01 18:30:26"
+        },
+        {
+            "name": "mj/breadcrumb",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mjanssen/Laravel-4-breadcrumb.git",
+                "reference": "436e760a4b4f152606fd9b4cc2ec7507a460adae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mjanssen/Laravel-4-breadcrumb/zipball/436e760a4b4f152606fd9b4cc2ec7507a460adae",
+                "reference": "436e760a4b4f152606fd9b4cc2ec7507a460adae",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.x",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mj\\Breadcrumb": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marnix Janssen",
+                    "email": "dev.marnix@gmail.com"
+                }
+            ],
+            "description": "A simple breadcrumb generator for Laravel 4",
+            "time": "2014-03-07 10:24:34"
         },
         {
             "name": "monolog/monolog",
@@ -1642,9 +1679,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "mj/breadcrumb": 20
+    },
     "platform": [
 
     ],
