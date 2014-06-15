@@ -2,6 +2,7 @@
 
 class CategoryController extends BaseController {
 
+	# Maakt de view aan met alle subcategorieën per hoofdcategorie
 	public function getCategories()
 	{
 		$allCategories = array(); # Bevat dadelijk alle hoofdcategorieen met daaraan gekoppeld de bijbehorende subcategorieen met alle info
@@ -27,6 +28,7 @@ class CategoryController extends BaseController {
 		return View::make('forum/forum',$data)->with('categories', $allCategories);
 	}
 	
+	# Geeft aan hoofdcategorieën terug met de bijbehorende subcategorieën
 	public function getMainCategories() {
 	
 		$allCategories = array(); # Bevat dadelijk alle hoofdcategorieen met daaraan gekoppeld de bijbehorende subcategorieen
@@ -46,6 +48,7 @@ class CategoryController extends BaseController {
 		return $allCategories;
 	}
 
+	# Maakt een view aan waarop alle topics van een subcategorie staan
 	public function getCategory($id)
 	{
 		$subcategory = Subcategory::find($id);		
@@ -71,6 +74,7 @@ class CategoryController extends BaseController {
 		return View::make('forum/category',$data)->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name', $id);
 	}
 	
+	# Geeft alle topics met de bijbehorende informatie terug
 	public function getTopicsWithInfo($id)
 	{
 		$allTopics = array(); # Bevat dadelijk van alle topics alle info
@@ -89,6 +93,7 @@ class CategoryController extends BaseController {
 		return $allTopics;
 	}
 
+	# Maakt een view aan om hoofdcategorieën en subcategorieën toe te voegen
 	public function getManageCategories()
 	{
 		$categories = $this->getMainCategories();
@@ -98,6 +103,7 @@ class CategoryController extends BaseController {
 		return View::make('settings/categories',$data)->with('categories',$categories);
 	}
 
+	# Zet een subcategorie in de database
 	public function postSubcategory()
 	{
 		$validator = Validator::make(Input::all(),
@@ -122,6 +128,7 @@ class CategoryController extends BaseController {
 		}
 	}
 
+	# Zet een hoofdcategorie in de database
 	public function postCategory()
 	{
 		$validator = Validator::make(Input::all(),
@@ -145,6 +152,7 @@ class CategoryController extends BaseController {
 		}
 	}
 	
+	# Maakt een view aan om een hoofdcategorie te wijzigen
 	public function getUpdateSubcategory($id)
 	{
 		$subcategory = Subcategory::find($id);
@@ -159,6 +167,7 @@ class CategoryController extends BaseController {
 		return View::make('settings/updateSubcategory',$data)->with('subcategory', $subcategory);
 	}
 	
+	# Zet een gewijzigde subcategorie in de database
 	public function postUpdateSubcategory()
 	{
 		$validator = Validator::make(Input::all(),
@@ -182,6 +191,7 @@ class CategoryController extends BaseController {
 		}
 	}
 	
+	# Maakt een view aan om een hoofdcategorie te wijzigen
 	public function getUpdateCategory($id)
 	{
 		$category = Category::find($id);
@@ -196,6 +206,7 @@ class CategoryController extends BaseController {
 		return View::make('settings/updateCategory',$data)->with('category', $category);
 	}
 	
+	# Zet een gewijzigde hoofdcategorie in de database
 	public function postUpdateCategory()
 	{
 		$validator = Validator::make(Input::all(),
@@ -219,6 +230,7 @@ class CategoryController extends BaseController {
 		}
 	}
 	
+	# Verwijderd een hoofdcategorie uit de database
 	public function getDeleteCategory($id)
 	{
 		$category = Category::find($id);
@@ -230,6 +242,7 @@ class CategoryController extends BaseController {
 		return Redirect::route('categories-manage')->with('global',$category->name . ' is deleted.');
 	}
 	
+	# Verwijderd een subcategorie uit de database
 	public function getDeleteSubcategory($id)
 	{
 		$category = Subcategory::find($id);

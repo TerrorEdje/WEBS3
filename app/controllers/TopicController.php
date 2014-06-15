@@ -2,6 +2,7 @@
 
 class TopicController extends BaseController {
 	
+	# Maakt view aan van een topic
 	public function getTopic($id)
 	{	
 		$topic = Topic::find($id);
@@ -80,6 +81,7 @@ class TopicController extends BaseController {
 		return View::make('forum/topic',$data)->with('topic', $infoTopic)->with('reply', $firstReply)->with('replies', $infoReplies);
 	}
 
+	# Zet de reply in de database
 	public function postReply($id)
 	{		
 		$validator = Validator::make(Input::all(),
@@ -108,6 +110,7 @@ class TopicController extends BaseController {
 		}
 	}
 	
+	# Maakt de view aan voor het toevoegen van een topic
 	public function getTopicCreate($id) {
 		$subcategory = Subcategory::find($id);
 		if (!isset($subcategory))
@@ -122,6 +125,7 @@ class TopicController extends BaseController {
 		return View::make('forum/topic-create',$data)->with('subcategory',$subcategory);
 	}
 	
+	# Zet de topic in de database
 	public function postTopicCreate() {
 		$validator = Validator::make(Input::all(),
 			array(
@@ -188,6 +192,7 @@ class TopicController extends BaseController {
 		}
 	}
 	
+	# Maakt een view aan om een topic te wijzigen
 	public function getUpdateTopic($id)
 	{	
 		$topic = Topic::find($id);
@@ -207,6 +212,7 @@ class TopicController extends BaseController {
 		return View::make('forum/updateTopic',$data)->with('topic', $topic)->with('reply', $reply);
 	}
 
+	# Zet het gewijzigde topic in de database
 	public function postUpdateTopic()
 	{				
 		$validator = Validator::make(Input::all(),
@@ -233,6 +239,7 @@ class TopicController extends BaseController {
 		}
 	}
 	
+	# Verwijdert een topic uit de database
 	public function getDeleteTopic($id)
 	{
 		$topic = Topic::find($id);
@@ -252,6 +259,7 @@ class TopicController extends BaseController {
 		return Redirect::route('forum-category', $topic->subcategories_id);
 	}
 	
+	# Sluit een topic
 	public function getCloseTopic($id)
 	{
 		$topic = Topic::find($id);
@@ -265,6 +273,7 @@ class TopicController extends BaseController {
 		return Redirect::route('forum-topic', $topic->id)->with('global','The topic is closed.');
 	}
 	
+	# Maakt een view aan voor het wijzigen van een reply
 	public function getUpdateReply($id)
 	{	
 		$reply = Reply::find($id);
@@ -283,6 +292,7 @@ class TopicController extends BaseController {
 		return View::make('forum/updateReply',$data)->with('reply', $reply);
 	}
 
+	# Zet de gewijzigde reply in de database
 	public function postUpdateReply()
 	{				
 		$validator = Validator::make(Input::all(),
@@ -305,6 +315,7 @@ class TopicController extends BaseController {
 		}
 	}
 	
+	# Verwijdert een reply uit de database
 	public function getDeleteReply($id)
 	{
 		$reply = Reply::find($id);

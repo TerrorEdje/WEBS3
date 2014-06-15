@@ -2,6 +2,7 @@
 
 class ProfileController extends BaseController {
 	
+	# Maakt de view aan voor het profiel van een gebruiker
 	public function user($username)
 	{
 		$user = User::where('username','=',$username);
@@ -18,6 +19,7 @@ class ProfileController extends BaseController {
 		return Redirect::route('home')->with('global','This user can not be found.');
 	}
 
+	# Maakt de view aan voor het aanpassen van het profiel van gebruiker
 	public function getChangeProfile()
 	{
 		$user = User::where('username','=',Auth::user()->username);
@@ -35,6 +37,7 @@ class ProfileController extends BaseController {
 		return Redirect::route('home')->with('global','Could not change your profile.');
 	}
 
+	# Zet de gegevens van het veranderde profiel in de database
 	public function postChangeProfile()
 	{
 		$validator = Validator::make(Input::all(),
@@ -71,6 +74,7 @@ class ProfileController extends BaseController {
 		return Redirect::route('home')->with('global','Failed updating your profile');
 	}
 
+	# Maakt de view aan voor het profiel van de ingelogde gebruiker
 	public function loggedInUser()
 	{
 		if (Auth::check())

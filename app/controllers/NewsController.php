@@ -2,16 +2,16 @@
 
 	class NewsController extends BaseController {
 
+		# Maakt de view aan om een niewsbericht toe te voegen
 		public function getManageNews()
 		{
-			//$category = Category::find($id);
-
 			Breadcrumb::addbreadcrumb('Home','../');
 			Breadcrumb::addbreadcrumb('Manage news');
 			$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
 			return View::make('settings/news',$data);
 		}
 
+		# Zet een nieuwsbericht in de database
 		public function postNews()
 		{
 			$validator = Validator::make(Input::all(),
@@ -38,6 +38,7 @@
 			}
 		}
 		
+		# Maakt een view aan om een nieuwsbericht te wijzigen
 		public function getUpdateNews($id)
 		{
 			$news = News::find($id);
@@ -47,6 +48,7 @@
 			return View::make('settings/updateNews',$data)->with('news', $news);
 		}
 		
+		# Zet het gewijzigde nieuwsbericht in de database
 		public function postUpdateNews()
 		{
 			$validator = Validator::make(Input::all(),
@@ -71,6 +73,7 @@
 			}
 		}
 		
+		# Verwijderd een nieuwsbericht uit de database
 		public function getDeleteNews($id)
 		{
 			News::where('id', '=', $id)->delete();

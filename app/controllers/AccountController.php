@@ -2,6 +2,7 @@
 
 class AccountController extends BaseController {
 	
+	# Maakt de view aan voor het registeren van een gebruiker
 	public function getCreate()
 	{
 		Breadcrumb::addbreadcrumb('Home','../');
@@ -10,6 +11,7 @@ class AccountController extends BaseController {
 		return View::make('account/create',$data);
 	}
 	
+	# Voegt de gebruiker toe aan de database
 	public function postCreate()
 	{
 		$validator = Validator::make(Input::all(),
@@ -32,7 +34,7 @@ class AccountController extends BaseController {
 			$username = Input::get('username');
 			$password = Hash::make(Input::get('password'));
 			
-			//Activation code
+			# Activation code
 			$code = str_random(60);
 			
 			$user = new User;
@@ -58,6 +60,7 @@ class AccountController extends BaseController {
 		}
 	}
 	
+	# Aciveert een gebruiker
 	public function getActivate($code)
 	{	
 		$user = User::where('code','=',$code)->where('active','=',0);
@@ -79,6 +82,7 @@ class AccountController extends BaseController {
 		return Redirect::route('home')->with('global','We could not activate your account. Try again later.');
 	}
 	
+	# Maakt de view aan voor het inloggen van een gebruiker
 	public function getSignIn()
 	{
 		Breadcrumb::addbreadcrumb('Home','../');
@@ -87,6 +91,7 @@ class AccountController extends BaseController {
 		return View::make('account/signin',$data);
 	}
 
+	# Voor het inloggen van een gebruiker
 	public function postSignIn()
 	{
 		$validator = Validator::make(Input::all(),array(
@@ -129,12 +134,14 @@ class AccountController extends BaseController {
 		return Redirect::route('account-sign-in')->with('global','There was a problem signing you in.');		
 	}
 	
+	# Voor het uitloggen van een gebruiker
 	public function getSignOut()
 	{
 		Auth::logout();
 		return Redirect::route('home');
 	}
 	
+	# Maakt de view aan voor het veranderen van het wachtwoord van een gebruiker
 	public function getChangePassword()
 	{
 		Breadcrumb::addbreadcrumb('Home','../');
@@ -143,6 +150,7 @@ class AccountController extends BaseController {
 		return View::make('account/password',$data);
 	}
 	
+	# Zet het nieuwe wachtwoord in de database
 	public function postChangePassword()
 	{
 		$validator = Validator::make(Input::all(),
@@ -181,6 +189,7 @@ class AccountController extends BaseController {
 		return Redirect::route('account-change-password')->with('global','Your password could not be changed.');
 	}
 	
+	# Maakt de view aan voor als een gebruiker zijn of haar wachtwoord is vergeten
 	public function getForgotPassword()
 	{
 		Breadcrumb::addbreadcrumb('Home','../');
@@ -189,6 +198,7 @@ class AccountController extends BaseController {
 		return View::make('account/forgot');
 	}
 	
+	# Geeft de gebruiker een nieuw wachtwoord
 	public function postForgotPassword()
 	{
 		$validator = Validator::make(Input::all(),
@@ -230,6 +240,7 @@ class AccountController extends BaseController {
 		return Redirect::route('account-forgot-password')->with('global','Could not request new password.');
 	}
 	
+	# Voor het veranderen van het wachtwoord
 	public function getRecover($code)
 	{
 		$user = User::where('code','=',$code)->where('password_temp','!=','');
@@ -251,6 +262,7 @@ class AccountController extends BaseController {
 		return Redirect::route('home')->with('global','Could not recovery your account.');
 	}
 
+	# Maakt de view aan voor het beheren van de rechten van gebruikers
 	public function getManagePermissions()
 	{
 		$prepareusers = User::orderBy('username')->get();
@@ -273,6 +285,7 @@ class AccountController extends BaseController {
 		return View::make('settings/permissions',$data)->with('rights',$rights)->with('users',$users);
 	}
 
+	# Zet de rechten van de gebruikers in de database
 	public function postPermissions()
 	{
 		$validator = Validator::make(Input::all(),

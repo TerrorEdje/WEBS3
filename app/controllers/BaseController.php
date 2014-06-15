@@ -11,15 +11,14 @@ class BaseController extends Controller {
 	{
 		if (! is_null($this->layout))
 		{
-
 			$this->layout = View::make($this->layout);
 		}
 	}
 
+	# Maakt het menu aan boven in de pagina's
 	public function __construct()
 	{
 		$mainmenus = Menu::where('parent','=',NULL)->get();
-		//var_dump($mainmenus);
 		$submenus = Menu::where('parent','>','1')->get();
 		$subcategorys = Subcategory::all();
 

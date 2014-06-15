@@ -2,6 +2,7 @@
 
 class HomeController extends BaseController {
 	
+	# Maakt de home pagina aan met daarop alle nieuws berichten
 	public function home()
 	{
 		$allNews = array();
@@ -21,6 +22,7 @@ class HomeController extends BaseController {
 		return View::make('home',$data)->with('allNews', $allNews);
 	}
 
+	# Vult de database met de rechten en de menu items
 	public function getDatabase()
 	{
 		$newuser = new Right;

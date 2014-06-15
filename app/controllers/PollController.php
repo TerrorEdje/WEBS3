@@ -2,6 +2,7 @@
 
 class PollController extends BaseController {
 
+	# Voegt de stem op een polloption toe aan de database
 	public function postVote($id)
 	{
 		$validator = Validator::make(Input::all(),
