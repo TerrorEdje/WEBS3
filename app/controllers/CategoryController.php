@@ -21,7 +21,10 @@ class CategoryController extends BaseController {
 			$infoCategory['subcategories'] = $infoSubcategories;
 			array_push($allCategories, $infoCategory);
 		}		
-		return View::make('forum/forum')->with('categories', $allCategories);
+		Breadcrumb::addbreadcrumb('Home','./');
+		Breadcrumb::addbreadcrumb('Forum');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('forum/forum',$data)->with('categories', $allCategories);
 	}
 	
 	public function getMainCategories() {
@@ -46,6 +49,10 @@ class CategoryController extends BaseController {
 	public function getCategory($id)
 	{
 		$subcategory = Subcategory::find($id);		
+		if (!isset($subcategory->name))
+		{
+			return Redirect::route('home')->with('global','This subcategory does not exist.');
+		}
 		$infoOpenTopics = array();
 		$infoClosedTopics = array();
 		$topics = $this->getTopicsWithInfo($id); # Deze lijst met alle topics wordt dadelijk gesplist in 2 lijsten (Open topics en gesloten topics)
@@ -57,7 +64,11 @@ class CategoryController extends BaseController {
 				array_push($infoClosedTopics, $infoTopic);
 			}
 		}
-		return View::make('forum/category')->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name', $id);
+		Breadcrumb::addbreadcrumb('Home','../../');
+		Breadcrumb::addbreadcrumb('Forum','../');
+		Breadcrumb::addbreadcrumb($subcategory->name);
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('forum/category',$data)->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name', $id);
 	}
 	
 	public function getTopicsWithInfo($id)
@@ -81,7 +92,10 @@ class CategoryController extends BaseController {
 	public function getManageCategories()
 	{
 		$categories = $this->getMainCategories();
-		return View::make('settings/categories')->with('categories',$categories);
+		Breadcrumb::addbreadcrumb('Home','../');
+		Breadcrumb::addbreadcrumb('Manage categories');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('settings/categories',$data)->with('categories',$categories);
 	}
 
 	public function postSubcategory()
@@ -134,7 +148,15 @@ class CategoryController extends BaseController {
 	public function getUpdateSubcategory($id)
 	{
 		$subcategory = Subcategory::find($id);
-		return View::make('settings/updateSubcategory')->with('subcategory', $subcategory);
+		if (!isset($subcategory->name))
+		{
+			return Redirect::route('home')->with('global','This subcategory does not exist.');
+		}
+		Breadcrumb::addbreadcrumb('Home','../../');
+		Breadcrumb::addbreadcrumb('Manage categories','../../settings/categories');
+		Breadcrumb::addbreadcrumb($subcategory->name);
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('settings/updateSubcategory',$data)->with('subcategory', $subcategory);
 	}
 	
 	public function postUpdateSubcategory()
@@ -163,7 +185,15 @@ class CategoryController extends BaseController {
 	public function getUpdateCategory($id)
 	{
 		$category = Category::find($id);
-		return View::make('settings/updateCategory')->with('category', $category);
+		if (!isset($category->name))
+		{
+			return Redirect::route('home')->with('global','This category does not exist.');
+		}
+		Breadcrumb::addbreadcrumb('Home','../../');
+		Breadcrumb::addbreadcrumb('Manage categories','../../settings/categories');
+		Breadcrumb::addbreadcrumb($category->name);
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('settings/updateCategory',$data)->with('category', $category);
 	}
 	
 	public function postUpdateCategory()
@@ -191,14 +221,24 @@ class CategoryController extends BaseController {
 	
 	public function getDeleteCategory($id)
 	{
+		$category = Category::find($id);
+		if (!isset($category->name))
+		{
+			return Redirect::route('home')->with('global','This category does not exist.');
+		}
 		Category::where('id', '=', $id)->delete();
-		return Redirect::route('categories-manage');
+		return Redirect::route('categories-manage')->with('global',$category->name . ' is deleted.');
 	}
 	
 	public function getDeleteSubcategory($id)
 	{
+		$category = Subcategory::find($id);
+		if (!isset($subcategory->name))
+		{
+			return Redirect::route('home')->with('global','This subcategory does not exist.');
+		}
 		Subcategory::where('id', '=', $id)->delete();
-		return Redirect::route('categories-manage');
+		return Redirect::route('categories-manage')->with('global',$category->name . ' is deleted.');
 	}
 	
 }

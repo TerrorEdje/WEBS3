@@ -15,10 +15,7 @@ class HomeController extends BaseController {
 			array_push($allNews, $infoNews);
 		}
 
-		Breadcrumb::addbreadcrumb('Home','/');
-
-		Breadcrumb::setSeperator('/');
-
+		Breadcrumb::addbreadcrumb('Home');
 		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
 
 		return View::make('home',$data)->with('allNews', $allNews);

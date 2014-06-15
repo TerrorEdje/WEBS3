@@ -4,8 +4,12 @@
 
 		public function getManageNews()
 		{
-			$category = Category::find($id);
-			return View::make('settings/news')->with('category', $category);;
+			//$category = Category::find($id);
+
+			Breadcrumb::addbreadcrumb('Home','../');
+			Breadcrumb::addbreadcrumb('Manage news');
+			$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+			return View::make('settings/news',$data);
 		}
 
 		public function postNews()
@@ -37,7 +41,10 @@
 		public function getUpdateNews($id)
 		{
 			$news = News::find($id);
-			return View::make('settings/updateNews')->with('news', $news);
+			Breadcrumb::addbreadcrumb('Home','../../');
+			Breadcrumb::addbreadcrumb('Update news');
+			$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+			return View::make('settings/updateNews',$data)->with('news', $news);
 		}
 		
 		public function postUpdateNews()
@@ -67,7 +74,7 @@
 		public function getDeleteNews($id)
 		{
 			News::where('id', '=', $id)->delete();
-			return Redirect::route('home');
+			return Redirect::route('home')->with('global','News number ' .$id. ' deleted!');
 		}
 
 	}

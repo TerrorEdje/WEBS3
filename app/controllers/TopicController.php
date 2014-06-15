@@ -5,6 +5,10 @@ class TopicController extends BaseController {
 	public function getTopic($id)
 	{	
 		$topic = Topic::find($id);
+		if (!isset($topic))
+		{
+			return Redirect::route('home')->with('global','This topic does not exist.');
+		}
 		$infoTopic = array();
 		$infoTopic['topic'] = $topic;
 		$infoTopic['by'] = User::find($infoTopic['topic']->by);
@@ -67,7 +71,13 @@ class TopicController extends BaseController {
 			}
 		}
 		
-		return View::make('forum/topic')->with('topic', $infoTopic)->with('reply', $firstReply)->with('replies', $infoReplies);
+		$subcategory = Subcategory::find($topic->subcategories_id);
+		Breadcrumb::addbreadcrumb('Home','../../');
+		Breadcrumb::addbreadcrumb('Forum','../');
+		Breadcrumb::addbreadcrumb($subcategory->name,'../category/' . $subcategory->id);
+		Breadcrumb::addbreadcrumb($topic->title);
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('forum/topic',$data)->with('topic', $infoTopic)->with('reply', $firstReply)->with('replies', $infoReplies);
 	}
 
 	public function postReply($id)
@@ -100,7 +110,16 @@ class TopicController extends BaseController {
 	
 	public function getTopicCreate($id) {
 		$subcategory = Subcategory::find($id);
-		return View::make('forum/topic-create')->with('subcategory',$subcategory);
+		if (!isset($subcategory))
+		{
+			return Redirect::route('home')->with('global','This subcategory does not exist.');
+		}
+		Breadcrumb::addbreadcrumb('Home','../../');
+		Breadcrumb::addbreadcrumb('Forum','../');
+		Breadcrumb::addbreadcrumb($subcategory->name,'../category/' . $subcategory->id);
+		Breadcrumb::addbreadcrumb('Create topic');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('forum/topic-create',$data)->with('subcategory',$subcategory);
 	}
 	
 	public function postTopicCreate() {
@@ -172,8 +191,20 @@ class TopicController extends BaseController {
 	public function getUpdateTopic($id)
 	{	
 		$topic = Topic::find($id);
+		if (!isset($topic))
+		{
+			return Redirect::route('home')->with('This topic does not exist.');
+		}
+
 		$reply = Reply::where('topics_id', '=', $id)->orderBy('created_at', 'asc')->first();
-		return View::make('forum/updateTopic')->with('topic', $topic)->with('reply', $reply);
+
+		$subcategory = Subcategory::find($topic->subcategories_id);
+		Breadcrumb::addbreadcrumb('Home','../../');
+		Breadcrumb::addbreadcrumb('Forum','../../forum');
+		Breadcrumb::addbreadcrumb($subcategory->name,'../../forum/category/' . $subcategory->id);
+		Breadcrumb::addbreadcrumb('Update ' . $topic->title);
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('forum/updateTopic',$data)->with('topic', $topic)->with('reply', $reply);
 	}
 
 	public function postUpdateTopic()
@@ -205,6 +236,11 @@ class TopicController extends BaseController {
 	public function getDeleteTopic($id)
 	{
 		$topic = Topic::find($id);
+		if (!isset($topic))
+		{
+			return Redirect::route('home')->with('This topic does not exist.');
+		}
+
 		$polloptions = $topic->getPolloptions();
 		foreach ($polloptions as $polloption) {
 			Pollvote::where('polloptions_id', '=', $polloption->id)->delete();
@@ -219,6 +255,10 @@ class TopicController extends BaseController {
 	public function getCloseTopic($id)
 	{
 		$topic = Topic::find($id);
+		if (!isset($topic))
+		{
+			return Redirect::route('home')->with('This topic does not exist.');
+		}
 		$topic->open = false;
 		$topic->save();
 		
@@ -228,7 +268,19 @@ class TopicController extends BaseController {
 	public function getUpdateReply($id)
 	{	
 		$reply = Reply::find($id);
-		return View::make('forum/updateReply')->with('reply', $reply);
+		if (!isset($reply))
+		{
+			return Redirect::route('home')->with('This reply does not exist.');
+		}
+
+		$topic = Topic::find($reply->topics_id);
+		$subcategory = Subcategory::find($topic->subcategories_id);
+		Breadcrumb::addbreadcrumb('Home','../../');
+		Breadcrumb::addbreadcrumb('Forum','../../forum');
+		Breadcrumb::addbreadcrumb($subcategory->name,'../../forum/category/' . $subcategory->id);
+		Breadcrumb::addbreadcrumb('Update reply on ' . $topic->title);
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('forum/updateReply',$data)->with('reply', $reply);
 	}
 
 	public function postUpdateReply()
@@ -256,6 +308,10 @@ class TopicController extends BaseController {
 	public function getDeleteReply($id)
 	{
 		$reply = Reply::find($id);
+		if (!isset($reply))
+		{
+			return Redirect::route('home')->with('This reply does not exist.');
+		}
 		Reply::where('id', '=', $id)->delete();
 		return Redirect::route('forum-topic', $reply->topics_id);
 	}

@@ -4,6 +4,11 @@ Route::get('/', array(
 	'uses' => 'HomeController@home'
 ));
 
+Route::get('/home', array(
+	'as' => 'home2',
+	'uses' => 'HomeController@home'
+));
+
 /*
 | Ingelogde groep.
 */

@@ -4,7 +4,10 @@ class AccountController extends BaseController {
 	
 	public function getCreate()
 	{
-		return View::make('account/create');
+		Breadcrumb::addbreadcrumb('Home','../');
+		Breadcrumb::addbreadcrumb('Register');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('account/create',$data);
 	}
 	
 	public function postCreate()
@@ -78,7 +81,10 @@ class AccountController extends BaseController {
 	
 	public function getSignIn()
 	{
-		return View::make('account/signin');
+		Breadcrumb::addbreadcrumb('Home','../');
+		Breadcrumb::addbreadcrumb('Login');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('account/signin',$data);
 	}
 
 	public function postSignIn()
@@ -131,7 +137,10 @@ class AccountController extends BaseController {
 	
 	public function getChangePassword()
 	{
-		return View::make('account/password');
+		Breadcrumb::addbreadcrumb('Home','../');
+		Breadcrumb::addbreadcrumb('Change Password');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('account/password',$data);
 	}
 	
 	public function postChangePassword()
@@ -174,6 +183,9 @@ class AccountController extends BaseController {
 	
 	public function getForgotPassword()
 	{
+		Breadcrumb::addbreadcrumb('Home','../');
+		Breadcrumb::addbreadcrumb('Forgot password');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
 		return View::make('account/forgot');
 	}
 	
@@ -254,7 +266,11 @@ class AccountController extends BaseController {
 			}
 		}
 		$rights = Right::lists('name','id');
-		return View::make('settings/permissions')->with('rights',$rights)->with('users',$users);
+
+		Breadcrumb::addbreadcrumb('Home','../');
+		Breadcrumb::addbreadcrumb('Manage permissions');
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+		return View::make('settings/permissions',$data)->with('rights',$rights)->with('users',$users);
 	}
 
 	public function postPermissions()
