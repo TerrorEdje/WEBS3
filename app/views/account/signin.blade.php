@@ -6,6 +6,7 @@
 		Sign in
 	</div>
 
+	<!-- Maakt het formulier aan om in te loggen -->
 	<div class="col-md-12 form">
 		{{ Form::open(array('route' => array('account-sign-in-post'))) }}
 		

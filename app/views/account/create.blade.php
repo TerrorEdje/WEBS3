@@ -6,6 +6,7 @@
 		Register
 	</div>
 	
+	<!-- Maakt het formulier aan om een gebruiker te registeren -->
 	<div class="col-md-12 form">
 		{{ Form::open(array('route' => array('account-create-post'))) }}
 	

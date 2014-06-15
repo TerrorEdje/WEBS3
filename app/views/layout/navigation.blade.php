@@ -1,3 +1,5 @@
+
+<!-- Maakt het menu aan -->
 <div class="row">
 	<ul class="nav nav-pills">
 		@foreach($menus as $menu)

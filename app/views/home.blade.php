@@ -12,6 +12,7 @@
 		News
 	</div>
 	
+	<!-- Toont alle niewsberichten -->
 	@foreach ($allNews as $infoNews) 
 		<table class="col-md-12 newsTable">
 			<tr>

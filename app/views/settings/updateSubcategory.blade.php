@@ -5,7 +5,8 @@
 	<div class="col-md-12 titleBlock bg-primary">
 		Change subcategory
 	</div>			
-			
+	
+	<!-- Maakt een formulier aan om een subcategorie te wijzigen -->
 	<div class="col-md-12 form">	
 						
 		{{ Form::open(array('route' => array('update-subcategory-post'))) }}

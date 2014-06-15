@@ -5,7 +5,8 @@
 	<div class="col-md-12 titleBlock bg-primary">
 		Change category
 	</div>			
-			
+	
+	<!-- Maakt een formulier aan een hoofdcategorie toe te wijzigen -->
 	<div class="col-md-12 form">	
 						
 		{{ Form::open(array('route' => array('update-category-post'))) }}

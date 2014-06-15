@@ -6,6 +6,7 @@
 		Change profile
 	</div>
 	
+	<!-- Maakt een formulier aan om het profiel aan te passen -->
 	<div class="col-md-12 form">
 		{{ Form::open(array('route' => array('profile-change-post'),  'files' => true)) }}
 		

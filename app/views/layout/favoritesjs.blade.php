@@ -21,6 +21,7 @@
 		categorys.push(new Category("{{$fsubcategory['id']}}","{{$fsubcategory['name']}}","{{$fsubcategory['description']}}"))
 	@endforeach
 
+	/* Voegt een favoriet toe */
 	function addToFavorites(id)
 	{
 		if (favorites == null)
@@ -40,6 +41,7 @@
 
 	}
 
+	/* Verwijdert een favoriet */
 	function deleteFromFavorites(id)
 	{
 		if (favorites == null)
@@ -58,6 +60,7 @@
 		}
 	}
 
+	/* Verwijdert alle favorieten */
 	function deleteAllFromFavorites(id)
 	{
 		if (favorites == null)
@@ -69,6 +72,7 @@
 		showCategorys();
 	}
 
+	/* Toont alle categorieën */
 	function showCategorys()
 	{
 		var myNode = document.getElementById("favorites")

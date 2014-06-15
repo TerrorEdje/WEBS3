@@ -6,6 +6,7 @@
 		{{ $topic['topic']->title }}
 	</div>
 	
+	<!-- Toont de eerste reply van het topic -->
 	<div>
 		<table class="col-md-12 replyTable">
 			<tr>
@@ -18,8 +19,10 @@
 			</tr>
 			<tr>
 				<td class="col-md-2 tableTD">
+				
+					<!-- Toont beheer opties -->
 					@if (checkAccessReply($reply['reply']->id))
-						&nbsp;&nbsp;&nbsp;
+						&nbsp;
 						<a href="{{ URL::route('delete-topic', $topic['topic']->id) }}" class="iconLink">
 							<span><i class="indicator glyphicon glyphicon-trash"></i></span>
 						</a>
@@ -38,6 +41,7 @@
 		</table>
 	</div>
 	
+	<!-- Toont de polloptions of de resultaten van een poll -->
 	@if (count($topic['polloptions']) != 0)
 		<div class="col-md-12 form">
 			<h4>Poll</h4>
@@ -88,6 +92,8 @@
 				There are no replies at the moment.
 			</div>
 		@else
+			
+			<!-- Toont alle replies van een topic -->
 			@foreach ($replies as $infoReply)
 				<table class="col-sm-12 replyTable">
 					<tr>
@@ -100,8 +106,10 @@
 					</tr>
 					<tr>
 						<td class="col-sm-2 tableTD">
+							
+							<!-- Toont beheer opties -->
 							@if (checkAccessReply($infoReply['reply']->id))
-								&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<a href="{{ URL::route('delete-reply', $infoReply['reply']->id) }}" class="iconLink">
 									<span><i class="indicator glyphicon glyphicon-trash"></i></span>
 								</a>
@@ -118,6 +126,7 @@
 		@endif
 	</div>
 
+	<!-- Maakt het formulier aan om een reply toe te voegen -->
 	@if ($topic['topic']->open == true)
 		<div class="col-md-12 titleBlock bg-primary">Reply</div>
 		<div class="col-md-12 form">

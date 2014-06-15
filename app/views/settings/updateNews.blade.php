@@ -5,7 +5,8 @@
 	<div class="col-md-12 titleBlock bg-primary">
 		Change news
 	</div>			
-			
+	
+	<!-- Maakt een formulier aan een nieuwsbericht toe te wijzigen -->
 	<div class="col-md-12 form">
 	
 		{{ Form::open(array('route' => array('update-news-post'))) }}

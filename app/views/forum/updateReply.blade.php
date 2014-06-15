@@ -6,6 +6,7 @@
 		Change reply
 	</div>
 	
+	<!-- Maakt het formulier aan om een reply te wijzigen -->
 	<div class="col-md-12 form">
 		{{ Form::open(array('route' => array('update-reply-post'))) }}
 			{{ Form::textarea('content', $reply['content'], array('class' => 'textarea')) }}<br>

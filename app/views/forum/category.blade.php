@@ -8,6 +8,7 @@
 		</div>
 	</div>
 		
+	<!--Toont de topics van een subcategorie -->
 	@if ($openTopics == null && $closedTopics == null)
 		<div class="row">
 			<div class="col-md-12 messageBlock">
@@ -37,6 +38,7 @@
 		
 		<br>
 		
+		<!-- Maakt een zoekbalk aan -->
 		<div class="row">
 			<span>Search for topic:</span>
 			<input type="text" name="search-criteria" id="search-criteria" class="searchboxTopic"/>
@@ -50,6 +52,8 @@
 					<th class="col-sm-2 tableTD">Replies</th>
 					<th class="col-sm-2 topicsTabelLastReplyTD">Last reply</th>
 				</tr>
+				
+				<!-- Toont alle open topics -->
 				@foreach ($openTopics as $infoTopic)
 					<tr class="topic">
 						<td class="col-sm-6 topicsTabelNameTD">{{ link_to_route('forum-topic', $infoTopic['topic']->title, array('id' => $infoTopic['topic']->id )) }}</td>
@@ -62,6 +66,8 @@
 						@endif
 					</tr>
 				@endforeach
+				
+				<!-- Toont alle gesloten topics -->
 				@foreach ($closedTopics as $infoTopic)
 					<tr class="topic">
 						<td class="col-sm-6 topicsTabelNameTD">

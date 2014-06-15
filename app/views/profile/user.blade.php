@@ -6,6 +6,7 @@
 		Profile
 	</div>
 	
+	<!-- Toont de gegevens van profiel van een gebruiker -->
 	<div>
 		<table class="col-md-12 profileTable">
 			<tr>

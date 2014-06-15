@@ -6,6 +6,7 @@
 		Forgot password
 	</div>
 	
+	<!-- Maakt het formulier aan om een nieuw wachtwoord aan te vragen -->
 	<div class="col-md-12 form">
 		{{ Form::open(array('route' => array('account-forgot-password-post'))) }}
 		

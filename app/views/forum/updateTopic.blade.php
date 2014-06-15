@@ -6,6 +6,7 @@
 		Change topic
 	</div>
 	
+	<!-- Maakt het formulier aan om een topic te wijzigen -->
 	<div class="col-md-12 form">
 
 			{{ Form::open(array('route' => array('update-topic-post'))) }}

@@ -5,7 +5,8 @@
 	<div class="col-md-12 titleBlock bg-primary">
 		Category management
 	</div>			
-			
+	
+	<!-- Maakt een formulier aan om een hoofdcategorie toe te voegen -->
 	<div class="col-md-12 form">
 	
 		{{ Form::open(array('route' => array('manage-category-category-post'))) }}
@@ -29,7 +30,8 @@
 		{{ Form::close() }}
 		
 	</div>
-		
+	
+	<!-- Toont van elke hoofdcategorie de subcategorieen en maakt voor elke hoofdcategorie een formulier aan om een subcategorie toe te voegen -->
 	@foreach ($categories as $infoCategory)		
 		<div class="col-md-12 form">
 		

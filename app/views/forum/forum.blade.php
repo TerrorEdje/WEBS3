@@ -2,6 +2,7 @@
 
 @section('content')
 
+	<!-- Toont voor elke hoofdcategorie de subcategorieën -->
 	@foreach ($categories as $infoCategory)
 		<div class="row">
 			<div class="col-md-12 titleBlock bg-primary">
@@ -12,6 +13,7 @@
 	
 		<div class="row">
 		
+			<!-- Toont voor elke subcategorie van een hoofdcategorie -->
 			@foreach ($infoCategory['subcategories'] as $infoSubcategory)
 				<div class="col-md-3 categoryBlock">
 						<div class="titleSubCategory">

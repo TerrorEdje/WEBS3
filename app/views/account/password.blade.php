@@ -6,6 +6,7 @@
 		Change password
 	</div>
 	
+	<!-- Maakt het formulier aan om het wachtwoord te wijzigen -->
 	<div class="col-md-12 form">
 		{{ Form::open(array('route' => array('account-change-password-post'))) }}
 		

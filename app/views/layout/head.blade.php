@@ -1,4 +1,6 @@
 <title>Je Forum</title>
+
+<!-- Voegt de assets toe -->
 {{HTML::style('assets/css/style.css')}}
 {{HTML::style('assets/css/bootstrap.css')}}
 {{HTML::script('assets/js/jquery-1.11.1.js')}}

@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
+
+	<!-- Edwin Hattink en Jip Verhoeven -->
+	
 	<head>
 		@include('layout/head')
 	</head>
+	
+	<!-- Toont alle onderdelen van een pagina -->
 	<body onload="showCategorys()">
 		<div class="container">
 			@include('layout/navigation')
@@ -23,4 +28,5 @@
 			@include('layout/footer')
 		</div>
 	</body>
+	
 </html>

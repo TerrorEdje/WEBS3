@@ -8,11 +8,13 @@
 	
 	<div class="col-md-12 form">
 	
+		<!-- Maakt een zoekbalk aan -->
 		<div class="col-md-2 searchboxLabel">Search on username:</div>
 		<div class="col-md-10"><input type="text" name="search-criteria" id="search-criteria" class="searchbox"/></div>
 		
 		<br><br><br>
 	
+		<!-- Maakt een formulier aan om de rechten van gebruikers te beheren -->
 		{{ Form::open(array('route' => array('manage-permissons-post'))) }}
 			
 			{{ Form::hidden('amountOfUsers', count($users)) }}

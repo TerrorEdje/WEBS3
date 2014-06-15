@@ -8,6 +8,7 @@
 		</div>
 	</div>
 
+	<!-- Maakt het formulier aan om een topic toe te voegen -->
 	<div class="row">
 		<div class="col-md-12 form">
 
