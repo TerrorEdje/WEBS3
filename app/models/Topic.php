@@ -4,6 +4,7 @@
 	
 		protected $table = 'topics';
 		
+		# Geeft het aantal replies van de topic terug
 		public function getAmountOfReplies() 
 		{
 			$amountOfReplies = Reply::where('topics_id', '=', $this->id)->count();
@@ -12,6 +13,7 @@
 			}
 		}
 		
+		# Geeft de datum van de laaste reply van de topic terug
 		public function getLastReply() 
 		{
 			$lastReply = 0;
@@ -27,6 +29,7 @@
 			}
 		}
 		
+		# Geeft de polloptions van de topic terug
 		public function getPolloptions() 
 		{
 			$polloptions = Polloption::where('topics_id', '=', $this->id)->get();

@@ -4,6 +4,7 @@
 	
 		protected $table = 'subcategories';
 		
+		# Geeft het aantal topics van de subcategorie terug
 		public function getAmountOfTopics()
 		{
 			$amountOfTopics = Topic::where('subcategories_id', '=', $this->id)->count();
@@ -12,6 +13,7 @@
 			}
 		}
 		
+		# Geeft het aantal replies van de subcategorie terug
 		public function getAmountOfReplies() 
 		{
 			$amountOfReplies = 0;
@@ -24,6 +26,7 @@
 			}
 		}
 		
+		# Geeft het de datum van de laatste reply van de subcategorie terug
 		public function getLastReply() 
 		{
 			$lastReply = 0;
