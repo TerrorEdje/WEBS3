@@ -55,6 +55,7 @@ class ProfileController extends BaseController {
 			if (Auth::check())
 			{
 				$user = Auth::user();
+				$user->description = Input::get('description');
 				$user->signature = Input::get('signature');
 				if (Input::hasFile('picture'))
 				{
@@ -65,10 +66,10 @@ class ProfileController extends BaseController {
 					$upload_success = $file->move($destinationPath,$filename. "." . $extension);
 					$user->image = $filename . "." .$extension;
 					$user->save();
-					return Redirect::route('home')->with('global','Image and signature updated!');
+					return Redirect::route('home')->with('global','Image, description and signature updated!');
 				}
 				$user->save();
-				return Redirect::route('home')->with('global','Signature updated!');
+				return Redirect::route('home')->with('global','Description en signature updated!');
 			}
 		}
 		return Redirect::route('home')->with('global','Failed updating your profile');

@@ -23,11 +23,13 @@
 			
 			<br>
 			
+			Description:<br>
+			{{ Form::textarea('description', $user['description'], array('class' => 'textarea')) }}
+		
+			<br>
+			
 			Signature:<br>
 			{{ Form::textarea('signature', $user['signature'], array('class' => 'textarea')) }}
-			@if($errors->has('signature'))
-				{{ $errors->first('signature', '<span class="text-danger">:message</span>') }}<br>
-			@endif
 		
 			<br>
 			
