@@ -7,7 +7,7 @@
 		<div class="container">
 			@include('layout/navigation')
 
-			@include('layout/favorites');
+			@include('layout/favorites')
 
 			@if(Session::has('global'))
 				<p>{{ Session::get('global')}}</p>

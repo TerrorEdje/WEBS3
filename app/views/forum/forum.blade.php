@@ -13,8 +13,7 @@
 		<div class="row">
 		
 			@foreach ($infoCategory['subcategories'] as $infoSubcategory)
-				<div class="col-md-3">
-					<span class="categoryBlock">
+				<div class="col-md-3 categoryBlock">
 						<div class="titleSubCategory">
 							<a class="titleSubCategoryLink" href="{{ URL::route('forum-category',$infoSubcategory['id']) }}">{{  $infoSubcategory['name'] }}</a>
 						</div>
@@ -40,7 +39,6 @@
 								@endif
 							</p>
 						</div>
-					</span>
 				</div>
 			@endforeach
 			
