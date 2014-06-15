@@ -246,7 +246,7 @@ class CategoryController extends BaseController {
 	public function getDeleteSubcategory($id)
 	{
 		$category = Subcategory::find($id);
-		if (!isset($subcategory->name))
+		if (!isset($category->name))
 		{
 			return Redirect::route('home')->with('global','This subcategory does not exist.');
 		}
