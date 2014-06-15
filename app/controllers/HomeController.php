@@ -14,7 +14,14 @@ class HomeController extends BaseController {
 			$infoNews['news'] = $news;
 			array_push($allNews, $infoNews);
 		}
-		return View::make('home')->with('allNews', $allNews);
+
+		Breadcrumb::addbreadcrumb('Home','/');
+
+		Breadcrumb::setSeperator('/');
+
+		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
+
+		return View::make('home',$data)->with('allNews', $allNews);
 	}
 
 	public function getDatabase()

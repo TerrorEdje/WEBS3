@@ -13,6 +13,11 @@
 				<p>{{ Session::get('global')}}</p>
 			@endif
 
+			@if(isset($breadcrumbs))
+				{{ $breadcrumbs }}
+			@endif
+			
+
 			@yield('content')
 				
 			@include('layout/footer')
