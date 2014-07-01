@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'sd',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -51,13 +51,13 @@ return array(
 			'database' => __DIR__.'/../database/production.sqlite',
 			'prefix'   => '',
 		),
-
-		'mysql' => array(
+		
+		'sd' => array(
 			'driver'    => 'mysql',
-			'host'      => 'databases.aii.avans.nl',
-			'database'  => 'jverhoev5_db',
-			'username'  => 'jverhoev5',
-			'password'  => 'Ab12345',
+			'host'      => 'mysql.hostfree.nl',
+			'database'  => 'u940402296_sigma',
+			'username'  => 'u940402296_sigma',
+			'password'  => 'sigma95',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

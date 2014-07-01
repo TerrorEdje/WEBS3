@@ -1,4 +1,4 @@
-<title>Je Forum</title>
+<title>Sigma Draconis</title>
 
 <!-- Voegt de assets toe -->
 {{HTML::style('assets/css/style.css')}}
