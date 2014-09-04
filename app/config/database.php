@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sd',
+	'default' => 'localhost',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,12 +52,12 @@ return array(
 			'prefix'   => '',
 		),
 		
-		'sd' => array(
+		'localhost' => array(
 			'driver'    => 'mysql',
-			'host'      => 'mysql.hostfree.nl',
-			'database'  => 'u940402296_sigma',
-			'username'  => 'u940402296_sigma',
-			'password'  => 'sigma95',
+			'host'      => 'localhost',
+			'database'  => 'sigmadraconis',
+			'username'  => 'root',
+			'password'  => '',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
