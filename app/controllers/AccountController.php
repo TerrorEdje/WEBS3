@@ -5,10 +5,7 @@ class AccountController extends BaseController {
 	# Maakt de view aan voor het registeren van een gebruiker
 	public function getCreate()
 	{
-		Breadcrumb::addbreadcrumb('Home','../');
-		Breadcrumb::addbreadcrumb('Register');
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('account/create',$data);
+		return View::make('account/create');
 	}
 	
 	# Voegt de gebruiker toe aan de database
@@ -85,10 +82,7 @@ class AccountController extends BaseController {
 	# Maakt de view aan voor het inloggen van een gebruiker
 	public function getSignIn()
 	{
-		Breadcrumb::addbreadcrumb('Home','../');
-		Breadcrumb::addbreadcrumb('Login');
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('account/signin',$data);
+		return View::make('account/signin');
 	}
 
 	# Voor het inloggen van een gebruiker
@@ -144,10 +138,7 @@ class AccountController extends BaseController {
 	# Maakt de view aan voor het veranderen van het wachtwoord van een gebruiker
 	public function getChangePassword()
 	{
-		Breadcrumb::addbreadcrumb('Home','../');
-		Breadcrumb::addbreadcrumb('Change Password');
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('account/password',$data);
+		return View::make('account/password');
 	}
 	
 	# Zet het nieuwe wachtwoord in de database
@@ -192,9 +183,6 @@ class AccountController extends BaseController {
 	# Maakt de view aan voor als een gebruiker zijn of haar wachtwoord is vergeten
 	public function getForgotPassword()
 	{
-		Breadcrumb::addbreadcrumb('Home','../');
-		Breadcrumb::addbreadcrumb('Forgot password');
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
 		return View::make('account/forgot');
 	}
 	
@@ -279,10 +267,7 @@ class AccountController extends BaseController {
 		}
 		$rights = Right::lists('name','id');
 
-		Breadcrumb::addbreadcrumb('Home','../');
-		Breadcrumb::addbreadcrumb('Manage permissions');
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('settings/permissions',$data)->with('rights',$rights)->with('users',$users);
+		return View::make('settings/permissions')->with('rights',$rights)->with('users',$users);
 	}
 
 	# Zet de rechten van de gebruikers in de database
