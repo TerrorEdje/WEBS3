@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'hotelreprog6@gmail.com', 'name' => 'Forum'),
+	'from' => array('address' => 'sigmadraconisguild@gmail.com', 'name' => 'Sigma Draconis'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'hotelreprog6@gmail.com',
+	'username' => 'sigmadraconisguild@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'database6',
+	'password' => 'SigmaDragon',
 
 	/*
 	|--------------------------------------------------------------------------

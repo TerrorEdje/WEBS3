@@ -14,12 +14,7 @@
 
 			@if(Session::has('global'))
 				<p>{{ Session::get('global')}}</p>
-			@endif
-
-			@if(isset($breadcrumbs))
-				{{ $breadcrumbs }}
-			@endif
-			
+			@endif			
 
 			@yield('content')
 				
