@@ -12,15 +12,15 @@
 			<tr>
 				<td colspan="2" class="col-md-7 tableTD">
 					<span class="profileUsername">{{ $user->username }}</span><br>
-					{{ $user->signature }}
+					{{ $user->rankTitle() }}
 				</td>
 				<td class="col-md-2 profileTabelDateTD">
 					Last time online:<br>
 					Times online:
 				</td>
 				<td class="col-md-3 tableTD">
-					{{ date("D d M Y", strtotime($user->lasttimeonline)), ' at ', date("H:i", strtotime($user->lasttimeonline)) }}<br> 
-					{{ $user->timesonline }}
+					{{ date("D d M Y", strtotime($user->lastLogin())), ' at ', date("H:i", strtotime($user->lastLogin())) }}<br> 
+					{{ $user->timesOnline() }}
 				</td>
 			</tr>
 			<tr>

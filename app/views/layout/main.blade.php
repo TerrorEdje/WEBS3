@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-	<!-- Edwin Hattink en Jip Verhoeven -->
+	<!-- Website created by Iseke -->
 	
 	<head>
 		@include('layout/head')

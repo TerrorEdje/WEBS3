@@ -10,11 +10,11 @@
 	<div>
 		<table class="col-md-12 replyTable">
 			<tr>
-				<td class="col-md-2 replyTabelUsernameTD">{{ $reply['by']->username }}</td>
+				<td class="col-md-2 replyTabelUsernameTD"><a href="{{ URL::route('profile-user',$reply['by']->username) }}">{{ $reply['by']->username }}</a></td>
 				<td class="col-md-10 replyTabelDateTD">{{ date("d-m-Y H:i", strtotime($reply['reply']->created_at)) }}</td>
 			</tr>
 			<tr>
-				<td class="col-md-2 tableTD">{{ HTML::image('uploads/' . $reply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}</td>
+				<td class="col-md-2 tableTD">{{ HTML::image('uploads/' . $reply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}<br>{{ $reply['by']->rankTitle() }}</td>
 				<td class="col-md-10 tableTD">{{ nl2br($reply['reply']->content) }}</td>
 			</tr>
 			<tr>
@@ -99,11 +99,11 @@
 			@foreach ($replies as $infoReply)
 				<table class="col-sm-12 replyTable">
 					<tr>
-						<td class="col-sm-2 replyTabelUsernameTD">{{ $infoReply['by']->username }}</td>
+						<td class="col-sm-2 replyTabelUsernameTD"><a href="{{ URL::route('profile-user',$infoReply['by']->username) }}">{{ $infoReply['by']->username }}</a></td>
 						<td class="col-sm-10 replyTabelDateTD">{{ date("d-m-Y H:i", strtotime($infoReply['reply']->created_at)) }}</td>
 					</tr>
 					<tr>
-						<td class="col-sm-2 tableTD">{{ HTML::image('uploads/' . $infoReply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}</td>
+						<td class="col-sm-2 tableTD">{{ HTML::image('uploads/' . $infoReply['by']->image,'Image', array('width' => '100', 'height' => '100'))}}<br>{{ $reply['by']->rankTitle() }}</td>
 						<td class="col-sm-10 tableTD">{{ nl2br($infoReply['reply']->content) }}</td>
 					</tr>
 					<tr>

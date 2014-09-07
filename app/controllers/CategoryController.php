@@ -72,7 +72,23 @@ class CategoryController extends BaseController {
 	{
 		$allTopics = array(); # Bevat dadelijk van alle topics alle info
 		
-		$dbTopics = Topic::where('subcategories_id','=', $id)->get();
+		$dbTopics = Topic::where('subcategories_id','=', $id)->where('sticky','=',NULL)->get();
+		foreach ($dbTopics as $topic) {
+			$infoTopic = array(); # Bevat dadelijk alle info van een topic
+			$infoTopic['topic'] = $topic;
+			$user = User::find($topic->by);
+			$infoTopic['by'] = $user->username;
+			$infoTopic['amountOfReplies'] = $topic->getAmountOfReplies();
+			$infoTopic['lastReply'] = $topic->getLastReply();
+			array_push($allTopics, $infoTopic);
+		}
+
+		usort($allTopics,function ($a,$b)
+		{
+			return strcmp($b['lastReply'],$a['lastReply']);
+		});
+
+		$dbTopics = Topic::where('subcategories_id','=', $id)->where('sticky','=','true')->get();
 		foreach ($dbTopics as $topic) {
 			$infoTopic = array(); # Bevat dadelijk alle info van een topic
 			$infoTopic['topic'] = $topic;

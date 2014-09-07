@@ -18,7 +18,7 @@
 		 	<li><a href="{{ URL::route('forum') }}">Forum</a></li>
 
 			 	<li class="dropdown">
-				<a href="{{ URL::route('profile-user-loggedin') }}">Account</a>
+				<a href="{{ URL::route('profile-user',Auth::user()->username) }}">Account</a>
 				<ul class="sub_navigation nav nav-pills">
 					<li><a href="{{ URL::route('account-change-password') }}">Change password</a></li>
 					<li><a href="{{ URL::route('profile-change') }}">Change profile</a></li>

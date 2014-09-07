@@ -8,3 +8,4 @@
 {{HTML::script('assets/js/javascript.js')}}
 {{HTML::script('assets/js/jquery.cookie.js')}}		
 {{HTML::script('assets/js/bootstrap.js')}}
+<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">

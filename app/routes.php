@@ -142,11 +142,6 @@ Route::group(array('before' => 'auth'), function()
 		'uses' => 'ProfileController@user'
 	));
 
-	Route::get('profile',array(
-		'as' => 'profile-user-loggedin',
-		'uses' => 'ProfileController@loggedInUser'
-	));
-
 	Route::get('profile/change',array(
 		'as' => 'profile-change',
 		'uses' => 'ProfileController@getChangeProfile'

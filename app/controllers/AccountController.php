@@ -40,6 +40,7 @@ class AccountController extends BaseController {
 			$user->password = $password;
 			$user->username = $username;
 			$user->active=0;
+			$user->image = "sigmadraconis.png";
 			$user->ranks_id = 1;
 			$user->save();
 			
@@ -106,14 +107,7 @@ class AccountController extends BaseController {
 			);
 			
 			if(Auth::attempt($user,$remember))
-			{
-				$useronline = User::where('email','=',Input::get('email'));
-				if($useronline->count())
-				{
-					$useronline = $useronline->first();
-					$useronline->save();
-				}
-				
+			{				
 				return Redirect::intended('/');
 			}
 			else

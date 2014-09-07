@@ -35,6 +35,14 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
+	if (Auth::check())
+	{
+		if(!Session::get("logged"))
+		{
+			Session::put("logged","true");
+			Auth::user()->createLog();
+		}
+	}
 	if (Auth::guest()) return Redirect::guest('account/sign-in');
 });
 

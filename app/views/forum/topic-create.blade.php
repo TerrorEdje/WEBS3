@@ -41,6 +41,12 @@
 				
 				{{ Form::hidden('id', $subcategory['id'] ) }}
 				{{ Form::submit('Create', array('class' => 'btn-primary button')) }}
+
+				@if(Auth::check())
+					@if(Auth::user()->isAdmin() || Auth::user()->isModerator())
+						
+					@endif
+				@endif
 				
 			{{ Form::token(); }}	
 			{{ Form::close() }}	

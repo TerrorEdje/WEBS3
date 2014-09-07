@@ -10,10 +10,7 @@ class ProfileController extends BaseController {
 		if($user->count())
 		{
 			$user = $user->first();
-			Breadcrumb::addbreadcrumb('Home','../../');
-			Breadcrumb::addbreadcrumb($username);
-			$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-			return View::make('profile/user',$data)->with('user',$user);
+			return View::make('profile/user')->with('user',$user);
 		}
 		
 		return Redirect::route('home')->with('global','This user can not be found.');
@@ -27,11 +24,7 @@ class ProfileController extends BaseController {
 		if ($user->count())
 		{
 			$user = $user->first();
-
-			Breadcrumb::addbreadcrumb('Home','../');
-			Breadcrumb::addbreadcrumb('Update profile');
-			$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-			return View::make('profile/changeprofile',$data)->with('user',$user);
+			return View::make('profile/changeprofile')->with('user',$user);
 		}
 
 		return Redirect::route('home')->with('global','Could not change your profile.');
@@ -83,10 +76,7 @@ class ProfileController extends BaseController {
 		
 		if(isset($user))
 		{
-			Breadcrumb::addbreadcrumb('Home','./');
-			Breadcrumb::addbreadcrumb($user->username);
-			$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-			return View::make('profile/user',$data)->with('user',$user);
+			return View::make('profile/user')->with('user',$user);
 		}
 		
 		return Redirect::route('home')->with('global','This user can not be found.');

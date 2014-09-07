@@ -117,4 +117,30 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return false;
 	}
 
+	public function rankTitle()
+	{
+		$rank = Rank::find($this->ranks_id);
+		return $rank->title;
+	}
+
+	public function createLog()
+	{
+		$log = new Loginlog;
+		$log->users_id = $this->id;
+		$log->save();
+	}
+
+	public function lastLogin()
+	{
+		$log = LoginLog::where('users_id','=',$this->id)->orderBy('created_at','desc')->first();
+		if (isset($logs))
+			return $log->created_at;
+	}
+
+	public function timesOnline()
+	{
+		$logs = LoginLog::where('users_id','=',$this->id);
+		return $logs->count();
+	}
+
 }
