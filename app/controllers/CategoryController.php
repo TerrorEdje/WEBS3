@@ -22,10 +22,7 @@ class CategoryController extends BaseController {
 			$infoCategory['subcategories'] = $infoSubcategories;
 			array_push($allCategories, $infoCategory);
 		}		
-		Breadcrumb::addbreadcrumb('Home','./');
-		Breadcrumb::addbreadcrumb('Forum');
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('forum/forum',$data)->with('categories', $allCategories);
+		return View::make('forum/forum')->with('categories', $allCategories);
 	}
 	
 	# Geeft aan hoofdcategorieën terug met de bijbehorende subcategorieën
@@ -67,11 +64,7 @@ class CategoryController extends BaseController {
 				array_push($infoClosedTopics, $infoTopic);
 			}
 		}
-		Breadcrumb::addbreadcrumb('Home','../../');
-		Breadcrumb::addbreadcrumb('Forum','../');
-		Breadcrumb::addbreadcrumb($subcategory->name);
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('forum/category',$data)->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name', $id);
+		return View::make('forum/category')->with('subcategory', $subcategory)->with('openTopics', $infoOpenTopics)->with('closedTopics', $infoClosedTopics)->with('name', $id);
 	}
 	
 	# Geeft alle topics met de bijbehorende informatie terug
@@ -97,10 +90,7 @@ class CategoryController extends BaseController {
 	public function getManageCategories()
 	{
 		$categories = $this->getMainCategories();
-		Breadcrumb::addbreadcrumb('Home','../');
-		Breadcrumb::addbreadcrumb('Manage categories');
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('settings/categories',$data)->with('categories',$categories);
+		return View::make('settings/categories')->with('categories',$categories);
 	}
 
 	# Zet een subcategorie in de database
@@ -160,11 +150,7 @@ class CategoryController extends BaseController {
 		{
 			return Redirect::route('home')->with('global','This subcategory does not exist.');
 		}
-		Breadcrumb::addbreadcrumb('Home','../../');
-		Breadcrumb::addbreadcrumb('Manage categories','../../settings/categories');
-		Breadcrumb::addbreadcrumb($subcategory->name);
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('settings/updateSubcategory',$data)->with('subcategory', $subcategory);
+		return View::make('settings/updateSubcategory')->with('subcategory', $subcategory);
 	}
 	
 	# Zet een gewijzigde subcategorie in de database
@@ -199,11 +185,7 @@ class CategoryController extends BaseController {
 		{
 			return Redirect::route('home')->with('global','This category does not exist.');
 		}
-		Breadcrumb::addbreadcrumb('Home','../../');
-		Breadcrumb::addbreadcrumb('Manage categories','../../settings/categories');
-		Breadcrumb::addbreadcrumb($category->name);
-		$data = array ( 'breadcrumbs' => Breadcrumb::generate() );
-		return View::make('settings/updateCategory',$data)->with('category', $category);
+		return View::make('settings/updateCategory')->with('category', $category);
 	}
 	
 	# Zet een gewijzigde hoofdcategorie in de database

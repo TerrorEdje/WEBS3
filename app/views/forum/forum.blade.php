@@ -24,12 +24,7 @@
 							<p>
 								@if ($infoSubcategory['description'] != null)
 									{{ $infoSubcategory['description'] }}<br>
-								@else
-									This subcategory has no description.
 								@endif
-							</p>
-							<p>
-								<a href="#" onclick="addToFavorites({{$infoSubcategory['id']}})">Add to favorites <span class="glyphicon glyphicon-heart"></span></a>
 							</p>
 							<p>
 								Topics: {{ $infoSubcategory['amountOfTopics'] }}

@@ -1,27 +1,4 @@
 <?php
-function checkAccess()
-{
-	if (Auth::check())
-	{
-		$rights = Right::all();
-		$allowedRights = func_get_args();
-		foreach ($allowedRights as $allowed)
-		{
-			foreach($rights as $right)
-			{
-				if ($right->name == $allowed)
-				{
-					if (Auth::user()->rights_id == $right->id)
-					{
-						return true;
-					}
-				}
-			}
-		}
-	}
-	return false;
-}
-
 function checkAccessById()
 {
 	if (Auth::check())

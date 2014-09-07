@@ -21,7 +21,8 @@
 				<td class="col-md-2 tableTD">
 				
 					<!-- Toont beheer opties -->
-					@if (checkAccessReply($reply['reply']->id))
+					@if (Auth::check())
+						@if (Auth::user()->checkAccessReply($reply['reply']->id))
 						&nbsp;
 						<a href="{{ URL::route('delete-topic', $topic['topic']->id) }}" class="iconLink">
 							<span><i class="indicator glyphicon glyphicon-trash"></i></span>
@@ -34,6 +35,7 @@
 						<a href="{{ URL::route('update-topic', $topic['topic']->id) }}" class="iconLink">
 							<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
 						</a>	
+						@endif
 					@endif
 				</td>
 				<td class="col-md-10 tableTD">{{ $reply['by']->signature }}</td>
@@ -108,7 +110,8 @@
 						<td class="col-sm-2 tableTD">
 							
 							<!-- Toont beheer opties -->
-							@if (checkAccessReply($infoReply['reply']->id))
+							@if (Auth::check())
+								@if (Auth::user()->checkAccessReply($infoReply['reply']->id))
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<a href="{{ URL::route('delete-reply', $infoReply['reply']->id) }}" class="iconLink">
 									<span><i class="indicator glyphicon glyphicon-trash"></i></span>
@@ -117,6 +120,7 @@
 								<a href="{{ URL::route('update-reply', $infoReply['reply']->id) }}" class="iconLink">
 									<span><i class="indicator glyphicon glyphicon-pencil"></i></span>
 								</a>
+								@endif
 							@endif
 						</td>
 						<td class="col-sm-10 tableTD">{{ $infoReply['by']->signature }}</td>

@@ -80,4 +80,41 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+	public function isAdmin()
+	{ 
+		$rank = Rank::find($this->ranks_id);
+		if ($rank->admin == 1)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public function isModerator()
+	{ 
+		$rank = Rank::find($this->ranks_id);
+		if ($rank->moderator == 1)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public function checkAccessReply($id)
+	{
+		$reply = Reply::find($id);
+		if (Auth::check())
+		{
+			if (Auth::user()->id == $reply->by)
+			{
+				return true;
+			}
+			if (isModerator() || isAdmin())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

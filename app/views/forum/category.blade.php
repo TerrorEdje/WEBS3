@@ -22,7 +22,6 @@
 					{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
 				{{ Form::close() }}
 				<br>
-				<a href="#" onclick="addToFavorites({{$subcategory['id']}})">Add to favorites <span class="glyphicon glyphicon-heart"></span></a>
 			</div>
 		</div>
 	@else
@@ -32,7 +31,6 @@
 					{{ Form::submit('New topic', array('class' => 'btn-primary button')) }}
 				{{ Form::close() }}
 				<br>
-				<a href="#" onclick="addToFavorites({{$subcategory['id']}})">Add to favorites <span class="glyphicon glyphicon-heart"></span></a>
 			</div>
 		</div>
 		

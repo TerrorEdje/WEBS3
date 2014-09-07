@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'SigmaDragon',
+	'password' => 'SigmaDragon14',
 
 	/*
 	|--------------------------------------------------------------------------

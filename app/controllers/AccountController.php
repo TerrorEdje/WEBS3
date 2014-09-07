@@ -40,9 +40,7 @@ class AccountController extends BaseController {
 			$user->password = $password;
 			$user->username = $username;
 			$user->active=0;
-			$user->lasttimeonline = date("Y-m-d H:i:s");
-			$user->timesonline = 0;
-			$user->rights_id = 1;
+			$user->ranks_id = 1;
 			$user->save();
 			
 			if ($user) {
@@ -113,8 +111,6 @@ class AccountController extends BaseController {
 				if($useronline->count())
 				{
 					$useronline = $useronline->first();
-					$useronline->timesonline = $useronline->timesonline + 1;
-					$useronline->lasttimeonline = new DateTime('NOW');
 					$useronline->save();
 				}
 				
@@ -289,7 +285,7 @@ class AccountController extends BaseController {
 			{
 				$currentUserId = Input::get('userid'.$i);
 				$user = User::find( $currentUserId );
-				$user->rights_id = Input::get('right'.$i);
+				$user->ranks_id = Input::get('right'.$i);
 				$user->save();
 			}
 

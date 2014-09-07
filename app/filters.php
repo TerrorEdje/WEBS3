@@ -38,7 +38,6 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::guest('account/sign-in');
 });
 
-
 Route::filter('auth.basic', function()
 {
 	return Auth::basic();
@@ -46,7 +45,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('admin', function()
 {
-	if (!checkAccess("Admin"))
+	if(!Auth::user()->isAdmin())
 	{
 		return Redirect::route('home')->with('global','Access denied for this page.');
 	}
