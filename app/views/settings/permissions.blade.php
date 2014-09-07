@@ -28,7 +28,7 @@
 							{{ Form::hidden('userid'. $index,$user->id) }}
 						</td>
 						<td class="col-sm-10 tableTD">
-							{{Form::select('right' . $index, $rights, $user['rights_id'], array('class' => 'selectbox')) }}
+							{{Form::select('rank' . $index, $ranks, $user['ranks_id'], array('class' => 'selectbox')) }}
 						</td>
 					</tr>
 					<?php $index++; ?>

@@ -253,17 +253,20 @@ class AccountController extends BaseController {
 		$users = array();
 		if (Auth::check())
 		{
-			foreach($prepareusers as $user)
+			if (Auth::user()->isAdmin())
 			{
-				if ($user->id != Auth::user()->id)
+				foreach($prepareusers as $user)
 				{
-					array_push($users,$user);
+					if ($user->id != Auth::user()->id)
+					{
+						array_push($users,$user);
+					}
 				}
 			}
 		}
-		$rights = Right::lists('name','id');
+		$ranks = Rank::lists('name','id');
 
-		return View::make('settings/permissions')->with('rights',$rights)->with('users',$users);
+		return View::make('settings/permissions')->with('ranks',$ranks)->with('users',$users);
 	}
 
 	# Zet de rechten van de gebruikers in de database
@@ -285,7 +288,7 @@ class AccountController extends BaseController {
 			{
 				$currentUserId = Input::get('userid'.$i);
 				$user = User::find( $currentUserId );
-				$user->ranks_id = Input::get('right'.$i);
+				$user->ranks_id = Input::get('rank'.$i);
 				$user->save();
 			}
 
